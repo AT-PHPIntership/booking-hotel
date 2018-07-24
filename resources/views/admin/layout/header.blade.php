@@ -39,10 +39,10 @@
               </div>
             </div>
           </a>
-          <a class="dropdown-item mt-2">{{ __('admin/admin.Manage Accounts') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Change Password') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Check Inbox') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Sign Out') }}</a>
+          <a class="dropdown-item mt-2">{{ __('admin/admin.Manage_Accounts') }}</a>
+          <a class="dropdown-item">{{ __('admin/admin.Change_Password') }}</a>
+          <a class="dropdown-item">{{ __('admin/admin.Check_Inbox') }}</a>
+          <a class="dropdown-item">{{ __('admin/admin.Sign_Out') }}</a>
         </div>
       </li>
     </ul>
