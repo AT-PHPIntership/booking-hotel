@@ -1,0 +1,21 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class City extends Model
+{
+    protected $table = 'cities';
+
+    protected $fillable = ['id', 'city', 'country'];
+
+    public function place () {
+        return $this->hasMany('App\Place', 'city_id');
+    }
+
+    public function hotel () {
+        return $this->hasMany('App\Hotel', 'city_id');
+    }
+
+}
