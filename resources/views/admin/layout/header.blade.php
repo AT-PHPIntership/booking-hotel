@@ -10,19 +10,19 @@
   <div class="navbar-menu-wrapper d-flex align-items-center">
     <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
       <li class="nav-item">
-        <a href="#" class="nav-link">{{ __('admin/admin.Home') }}</a>
+        <a href="#" class="nav-link">{{ __('admin/layout.header.home') }}</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">{{ __('admin/admin.Contract') }}</a>
+        <a href="#" class="nav-link">{{ __('admin/layout.header.contract') }}</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">{{ __('admin/admin.Description') }}</a>
+        <a href="#" class="nav-link">{{ __('admin/layout.header.description') }}</a>
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-xl-inline-block">
         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-          <span class="profile-text">{{ __('admin/admin.welcome') }}</span>
+          <span class="profile-text">{{ __('admin/layout.header.welcome') }}</span>
           <img class="img-xs rounded-circle" src="admin/images/faces/face1.jpg" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -39,10 +39,10 @@
               </div>
             </div>
           </a>
-          <a class="dropdown-item mt-2">{{ __('admin/admin.Manage_Accounts') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Change_Password') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Check_Inbox') }}</a>
-          <a class="dropdown-item">{{ __('admin/admin.Sign_Out') }}</a>
+          <a class="dropdown-item mt-2">{{ __('admin/layout.header.manage_accounts') }}</a>
+          <a class="dropdown-item">{{ __('admin/layout.header.change_password') }}</a>
+          <a class="dropdown-item">{{ __('admin/layout.header.check_inbox') }}</a>
+          <a class="dropdown-item">{{ __('admin/layout.header.sign_out') }}</a>
         </div>
       </li>
     </ul>
