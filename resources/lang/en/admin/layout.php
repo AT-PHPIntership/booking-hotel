@@ -28,5 +28,5 @@
         'add_hotel' => 'Add Hotel',
         'print_invoice' => 'Print invoice',
     ],
-    'title' => 'Admin',    
+    'title' => 'Admin',
     ];
