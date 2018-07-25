@@ -15,11 +15,12 @@ class CreateHotelImagesTable extends Migration
     {
         Schema::create('hotel_images', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('hotel_id')->unsigned();
+            $string->string('image');
+            $table->timestamps();
             $table->foreign('hotel_id')->references('id')->on('hotel')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $string->string('image');
-            $table->timestamps();
         });
     }
 

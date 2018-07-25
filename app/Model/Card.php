@@ -18,7 +18,7 @@ class Card extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'card_type', 'card_code'];
+    protected $fillable = ['user_id', 'card_type', 'card_code'];
     
     /**
      * Relationship belongsTo with user
@@ -27,6 +27,6 @@ class Card extends Model
     */
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\Model\User', 'user_id');
     }
 }

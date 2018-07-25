@@ -18,9 +18,7 @@ class Comment extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'content', 'hotel_id', 'rating_point'];
-    
-    public $timestamps = false;
+    protected $fillable = ['user_id', 'content', 'hotel_id', 'rating_point', ];
     
     /**
      * Relationship belongsTo with user
@@ -29,7 +27,7 @@ class Comment extends Model
     */
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Model\User', 'user_id');
     }
 
     /**

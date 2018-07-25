@@ -18,10 +18,8 @@ class ServiceType extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'hotel_id', 'service_id', 'user_id'];
-    
-    public $timestamps = false;
-    
+    protected $fillable = ['hotel_id', 'service_id', 'user_id'];
+
     /**
      * Relationship belongsToMany with hotel
      *
@@ -29,7 +27,7 @@ class ServiceType extends Model
     */
     public function hotel()
     {
-        return $this->belongsToMany('App\Hotel');
+        return $this->belongsToMany('App\Model\Hotel');
     }
 
     /**
@@ -39,6 +37,6 @@ class ServiceType extends Model
     */
     public function service()
     {
-        return $this->hasMany('App\Service');
+        return $this->hasMany('App\Model\Service');
     }
 }

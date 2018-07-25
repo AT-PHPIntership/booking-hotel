@@ -18,10 +18,8 @@ class RoomType extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'hotel_id', 'descript'];
+    protected $fillable = ['user_id', 'hotel_id', 'descript'];
     
-    public $timestamps = false;
-
     /**
      * Relationship belongsTo with room
      *
@@ -29,6 +27,6 @@ class RoomType extends Model
     */
     public function room()
     {
-        return $this->belongsTo('App\Room', 'room_type_id');
+        return $this->belongsTo('App\Model\Room');
     }
 }

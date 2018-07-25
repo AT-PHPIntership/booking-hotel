@@ -18,10 +18,8 @@ class Hotel extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'city_id', 'name', 'address', 'number_star', 'status', 'descript', 'user_id'];
-    
-    public $timestamps = false;
-    
+    protected $fillable = ['city_id', 'name', 'address', 'number_star', 'status', 'descript', 'user_id'];
+
     /**
      * Relationship belongsToMany with serviceType
      *
@@ -29,7 +27,7 @@ class Hotel extends Model
     */
     public function serviceType()
     {
-        return $this->belongsToMany('App\Service_type', 'hotel_id');
+        return $this->belongsToMany('App\Model\Service_type', 'hotel_id');
     }
 
     /**
@@ -39,7 +37,7 @@ class Hotel extends Model
     */
     public function room()
     {
-        return $this->hasMany('App\Room', 'hotel_id');
+        return $this->hasMany('App\Model\Room');
     }
 
     /**
@@ -49,7 +47,7 @@ class Hotel extends Model
     */
     public function comment()
     {
-        return $this->hasMany('App\Comment', 'hotel_id');
+        return $this->hasMany('App\Model\Comment');
     }
 
     /**
@@ -59,6 +57,6 @@ class Hotel extends Model
     */
     public function city()
     {
-        return $this->belongsTo('App\City', 'city_id');
+        return $this->belongsTo('App\Model\City', 'city_id');
     }
 }

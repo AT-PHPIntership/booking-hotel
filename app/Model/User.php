@@ -18,10 +18,8 @@ class User extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'username', 'password', 'email', 'address', 'phone', 'role'];
-    
-    public $timestamps = false;
-    
+    protected $fillable = ['username', 'password', 'email', 'address', 'phone', 'role'];
+
     /**
      * Relationship hasMany with card
      *
@@ -29,7 +27,7 @@ class User extends Model
     */
     public function card()
     {
-        return $this->hasMany('App\Card', 'id', 'user_id');
+        return $this->hasMany('App\Model\Card');
     }
 
     /**
@@ -39,6 +37,6 @@ class User extends Model
     */
     public function comment()
     {
-        return $this->belongsTo('App\Comment', 'id', 'user_id');
+        return $this->belongsTo('App\Model\Comment', 'id', 'user_id');
     }
 }

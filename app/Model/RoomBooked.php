@@ -18,9 +18,7 @@ class RoomBooked extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'room_id', 'date_in', 'date_out', 'status', 'notes'];
-    
-    public $timestamps = false;
+    protected $fillable = ['user_id', 'room_id', 'date_in', 'date_out', 'status', 'notes'];
     
     /**
      * Relationship belongsTo with room
@@ -29,6 +27,6 @@ class RoomBooked extends Model
     */
     public function room()
     {
-        return $this->belongsTo('App\Room', 'room_id');
+        return $this->belongsTo('App\Model\Room', 'room_id');
     }
 }

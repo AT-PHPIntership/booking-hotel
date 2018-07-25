@@ -18,7 +18,7 @@ class City extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'city', 'country'];
+    protected $fillable = ['city', 'country'];
     
     /**
      * Relationship hasMany with place
@@ -27,7 +27,7 @@ class City extends Model
     */
     public function place()
     {
-        return $this->hasMany('App\Place', 'city_id');
+        return $this->hasMany('App\Model\Place');
     }
     
     /**
@@ -37,6 +37,6 @@ class City extends Model
     */
     public function hotel()
     {
-        return $this->hasMany('App\Hotel', 'city_id');
+        return $this->hasMany('App\Hotel');
     }
 }

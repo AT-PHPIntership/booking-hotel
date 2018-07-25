@@ -18,9 +18,7 @@ class Place extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'city_id', 'name', 'image', 'descript', 'user_id'];
-    
-    public $timestamps = false;
+    protected $fillable = ['city_id', 'name', 'image', 'descript', 'user_id'];
     
     /**
      * Relationship belongsTo with city
@@ -29,6 +27,6 @@ class Place extends Model
     */
     public function city()
     {
-        return $this->belongsTo('App\City', 'city_id');
+        return $this->belongsTo('App\Model\City', 'city_id');
     }
 }

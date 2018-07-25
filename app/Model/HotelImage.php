@@ -18,9 +18,7 @@ class HotelImage extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'hotel_id', 'image'];
-    
-    public $timestamps = false;
+    protected $fillable = ['hotel_id', 'image'];
     
     /**
      * Relationship belongsTo with hotel
@@ -29,6 +27,6 @@ class HotelImage extends Model
     */
     public function hotel()
     {
-        return $this->belongsTo('App\Hotel', 'hotel_id');
+        return $this->belongsTo('App\Model\Hotel', 'hotel_id');
     }
 }
