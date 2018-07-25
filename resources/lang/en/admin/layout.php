@@ -32,5 +32,6 @@
     'app' => [
         'title' => 'Login Page',
         'logo' => 'Home',
+        'admin' => 'Admin',
     ],
     ];
