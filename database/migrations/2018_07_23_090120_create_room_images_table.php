@@ -15,13 +15,9 @@ class CreateRoomImagesTable extends Migration
     {
         Schema::create('room_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hotel_id')->unsigned();
             $table->integer('room_id')->unsigned();
             $string->string('image');
             $table->timestamps();
-            $table->foreign('hotel_id')->references('id')->on('hotel')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
             $table->foreign('room_id')->references('id')->on('rooms')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
