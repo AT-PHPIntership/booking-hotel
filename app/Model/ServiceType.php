@@ -4,41 +4,41 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class ServiceType extends Model
 {
     /**
      * Declare table
      *
      * @var string $table table name
      */
-    protected $table = 'comments';
+    protected $table = 'service_types';
     
     /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'content', 'hotel_id', 'rating_point'];
+    protected $fillable = ['id', 'hotel_id', 'service_id', 'user_id'];
     
     public $timestamps = false;
     
     /**
-     * Relationship belongsTo with user
-     *
-     * @return array
-    */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
-    }
-
-    /**
-     * Relationship belongsTo with hotel
+     * Relationship belongsToMany with hotel
      *
      * @return array
     */
     public function hotel()
     {
-        return $this->belongsTo('App\Hotel', 'hotel_id');
+        return $this->belongsToMany('App\Hotel');
+    }
+
+    /**
+     * Relationship hasMany with service
+     *
+     * @return array
+    */
+    public function service()
+    {
+        return $this->hasMany('App\Service');
     }
 }

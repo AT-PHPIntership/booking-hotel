@@ -6,22 +6,49 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
+    /**
+     * Declare table
+     *
+     * @var string $table table name
+     */
     protected $table = 'rooms';
-
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array $fillable
+     */
     protected $fillable = ['id', 'user_id', 'hotel_id', 'room_type_id', 'image', 'status', 'descipt', 'price', 'discount'];
     
     public $timestamps = false;
 
-    public function room_booked () {
+    /**
+     * Relationship hasMany with roomBooked
+     *
+     * @return array
+    */
+    public function roomBooked()
+    {
         return $this->hasMany('App\Room');
     }
 
-    public function room_type () {
-        return $this->hasMany('App\Room_type');
+    /**
+     * Relationship hasMany with roomBooked
+     *
+     * @return array
+    */
+    public function roomType()
+    {
+        return $this->hasMany('App\RoomType');
     }
 
-    public function hotel () {
+    /**
+     * Relationship hasMany with roomBooked
+     *
+     * @return array
+    */
+    public function hotel()
+    {
         return $this->belongsTo('App\Hotel');
     }
-
 }

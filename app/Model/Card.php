@@ -6,13 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    
-    $table->increments('id');
-        protected $table = 'cards';
-        
-        protected $fillable = ['id', 'user_id', 'card_type', 'card_code'];
+    /**
+     * Declare table
+     *
+     * @var string $table table name
+     */
+    protected $table = 'cards';
 
-        public function user () {
-            return $this->belongsTo('App\User', 'user_id', 'id');
-        }
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array $fillable
+     */
+    protected $fillable = ['id', 'user_id', 'card_type', 'card_code'];
+    
+    /**
+     * Relationship belongsTo with user
+     *
+     * @return array
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
+}

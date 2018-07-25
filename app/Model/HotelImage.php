@@ -4,34 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class HotelImage extends Model
 {
     /**
      * Declare table
      *
      * @var string $table table name
      */
-    protected $table = 'comments';
+    protected $table = 'hotel_images';
     
     /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable
      */
-    protected $fillable = ['id', 'user_id', 'content', 'hotel_id', 'rating_point'];
+    protected $fillable = ['id', 'hotel_id', 'image'];
     
     public $timestamps = false;
     
-    /**
-     * Relationship belongsTo with user
-     *
-     * @return array
-    */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
-    }
-
     /**
      * Relationship belongsTo with hotel
      *
