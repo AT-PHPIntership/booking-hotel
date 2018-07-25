@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AdminMiddleware
 {
@@ -19,7 +20,7 @@ class AdminMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->rank == '1') {
+            if ($user->rank == User::ADMIN_USER) {
                 return $next($request);
             } else {
                 return redirect('/login');
