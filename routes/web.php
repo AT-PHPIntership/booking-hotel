@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-	Route::resource('hotel', 'hotelController');
+Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
+    Route::get('/home', function(){
+        return view('admin.layout.index');	
+	  });
+
+    Route::resource('hotel', 'hotelController');
 });
 
 Auth::routes();
