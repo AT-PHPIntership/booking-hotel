@@ -18,14 +18,14 @@ class Comment extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['user_id', 'content', 'hotel_id', 'rating_point', ];
+    protected $fillable = ['user_id', 'content', 'hotel_id', 'rating_point'];
     
     /**
      * Relationship belongsTo with user
      *
      * @return array
     */
-    public function user()
+    public function users()
     {
         return $this->belongsTo('App\Model\User', 'user_id');
     }
@@ -35,7 +35,7 @@ class Comment extends Model
      *
      * @return array
     */
-    public function hotel()
+    public function hotels()
     {
         return $this->belongsTo('App\Hotel', 'hotel_id');
     }

@@ -16,19 +16,20 @@ class CreateHotelsTable extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('city_id')->unsigned();
-            $table->string('name');
-            $table->string('address');
-            $table->integer('number_star')->unsigned();
-            $table->integer('status');
-            $table->string('descript');
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
             $table->foreign('city_id')->references('id')->on('cities')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->string('name');
+            $table->string('address');
+            $table->integer('number_star')->unsigned();
+            $table->boolean('status');
+            $table->string('descript');
+            $table->string('image');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

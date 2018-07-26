@@ -25,7 +25,7 @@ class ServiceType extends Model
      *
      * @return array
     */
-    public function hotel()
+    public function hotels()
     {
         return $this->belongsToMany('App\Model\Hotel');
     }
@@ -35,7 +35,7 @@ class ServiceType extends Model
      *
      * @return array
     */
-    public function service()
+    public function services()
     {
         return $this->hasMany('App\Model\Service');
     }

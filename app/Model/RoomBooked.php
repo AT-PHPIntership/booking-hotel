@@ -25,7 +25,7 @@ class RoomBooked extends Model
      *
      * @return array
     */
-    public function room()
+    public function rooms()
     {
         return $this->belongsTo('App\Model\Room', 'room_id');
     }

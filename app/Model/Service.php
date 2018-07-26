@@ -25,8 +25,18 @@ class Service extends Model
      *
      * @return array
     */
-    public function serviceType()
+    public function serviceTypes()
     {
         return $this->belongsTo('App\Model\ServiceType');
+    }
+
+    /**
+     * Relationship belongsToMany with hotel
+     *
+     * @return array
+    */
+    public function hotels()
+    {
+        return $this->belongsToMany('App\Model\Hotel');
     }
 }

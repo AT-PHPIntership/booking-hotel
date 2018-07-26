@@ -25,7 +25,7 @@ class City extends Model
      *
      * @return array
     */
-    public function place()
+    public function places()
     {
         return $this->hasMany('App\Model\Place');
     }
@@ -35,7 +35,7 @@ class City extends Model
      *
      * @return array
     */
-    public function hotel()
+    public function hotels()
     {
         return $this->hasMany('App\Hotel');
     }

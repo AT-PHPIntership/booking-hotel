@@ -25,7 +25,7 @@ class Room extends Model
      *
      * @return array
     */
-    public function roomBooked()
+    public function bookRooms()
     {
         return $this->hasMany('App\Model\Room');
     }
@@ -35,7 +35,7 @@ class Room extends Model
      *
      * @return array
     */
-    public function roomType()
+    public function roomTypes()
     {
         return $this->hasMany('App\Model\RoomType');
     }

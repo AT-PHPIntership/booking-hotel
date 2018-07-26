@@ -18,14 +18,14 @@ class User extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['username', 'password', 'email', 'address', 'phone', 'role'];
+    protected $fillable = ['username', 'password', 'address', 'phone', 'email', 'role'];
 
     /**
      * Relationship hasMany with card
      *
      * @return array
     */
-    public function card()
+    public function cards()
     {
         return $this->hasMany('App\Model\Card');
     }
@@ -35,7 +35,7 @@ class User extends Model
      *
      * @return array
     */
-    public function comment()
+    public function comments()
     {
         return $this->belongsTo('App\Model\Comment', 'id', 'user_id');
     }
