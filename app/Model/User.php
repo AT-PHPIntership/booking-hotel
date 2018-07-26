@@ -35,7 +35,7 @@ class User extends Model
      *
      * @return array
     */
-    public function comments()
+    public function comment()
     {
         return $this->belongsTo('App\Model\Comment', 'id', 'user_id');
     }

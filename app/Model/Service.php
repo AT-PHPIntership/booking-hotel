@@ -25,7 +25,7 @@ class Service extends Model
      *
      * @return array
     */
-    public function serviceTypes()
+    public function serviceType()
     {
         return $this->belongsTo('App\Model\ServiceType');
     }

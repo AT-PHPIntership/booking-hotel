@@ -25,7 +25,7 @@ class Place extends Model
      *
      * @return array
     */
-    public function cities()
+    public function city()
     {
         return $this->belongsTo('App\Model\City', 'city_id');
     }

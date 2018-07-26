@@ -25,7 +25,7 @@ class Card extends Model
      *
      * @return array
     */
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\Model\User', 'user_id');
     }

@@ -35,8 +35,8 @@ class Comment extends Model
      *
      * @return array
     */
-    public function hotels()
+    public function hotel()
     {
-        return $this->belongsTo('App\Hotel', 'hotel_id');
+        return $this->belongsTo('App\Model\Hotel', 'hotel_id');
     }
 }
