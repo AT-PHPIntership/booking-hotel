@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
+                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('admin/layout.app.reset_password') }}">
                         @csrf
 
                         <div class="form-group row">
