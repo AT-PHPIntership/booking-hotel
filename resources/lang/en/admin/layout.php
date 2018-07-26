@@ -29,4 +29,9 @@
         'print_invoice' => 'Print invoice',
     ],
     'title' => 'Admin',
+    'app' => [
+        'title' => 'Login Page',
+        'logo' => 'Home',
+        'admin' => 'Admin',
+    ],
     ];

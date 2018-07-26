@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
+    Route::get('/home', function(){
+        return view('admin.layout.index');	
+	  });
+
+    Route::resource('hotel', 'HotelController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
