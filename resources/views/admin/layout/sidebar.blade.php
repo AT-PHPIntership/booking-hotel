@@ -15,10 +15,10 @@
       <div class="collapse" id="ui-user">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="/admin/users/list">{{ __('admin/layout.sidebar.list_user') }}</a>
+            <a class="nav-link" href="/admin/users">{{ __('admin/layout.sidebar.list_user') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/users/add">{{ __('admin/layout.sidebar.add_user') }}</a>
+            <a class="nav-link" href="/admin/users/create">{{ __('admin/layout.sidebar.add_user') }}</a>
           </li>
         </ul>
       </div>
@@ -32,10 +32,10 @@
       <div class="collapse" id="ui-hotel">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="/admin/hotels/list">{{ __('admin/layout.sidebar.list_hotel') }}</a>
+            <a class="nav-link" href="/admin/hotel">{{ __('admin/layout.sidebar.list_hotel') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/hotels/add">{{ __('admin/layout.sidebar.add_hotel') }}</a>
+            <a class="nav-link" href="/admin/hotel/create">{{ __('admin/layout.sidebar.add_hotel') }}</a>
           </li>
         </ul>
       </div>
