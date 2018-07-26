@@ -18,7 +18,7 @@ class RoomType extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['user_id', 'hotel_id', 'descript'];
+    protected $fillable = ['user_id', 'name'];
     
     /**
      * Relationship belongsTo with room
