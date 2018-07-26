@@ -20,7 +20,7 @@ class AdminMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->rank == User::ADMIN_USER) {
+            if ($user->role == User::ADMIN_USER) {
                 return $next($request);
             } else {
                 return redirect('/login');
