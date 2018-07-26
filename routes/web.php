@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/room_type', function () {
+    return view('admin.room_type.ListRoomTypes');
+});
