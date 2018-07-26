@@ -27,7 +27,7 @@ class City extends Model
     */
     public function places()
     {
-        return $this->hasMany('App\Model\Place');
+        return $this->hasMany('App\Models\Place');
     }
     
     /**
@@ -37,6 +37,6 @@ class City extends Model
     */
     public function hotels()
     {
-        return $this->hasMany('App\Model\Hotel');
+        return $this->hasMany('App\Models\Hotel');
     }
 }

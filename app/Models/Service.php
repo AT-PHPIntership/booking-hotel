@@ -27,7 +27,7 @@ class Service extends Model
     */
     public function serviceType()
     {
-        return $this->belongsTo('App\Model\ServiceType');
+        return $this->belongsTo('App\Models\ServiceType');
     }
 
     /**
@@ -37,6 +37,6 @@ class Service extends Model
     */
     public function hotels()
     {
-        return $this->belongsToMany('App\Model\Hotel');
+        return $this->belongsToMany('App\Models\Hotel', 'hotel_service', 'service_id', 'hotel_id');
     }
 }

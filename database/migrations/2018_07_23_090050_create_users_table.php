@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('phone', 20);
             $table->string('email')->unique();
-            $table->integer('role')->unsigned();
+            $table->enum('role', ["admin", "user"]);
             $table->timestamps();
         });
     }

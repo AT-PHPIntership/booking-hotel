@@ -19,7 +19,7 @@ class CreateHotelsTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('address');
             $table->integer('number_star')->unsigned();
             $table->boolean('status');

@@ -21,22 +21,12 @@ class ServiceType extends Model
     protected $fillable = ['hotel_id', 'service_id', 'user_id'];
 
     /**
-     * Relationship belongsToMany with hotel
-     *
-     * @return array
-    */
-    public function hotels()
-    {
-        return $this->belongsToMany('App\Model\Hotel');
-    }
-
-    /**
      * Relationship hasMany with service
      *
      * @return array
     */
     public function services()
     {
-        return $this->hasMany('App\Model\Service');
+        return $this->hasMany('App\Models\Service');
     }
 }

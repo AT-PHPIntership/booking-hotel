@@ -27,7 +27,7 @@ class User extends Model
     */
     public function cards()
     {
-        return $this->hasMany('App\Model\Card');
+        return $this->hasMany('App\Models\Card');
     }
 
     /**
@@ -37,6 +37,6 @@ class User extends Model
     */
     public function comment()
     {
-        return $this->belongsTo('App\Model\Comment', 'id', 'user_id');
+        return $this->belongsTo('App\Models\Comment', 'user_id');
     }
 }

@@ -25,9 +25,9 @@ class Comment extends Model
      *
      * @return array
     */
-    public function users()
+    public function user()
     {
-        return $this->belongsTo('App\Model\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     /**
@@ -37,6 +37,6 @@ class Comment extends Model
     */
     public function hotel()
     {
-        return $this->belongsTo('App\Model\Hotel', 'hotel_id');
+        return $this->belongsTo('App\Models\Hotel', 'hotel_id');
     }
 }

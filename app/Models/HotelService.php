@@ -11,7 +11,7 @@ class HotelService extends Model
      *
      * @var string $table table name
      */
-    protected $table = 'hotelServices';
+    protected $table = 'hotel_services';
     
     /**
      * The attributes that are mass assignable.

@@ -4,29 +4,29 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Place extends Model
+class RoomBooked extends Model
 {
     /**
      * Declare table
      *
      * @var string $table table name
      */
-    protected $table = 'places';
+    protected $table = 'room_bookeds';
     
     /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable
      */
-    protected $fillable = ['city_id', 'name', 'image', 'descript', 'user_id'];
+    protected $fillable = ['user_id', 'room_id', 'date_in', 'date_out', 'status', 'notes'];
     
     /**
-     * Relationship belongsTo with city
+     * Relationship belongsTo with room
      *
      * @return array
     */
-    public function city()
+    public function room()
     {
-        return $this->belongsTo('App\Model\City', 'city_id');
+        return $this->belongsTo('App\Models\Room', 'room_id');
     }
 }

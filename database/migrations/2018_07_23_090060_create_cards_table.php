@@ -16,11 +16,12 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('card_type');
-            $table->int('card_code')->unsigned();
             $table->foreign('user_id')->references('id')->on('user')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->string('card_type');
+            $table->integer('card_code')->unsigned();
+            
         });
     }
 

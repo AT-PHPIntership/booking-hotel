@@ -4,21 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomBooked extends Model
+class RoomType extends Model
 {
     /**
      * Declare table
      *
      * @var string $table table name
      */
-    protected $table = 'room_bookeds';
-    
+    protected $table = 'room_types';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable
      */
-    protected $fillable = ['user_id', 'room_id', 'date_in', 'date_out', 'status', 'notes'];
+    protected $fillable = ['user_id', 'hotel_id', 'descript'];
     
     /**
      * Relationship belongsTo with room
@@ -27,6 +27,6 @@ class RoomBooked extends Model
     */
     public function room()
     {
-        return $this->belongsTo('App\Model\Room', 'room_id');
+        return $this->belongsTo('App\Models\Room');
     }
 }
