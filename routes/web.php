@@ -14,6 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/room_type', function () {
-    return view('admin.room_type.ListRoomTypes');
+
+Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
+    Route::get('/home', function(){
+        return view('admin.layout.index');	
+	  });
+
+    Route::resource('hotels', 'HotelController');
+
+    Route::resource('users', 'UserController');    
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
