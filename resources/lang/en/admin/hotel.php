@@ -17,7 +17,8 @@
         'hotel_rank' => 'Rank',
         'hotel_status' => 'Status',
         'hotel_decription' => 'Description',
-        'hotel_action' => 'Edit/Delete',
+        'hotel_edit' => 'Edit',
+        'hotel_delete' => 'Delete',
     ],
     // Add Hotel
     'hotel_add' => [
