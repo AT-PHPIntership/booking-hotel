@@ -19,7 +19,7 @@ class CreateRoomImagesTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $string->string('image');
+            $table->string('image');
             $table->timestamps();
         });
     }

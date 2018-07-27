@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone', 20);
             $table->string('email')->unique();
             $table->enum('role', ["admin", "user"]);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
