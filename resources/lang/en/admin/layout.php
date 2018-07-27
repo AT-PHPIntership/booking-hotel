@@ -17,6 +17,7 @@
         'change_password' => 'Change Password',
         'check_inbox' => 'Check Inbox',
         'sign_out' => 'Sign Out',
+        'logout' => 'Log Out',
     ],
     'sidebar' => [
         'dashboard' => 'Dashboard',

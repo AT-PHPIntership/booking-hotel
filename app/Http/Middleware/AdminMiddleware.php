@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 
 class AdminMiddleware
 {
@@ -23,7 +23,7 @@ class AdminMiddleware
             if ($user->role == User::ADMIN_USER) {
                 return $next($request);
             } else {
-                return redirect('/login');
+                return redirect('/home');
             }
         }
             return redirect('/');
