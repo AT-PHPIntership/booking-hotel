@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function()
         return view('admin.layout.index');	
 	  });
 
-    Route::resource('hotel', 'HotelController');
+    Route::resource('hotels', 'HotelController');
 });
 
 Auth::routes();
