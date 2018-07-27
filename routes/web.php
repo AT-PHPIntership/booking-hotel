@@ -21,6 +21,8 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function()
 	  });
 
     Route::resource('hotels', 'HotelController');
+
+    Route::resource('users', 'UserController');    
 });
 
 Auth::routes();
