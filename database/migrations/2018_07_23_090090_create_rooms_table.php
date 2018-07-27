@@ -20,11 +20,11 @@ class CreateRoomsTable extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')->reference('id')->on('hotels')
+            $table->foreign('hotel_id')->references('id')->on('hotels')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->integer('room_type_id')->unsigned();
-            $table->foreign('room_type_id')->reference('id')->on('room_types')
+            $table->foreign('room_type_id')->references('id')->on('room_types')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->string('image');

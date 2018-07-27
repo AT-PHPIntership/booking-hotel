@@ -1,18 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
-{
-    /**
-     * Declare table
-     *
-     * @var string $table table name
-     */
-    protected $table = 'users';
-    
+class User extends Model implements Authenticatable
+{   
     /**
      * The attributes that are mass assignable.
      *
