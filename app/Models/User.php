@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Model implements Authenticatable
 {
     use Notifiable;
 
     const ADMIN_USER = 'admin';
     const NORMAL_USER = 'user';
-    
+
     /**
      * The attributes that are mass assignable.
      *
