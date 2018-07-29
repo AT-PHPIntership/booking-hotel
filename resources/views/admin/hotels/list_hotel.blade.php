@@ -14,7 +14,7 @@
                   <tr>
                     <th>{{ __('admin/hotel.hotel_list.hotel_number') }}</th>
                     <th>{{ __('admin/hotel.hotel_list.hotel_name') }}</th>
-                    <th>{{ __('admin/hotel.hotel_list.hotel_address') }}</th>
+                    <th>{{ __('admin/hotel.hotel_list.hotel_position') }}</th>
                     <th>{{ __('admin/hotel.hotel_list.hotel_rank') }}</th>
                     <th>{{ __('admin/hotel.hotel_list.hotel_status') }}</th>
                     <th>{{ __('admin/hotel.hotel_list.hotel_decription') }}</th>
@@ -22,24 +22,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Herman Beck</td>
-                    <td>Da Nang</td>
-                    <td>4</td>
+                  @foreach ($hotel as $item)
+                  <tr class="odd gradeX" align="center">
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->address}}</td>
+                    <td>{{$item->number_star}}</td>
                     <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" checked>Display
-                        </label>
-                      </div>
+                      @if ($item->status == 1)
+                        Enable
+                      @else
+                        Disable
+                      @endif
                     </td>
-                    <td>This is Description</td>
-                    <td>
-                    	<button type="button" class="btn btn-dark btn-fw"><i class="mdi mdi-cloud-download" href="/admin/hotels/edit/1"></i>{{ __('admin/hotel.hotel_list.edit') }}</button>
-                      <button type="button" class="btn btn-danger btn-fw"><i class="mdi mdi-alert-outline" href="admin/hotels/delete/1"></i>{{ __('admin/hotel.hotel_list.delete') }}</button>
+                    <td><img src="{{$item->image}}" alt="no image"></td>
+                    <td class="center">
+                      <form action="admin/hotel/{{$item->id}}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger">{{ __('admin/hotel.hotel_list.hotel_delete') }}</button>
+                      </form>
+                      <a href="admin/hotel/{{$item->id}}"><button type="submit" class="btn btn-outline-primary">{{ __('admin/hotel.hotel_list.hotel_edit') }}</button></a>
                     </td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>

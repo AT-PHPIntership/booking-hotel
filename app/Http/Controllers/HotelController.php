@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hotel;
 
 class HotelController extends Controller
 {
@@ -12,8 +13,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
-        echo "index";
+        $hotel = Hotel::all();
+        return view('admin.hotels.list_hotel', ['hotel' => $hotel]);
     }
     /**
      * Show the form for creating a new resource.
