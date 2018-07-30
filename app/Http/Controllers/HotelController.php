@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
@@ -40,7 +41,8 @@ class HotelController extends Controller
     {
         //
         $hotel = $this->hotel->getHotels();
-        return view('admin.hotels.add_hotel', ['hotel' => $hotel]);
+        $city = City::all();
+        return view('admin.hotels.add_hotel', ['hotel' => $hotel, 'city' => $city]);
     }
 
     /**
