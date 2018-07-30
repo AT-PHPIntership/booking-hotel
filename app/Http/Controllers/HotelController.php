@@ -58,7 +58,7 @@ class HotelController extends Controller
         $this->validate(
             $request,
             [
-            'name' => 'required|min:5|max:100',
+            'name' => 'required|min:5|max:100|unique:hotels,name',
             'address' => 'required|min:5|max:100',
             'descript' => 'required|max:1000',
             ],
@@ -66,6 +66,7 @@ class HotelController extends Controller
             'name.required' => 'Hotel name is empty',
             'name.min' => 'Hotel name from 5 to 100',
             'name.max' => 'Hotel name from 5 to 100',
+            'name.unique' => 'name is duplication',
             'address.required' => 'address is empty',
             'address.min' => 'address from 5 to 100',
             'address.max' => 'address from 5 to 100',
