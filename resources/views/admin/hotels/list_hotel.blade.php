@@ -45,7 +45,7 @@
                                         </td>
                                         <td>{{$item->descript}}</td>
                                         <td>
-                                            <a href="{{ route('hotels.show', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/hotel.hotel_list.hotel_edit') }}</i></a>
+                                            <a href="{{ route('hotels.', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/hotel.hotel_list.hotel_edit') }}</i></a>
                                         </td>
                                         <td class="center">
                                             <form action="{{route("hotels.destroy", $item->id)}}" method="post">
