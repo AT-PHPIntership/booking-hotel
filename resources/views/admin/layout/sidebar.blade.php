@@ -1,50 +1,67 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-  <ul class="nav">
+<ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+    <a class="nav-link" href="index.html">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.dashboard') }}</span>
-      </a>
+    </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-basic">
+    <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-basic">
         <i class="menu-icon mdi mdi-content-copy"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.users') }}</span>
         <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-user">
+    </a>
+    <div class="collapse" id="ui-user">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="{{route("users.index")}}">{{ __('admin/layout.sidebar.list_user') }}</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{route("users.create")}}">{{ __('admin/layout.sidebar.add_user') }}</a>
-          </li>
+        </li>
         </ul>
-      </div>
+    </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#ui-hotel" aria-expanded="false" aria-controls="ui-basic">
+    <a class="nav-link" data-toggle="collapse" href="#ui-hotel" aria-expanded="false" aria-controls="ui-basic">
         <i class="menu-icon mdi mdi-content-copy"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.hotel') }}</span>
         <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-hotel">
+    </a>
+    <div class="collapse" id="ui-hotel">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="{{route("hotels.index")}}">{{ __('admin/layout.sidebar.list_hotel') }}</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{route("hotels.create")}}">{{ __('admin/layout.sidebar.add_hotel') }}</a>
-          </li>
+        </li>
         </ul>
-      </div>
+    </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+    <a class="nav-link" href="#">
         <i class="menu-icon mdi mdi-sticker"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.print_invoice') }}</span>
-      </a>
+    </a>
     </li>
-  </ul>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-room-type" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.room_types') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-room-type">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("room-types.index")}}">{{ __('admin/layout.sidebar.list_room_type') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("room-types.create")}}">{{ __('admin/layout.sidebar.add_room_type') }}</a>
+        </li>
+        </ul>
+    </div>
+    </li>
+</ul>
 </nav>

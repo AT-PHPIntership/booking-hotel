@@ -28,6 +28,9 @@
         'list_hotel' => 'List Hotels',
         'add_hotel' => 'Add Hotel',
         'print_invoice' => 'Print invoice',
+        'room_types' => 'Room Types',
+        'list_room_type' => 'List Room Type',
+        'add_room_type' => 'Add Room Type',
     ],
     'title' => 'Admin',
     'app' => [

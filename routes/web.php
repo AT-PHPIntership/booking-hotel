@@ -17,12 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
     Route::get('/home', function(){
-        return view('admin.layout.index');	
+        return view('admin.layout.index');
 	  });
-
     Route::resource('hotels', 'HotelController');
 
-    Route::resource('users', 'UserController');    
+    Route::resource('users', 'UserController');
+    
+    Route::resource('room-types', 'RoomTypeController');
 });
 
 Auth::routes();
