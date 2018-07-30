@@ -40,11 +40,7 @@
         'hotel_description' => 'Description',
         'submit' => 'Add',
         'reset' => 'Reset',
-        'one_star' => '1 Star',
-        'two_star' => '2 Star',
-        'three_star' => '3 Star',
-        'four_star' => '4 Star',
-        'five_star' => '5 Star',
+        'hotel_star' => 'star',
     ],
     'hotel_edit' => [
         'hotel_table' => 'EDIT HOTEL',
