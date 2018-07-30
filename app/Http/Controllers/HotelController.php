@@ -92,6 +92,7 @@ class HotelController extends Controller
     {
         $hotel = Hotel::find($id);
         $hotel->delete();
+        $request->session()->flash('message', 'Success');
         return redirect('admin/hotels');
     }
 }
