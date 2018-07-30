@@ -8,6 +8,14 @@ use App\Models\User;
 
 class RoomTypeController extends Controller
 {
+
+    protected $roomTypes;
+
+    public function __construct(RoomType $roomType)
+    {
+        $this->roomTypes = $roomType;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomType = RoomType::with('user')->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
+        $roomType = $this->roomTypes->getRoomTypes();
         return view('admin.room_types.list_room_type', ['roomType'=>$roomType]);
     }
 
