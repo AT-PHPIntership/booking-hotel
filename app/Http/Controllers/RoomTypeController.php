@@ -11,6 +11,13 @@ class RoomTypeController extends Controller
 
     protected $roomTypes;
 
+    /**
+     ** Create contructor.
+     *
+     * @param App\Models\RoomType $roomType roomType
+     *
+     * @return void
+     */
     public function __construct(RoomType $roomType)
     {
         $this->roomTypes = $roomType;

@@ -41,6 +41,11 @@ class RoomType extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
+    /**
+     * Get List Room Types
+     *
+     * @return array
+    */
     public function getRoomTypes()
     {
         $list = $this->with('user')->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
