@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hotel;
 
 class HotelController extends Controller
 {
@@ -15,6 +16,7 @@ class HotelController extends Controller
         //
         echo "index";
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,6 +27,7 @@ class HotelController extends Controller
         //
         echo "Create";
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,6 +40,7 @@ class HotelController extends Controller
         //
         echo $request;
     }
+
     /**
      * Display the specified resource.
      *
@@ -49,6 +53,7 @@ class HotelController extends Controller
         //
         echo $id;
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -61,6 +66,7 @@ class HotelController extends Controller
         //
         echo $id;
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -74,6 +80,7 @@ class HotelController extends Controller
         //
         echo $request . $id;
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -83,7 +90,8 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
-        echo $id;
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        return redirect('admin/hotels');
     }
 }
