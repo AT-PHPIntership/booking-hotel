@@ -37,7 +37,7 @@
                                         <td>{{$item->city->city}}, {{$item->city->country}}</td>
                                         <td>{{$item->number_star}} {{ __('admin/hotel.hotel_list.hotel_star') }}</td>
                                         <td>
-                                            @if ($item->status == 1)
+                                            @if ($item->status == tr)
                                                 {{ __('admin/hotel.hotel_list.hotel_status_enable') }}
                                             @else
                                                 {{ __('admin/hotel.hotel_list.hotel_status_disable') }}
