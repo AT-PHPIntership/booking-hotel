@@ -29,8 +29,8 @@
                 <div class="form-group">
                     <label for="exampleInputCity1">{{ __('admin/hotel.hotel_add.hotel_city') }}</label>
                     <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="city_id">
-                        @foreach ($hotel as $item)
-                            <option value="{{$item->city->id}}">{{$item->city->city}}, {{$item->city->country}}</option>
+                        @foreach ($city as $item)
+                            <option value="{{$item->id}}">{{$item->city}}, {{$item->country}}</option>
                         @endforeach
                     </select>
                 </div>
