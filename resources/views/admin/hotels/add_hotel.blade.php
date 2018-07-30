@@ -44,11 +44,9 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect3">{{ __('admin/hotel.hotel_add.rank_hotel') }}</label>
                     <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="number_star">
-                        <option value="1">{{ __('admin/hotel.hotel_add.one_star') }}</option>
-                        <option value="2">{{ __('admin/hotel.hotel_add.two_star') }}</option>
-                        <option value="3">{{ __('admin/hotel.hotel_add.three_star') }}</option>
-                        <option value="4">{{ __('admin/hotel.hotel_add.four_star') }}</option>
-                        <option value="5">{{ __('admin/hotel.hotel_add.five_star') }}</option>
+                        @for($i = 1; $i <=5; $i++)
+                            <option value="{{$i}}">{{$i}} {{ __('admin/hotel.hotel_add.hotel_star') }}</option>
+                        @endfor
                     </select>
                 </div>
                 <div class="form-group">
