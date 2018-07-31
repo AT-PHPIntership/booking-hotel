@@ -60,7 +60,7 @@ class RoomTypeController extends Controller
         if ($check === true) {
             return $this->redirectSuccess('room-types.index', 'Create Success');
         } else {
-            $request->session()->flash('status', 'Create Fail');
+            return $this->redirectError('room-types.index', 'Have Error');
         }
     }
 
