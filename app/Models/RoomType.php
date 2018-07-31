@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomType extends Model
 {
+    const PAGINATION_VALUE_ON_PAGE = 5;
     /**
      * Declare table
      *
@@ -28,5 +29,26 @@ class RoomType extends Model
     public function room()
     {
         return $this->belongsTo('App\Models\Room');
+    }
+
+    /**
+     * Relationship belongsTo with user
+     *
+     * @return array
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * Get List Room Types
+     *
+     * @return array
+    */
+    public function getRoomTypes()
+    {
+        $list = $this->with('user')->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
+        return $list;
     }
 }
