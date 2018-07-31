@@ -2,9 +2,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hotel;
 
 class HotelController extends Controller
 {
+    protected $hotel;
+    /**
+     ** Create contructor.
+     *
+     * @param App\Models\Hotel $hotel hotel
+     *
+     * @return void
+     */
+    public function __construct(Hotel $hotel)
+    {
+        $this->hotel = $hotel;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -12,9 +26,10 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
-        echo "index";
+        $hotels = $this->hotel->getHotels();
+        return view('admin.hotels.list_hotel', ['hotels' => $hotels]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -22,9 +37,9 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
         echo "Create";
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,6 +52,7 @@ class HotelController extends Controller
         //
         echo $request;
     }
+
     /**
      * Display the specified resource.
      *
@@ -49,6 +65,7 @@ class HotelController extends Controller
         //
         echo $id;
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -61,6 +78,7 @@ class HotelController extends Controller
         //
         echo $id;
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -74,6 +92,7 @@ class HotelController extends Controller
         //
         echo $request . $id;
     }
+
     /**
      * Remove the specified resource from storage.
      *
