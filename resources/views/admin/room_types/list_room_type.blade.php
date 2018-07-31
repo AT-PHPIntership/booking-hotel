@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($roomType as $item)
+                @foreach($roomTypes as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->user->username }}</td>
@@ -43,7 +43,7 @@
             </table>
             </div>
             <div class="d-flex justify-content-center mt-2">
-                {!! $roomType->links() !!}
+                {!! $roomTypes->links() !!}
             </div>
         </div>
         </div>

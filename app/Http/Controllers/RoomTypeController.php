@@ -29,8 +29,8 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomType = $this->roomTypes->getRoomTypes();
-        return view('admin.room_types.list_room_type', ['roomType'=>$roomType]);
+        $roomTypes = $this->roomType->getRoomTypes();
+        return view('admin.room_types.list_room_type', ['roomTypes'=>$roomTypes]);
     }
 
     /**
