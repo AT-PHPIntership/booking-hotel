@@ -58,11 +58,10 @@ class RoomTypeController extends Controller
 
         $check = $this->roomType->addRoomType($request);
         if ($check === true) {
-            $request->session()->flash('status', 'Success');
+            return $this->redirectSuccess('room-types.index', 'Create Success');
         } else {
-            $request->session()->flash('status', 'Fail');
+            $request->session()->flash('status', 'Create Fail');
         }
-        return redirect()->route('room-types.index');
     }
 
     /**
