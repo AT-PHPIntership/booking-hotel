@@ -25,7 +25,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hotel as $item)
+                                    @foreach ($hotels as $item)
                                     <tr class="odd gradeX" align="center">
                                         <td>{{$item->id}}</td>
                                         <td>
@@ -37,7 +37,7 @@
                                         <td>{{$item->city->city}}, {{$item->city->country}}</td>
                                         <td>{{$item->number_star}} {{ __('admin/hotel.hotel_list.hotel_star') }}</td>
                                         <td>
-                                            @if ($item->status == tr)
+                                            @if ($item->status == true)
                                                 {{ __('admin/hotel.hotel_list.hotel_status_enable') }}
                                             @else
                                                 {{ __('admin/hotel.hotel_list.hotel_status_disable') }}
@@ -45,7 +45,7 @@
                                         </td>
                                         <td>{{$item->descript}}</td>
                                         <td>
-                                            <a href="{{ route('hotels.', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/hotel.hotel_list.hotel_edit') }}</i></a>
+                                            <a href="{{ route('hotels.edit', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/hotel.hotel_list.hotel_edit') }}</i></a>
                                         </td>
                                         <td class="center">
                                             <form action="{{route("hotels.destroy", $item->id)}}" method="post">
@@ -62,7 +62,7 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-center mt-2">
-                            {!! $hotel->links() !!}
+                            {!! $hotels->links() !!}
                         </div>
                     </div>
                 </div>

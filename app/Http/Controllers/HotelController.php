@@ -26,8 +26,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotel = $this->hotel->getHotels();
-        return view('admin.hotels.list_hotel', ['hotel' => $hotel]);
+        $hotels = $this->hotel->getHotels();
+        return view('admin.hotels.list_hotel', ['hotels' => $hotels]);
     }
 
     /**
