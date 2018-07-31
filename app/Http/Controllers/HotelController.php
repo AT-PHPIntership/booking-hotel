@@ -6,6 +6,7 @@ use App\Models\Hotel;
 use App\Models\City;
 use App\Http\Requests\admin\HotelRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Lang;
 
 class HotelController extends Controller
 {
@@ -74,9 +75,9 @@ class HotelController extends Controller
         // Create Hotel and show list hotels with meassage
         $check = $this->hotel->addHotel($data);
         if (!empty($check)) {
-            return $this->redirectSuccess("hotels.index", "{{ __('admin/hotel.hotel_add.hotel_add_success') }}");
+            return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_add.hotel_add_success'));
         }
-        return $this->redirectError("hotels.index", "{{ __('admin/hotel.hotel_add.hotel_add_error') }}");
+        return $this->redirectError("hotels.index", __('admin/hotel.hotel_add.hotel_add_error'));
     }
 
     /**
