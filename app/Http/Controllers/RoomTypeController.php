@@ -8,7 +8,7 @@ use App\Models\RoomType;
 class RoomTypeController extends Controller
 {
 
-    protected $roomTypes;
+    protected $roomType;
 
     /**
      ** Create contructor.
@@ -19,7 +19,7 @@ class RoomTypeController extends Controller
      */
     public function __construct(RoomType $roomType)
     {
-        $this->roomTypes = $roomType;
+        $this->roomType = $roomType;
     }
 
     /**
