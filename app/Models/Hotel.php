@@ -82,4 +82,16 @@ class Hotel extends Model
         $list = $this->with(['user', 'city'])->paginate(Hotel::PAGINATION_VALUE_ON_PAGE);
         return $list;
     }
+
+    /**
+     * Add Hotel to database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addHotel($request)
+    {
+        return $this->create($request);
+    }
 }

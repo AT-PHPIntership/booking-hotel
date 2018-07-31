@@ -11,11 +11,6 @@
                     @endforeach
                 </div>
             @endif
-            @if(session('message'))
-                <div class="alert alert-success">
-                    {{session('message')}}
-                </div>
-            @endif
             <form class="forms-sample" method="post" action="{{route('hotels.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
 {
+    const PAGINATION_VALUE_ON_PAGE = 5;
+
     /**
      * Declare table
      *
@@ -38,5 +40,16 @@ class City extends Model
     public function hotels()
     {
         return $this->hasMany('App\Models\Hotel');
+    }
+
+    /**
+     * Get List City
+     *
+     * @return array
+    */
+    public function getCities()
+    {
+        $list = $this->with('hotels')->paginate(City::PAGINATION_VALUE_ON_PAGE);
+        return $list;
     }
 }

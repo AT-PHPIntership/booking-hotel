@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\City;
+use App\Http\Requests\admin\HotelRequest;
 use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
@@ -13,12 +14,14 @@ class HotelController extends Controller
      ** Create contructor.
      *
      * @param App\Models\Hotel $hotel hotel
+     * @param App\Models\City  $city  city
      *
      * @return void
      */
-    public function __construct(Hotel $hotel)
+    public function __construct(Hotel $hotel, City $city)
     {
         $this->hotel = $hotel;
+        $this->city = $city;
     }
 
     /**
@@ -28,8 +31,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotel = $this->hotel->getHotels();
-        return view('admin.hotels.list_hotel', ['hotel' => $hotel]);
+        $hotels = $this->hotel->getHotels();
+        return view('admin.hotels.list_hotel', ['hotels' => $hotels]);
     }
 
     /**
@@ -39,74 +42,41 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
-        $hotel = $this->hotel->getHotels();
-        $city = City::all();
-        return view('admin.hotels.add_hotel', ['hotel' => $hotel, 'city' => $city]);
+        $city = $this->city->getCities();
+        return view('admin.hotels.add_hotel', ['city' => $city]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param App\Http\Requests\admin\HotelRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HotelRequest $request)
     {
-        // Validate form input
-        $this->validate(
-            $request,
-            [
-            'name' => 'required|min:5|max:100|unique:hotels,name',
-            'address' => 'required|min:5|max:100',
-            'descript' => 'required|max:1000',
-            ],
-            [
-            'name.required' => 'Hotel name is empty',
-            'name.min' => 'Hotel name from 5 to 100',
-            'name.max' => 'Hotel name from 5 to 100',
-            'name.unique' => 'name is duplication',
-            'address.required' => 'address is empty',
-            'address.min' => 'address from 5 to 100',
-            'address.max' => 'address from 5 to 100',
-            'descript.required' => 'description is empty',
-            'descript.max' => 'description long',
-            ]
-        );
-        // Create new hotel
-        $hotel = new Hotel;
-        $hotel->name = $request->name;
-        $hotel->address = $request->address;
-        $hotel->city_id = $request->city_id;
+        // Get data from view
+        $data = $request->only(['name','address','city_id','descript','number_star']);
         if ($request->status == "on") {
-            $hotel->status = true;
+            $data['status'] = true;
         } else {
-            $hotel->status = false;
+            $data['status'] = false;
         }
-        $hotel->descript = $request->descript;
-        $hotel->user_id = Auth::user()->id;
-        $hotel->number_star = $request->number_star;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
-                $request->session()->flash('message', 'Image\' format is wrong');
-                return redirect("admin/hotels/create");
-            }
-            $name = $file->getClientOriginalName();
+        $data['user_id'] = Auth::user()->id;
+        $file = $request->file('image');
+        $name = $file->getClientOriginalName();
+        $image = str_random(4)."_".$name;
+        while (file_exists("upload/hotel/".$image)) {
             $image = str_random(4)."_".$name;
-            while (file_exists("upload/hotel/".$image)) {
-                $image = str_random(4)."_".$name;
-            }
-            $file->move("upload/hotel/", $image);
-            $hotel->image = $image;
-        } else {
-            $hotel->image = "";
         }
-        $hotel->save();
-        $request->session()->flash('message', 'Success');
-        return redirect("admin/hotels/create");
+        $file->move("upload/hotel/", $image);
+        $data['image'] = $image;
+        // Create Hotel and show list hotels with meassage
+        $check = $this->hotel->addHotel($data);
+        if (!empty($check)) {
+            return $this->redirectSuccess("hotels.index", "{{ __('admin/hotel.hotel_add.hotel_add_success') }}");
+        }
+        return $this->redirectError("hotels.index", "{{ __('admin/hotel.hotel_add.hotel_add_error') }}");
     }
 
     /**
@@ -148,7 +118,7 @@ class HotelController extends Controller
         //
         echo $request . $id;
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
