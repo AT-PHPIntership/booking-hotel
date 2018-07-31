@@ -18,4 +18,12 @@
         'room_type_delete' => 'Delete',
         'room_type_confirm' => 'Are you sure?',
     ],
+
+    // Add room type
+    'room_type_add' => [
+        'room_type_table' => 'Add RoomType',
+        'room_type_name' => 'RoomType Name',
+        'submit' => 'Add',
+        'reset' => 'Reset',
+    ],
     ];

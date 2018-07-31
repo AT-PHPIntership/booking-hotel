@@ -8,6 +8,9 @@
         <div class="card">
         <div class="card-body">
             <h4 class="card-title">{{ __('admin/room_type.room_type_list.room_type_table') }}</h4>
+            @if (session('status'))
+                <div class="alert alert-info">{{ session('status') }}</div>
+            @endif
             <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\admin\RoomTypeRequest;
 use App\Models\RoomType;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RoomTypeController extends Controller
 {
@@ -40,7 +43,7 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.room_types.add_room_type');
     }
 
     /**
@@ -50,9 +53,16 @@ class RoomTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomTypeRequest $request)
     {
-        echo $request;
+
+        $check = $this->roomType->addRoomType($request);
+        if ($check === true) {
+            $request->session()->flash('status', 'Success');
+        } else {
+            $request->session()->flash('status', 'Fail');
+        }
+        return redirect()->route('room-types.index');
     }
 
     /**
