@@ -9,7 +9,7 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('admin/room_type.room_type_list.room_type_table') }}</h4>
             @if (session('message'))
-                <div class="alert alert-{{ session('message') }}">{{ session('message') }}</div>
+                <div class="alert alert-{{ session('status') }}">{{ session('message') }}</div>
             @endif
             <div class="table-responsive">
             <table class="table table-bordered">

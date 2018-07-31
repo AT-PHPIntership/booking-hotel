@@ -62,15 +62,8 @@ class RoomType extends Model
      *
      * @return array
     */
-    public function addRoomType(RoomTypeRequest $request)
+    public function addRoomType($request)
     {
-        $roomType = new RoomType();
-        $roomType->name = $request->name;
-        $roomType->user_id = Auth::user()->id;
-        if ($roomType->save()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->create($request);
     }
 }

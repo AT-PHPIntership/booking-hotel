@@ -55,13 +55,13 @@ class RoomTypeController extends Controller
      */
     public function store(RoomTypeRequest $request)
     {
-
-        $check = $this->roomType->addRoomType($request);
-        if ($check === true) {
+        $data = $request->only('name');
+        $data['user_id'] = Auth::user()->id;
+        $check = $this->roomType->addRoomType($data);
+        if (!empty($check)) {
             return $this->redirectSuccess('room-types.index', 'Create Success');
-        } else {
-            return $this->redirectError('room-types.index', 'Have Error');
         }
+        return $this->redirectError('room-types.index', 'Have Error');
     }
 
     /**
