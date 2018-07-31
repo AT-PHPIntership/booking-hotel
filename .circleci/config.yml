@@ -73,4 +73,3 @@ jobs:
       - store_test_results:
           path: tests/_output
       - store_artifacts:
-          path: tests/_output
