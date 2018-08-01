@@ -73,7 +73,7 @@ class RoomTypeController extends Controller
      */
     public function show($id)
     {
-        echo $id;
+        
     }
 
     /**
@@ -97,9 +97,13 @@ class RoomTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        echo "$id";
+    public function update(RoomTypeRequest $request, $id)
+    {   
+        $check = $this->roomType->find($id)->update($request->all());
+        if ($this->roomType->find($id)->update($request->all())) {
+            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_edit.mes_success'));
+        }
+            return $this->redirectError('room-types.index', __('admin/room_type.room_type_edit.mes_fail'));
     }
 
     /**
@@ -111,6 +115,6 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        
     }
 }

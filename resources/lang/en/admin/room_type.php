@@ -24,6 +24,15 @@
         'room_type_table' => 'Add RoomType',
         'room_type_name' => 'RoomType Name',
         'submit' => 'Add',
+        'reset' => 'Reset',
+        // Message and validation
+        'mes_success' => 'Create Success',
+        'mes_fail' => 'Have error. Try again',
+        'rule_length' => 'The length from 1 to 50',
+        'rule_require' => 'Fill in the field',
+        'rule_unique' => 'It was created',
+    ],
+    
     // Edit room types
     'room_type_edit' => [
         'room_type_table' => 'Edit RoomType',
@@ -31,10 +40,9 @@
         'submit' => 'Edit',
         'reset' => 'Reset',
         // Message and validation
-        'mes_success' => 'Create Success',
+        'mes_success' => 'Edit Success',
         'mes_fail' => 'Have error. Try again',
         'rule_length' => 'The length from 1 to 50',
         'rule_require' => 'Fill in the field',
     ],  
-    ],
     ];

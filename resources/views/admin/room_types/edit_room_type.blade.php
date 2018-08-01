@@ -4,10 +4,9 @@
 <div class="card">
     <div class="card-body">
     <h4 class="card-title">{{ __('admin/room_type.room_type_edit.room_type_table') }}</h4>
-
     <form class="forms-sample" action="{{ route('room-types.update', $roomType->id) }}" method="post">
         @csrf
-        @method('PATCH')
+        @method('PUT')
         <div class="form-group">
             <label for="exampleInputName1">{{ __('admin/room_type.room_type_edit.room_type_name') }}</label>
             <input type="text" class="form-control" id="exampleInputName1" value="{{$roomType->name}}" name="name">

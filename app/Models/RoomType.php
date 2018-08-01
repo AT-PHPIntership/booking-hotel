@@ -65,4 +65,16 @@ class RoomType extends Model
         $roomType = $this->with('user')->find($id);
         return $roomType;
     }
+    
+    /**
+     * Add Room Type
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return array
+    */
+    public function addRoomType($request)
+    {
+        return $this->create($request);
+    }
 }
