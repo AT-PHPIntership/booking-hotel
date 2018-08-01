@@ -68,10 +68,10 @@ class HotelController extends Controller
         $file = $request->file('image');
         $name = $file->getClientOriginalName();
         $image = str_random(4)."_".$name;
-        while (file_exists(FOLDER_UPLOAD_HOTEL.$image)) {
+        while (file_exists(Hotel::FOLDER_UPLOAD_HOTEL.$image)) {
             $image = str_random(4)."_".$name;
         }
-        $file->move(FOLDER_UPLOAD_HOTEL, $image);
+        $file->move(Hotel::FOLDER_UPLOAD_HOTEL, $image);
         $data['image'] = $image;
         // Create Hotel and show list hotels with meassage
         $check = $this->hotel->addHotel($data);
