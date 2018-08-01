@@ -44,5 +44,5 @@
         'mes_fail' => 'Have error. Try again',
         'rule_length' => 'The length from 1 to 50',
         'rule_require' => 'Fill in the field',
-    ],  
+    ],
     ];
