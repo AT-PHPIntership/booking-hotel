@@ -25,5 +25,12 @@
         'room_type_name' => 'RoomType Name',
         'submit' => 'Add',
         'reset' => 'Reset',
+        // Message and validation
+        'mes_success' => 'Create Success',
+        'mes_fail' => 'Have error. Try again',
+        'rule_length' => 'The length from 1 to 50',
+        'rule_require' => 'Fill in the field',
     ],
+
+    
     ];

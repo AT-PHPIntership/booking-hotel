@@ -59,9 +59,9 @@ class RoomTypeController extends Controller
         $data['user_id'] = Auth::user()->id;
         $check = $this->roomType->addRoomType($data);
         if (!empty($check)) {
-            return $this->redirectSuccess('room-types.index', 'Create Success');
+            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_add.mes_success'));
         }
-        return $this->redirectError('room-types.index', 'Have Error');
+        return $this->redirectError('room-types.index', __('admin/room_type.room_type_add.mes_fail'));
     }
 
     /**

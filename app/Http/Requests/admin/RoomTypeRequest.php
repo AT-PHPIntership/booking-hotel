@@ -37,9 +37,9 @@ class RoomTypeRequest extends FormRequest
     {
         return
         [
-            'name.required' => 'Fill in the field',
-            'name.max' => 'Name have length from 1 to 50',
-            'name.min' => 'Name have length from 1 to 50',
+            'name.required' =>  __('admin/room_type.room_type_add.rule_require'),
+            'name.max' => __('admin/room_type.room_type_add.rule_length'),
+            'name.min' => __('admin/room_type.room_type_add.rule_length'),
         ];
     }
 }
