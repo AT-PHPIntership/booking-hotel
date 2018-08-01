@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\Http\Requests\admin\RoomTypeRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RoomType extends Model
 {
@@ -50,5 +53,17 @@ class RoomType extends Model
     {
         $list = $this->with('user')->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
         return $list;
+    }
+
+    /**
+     * Add Room Type
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return array
+    */
+    public function addRoomType($request)
+    {
+        return $this->create($request);
     }
 }
