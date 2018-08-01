@@ -8,18 +8,13 @@
             @if(count($errors) > 0)
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $err)
-                        {{$err}}<br>
+                    {{$err}}<br>
                     @endforeach
-                </div>
-            @endif
-            @if(session('message'))
-                <div class="alert alert-success">
-                    {{session('message')}}
                 </div>
             @endif
             <form class="forms-sample" method="post" action="{{ route('hotels.update', $hotel->id) }}" enctype="multipart/form-data">
                 @csrf
-                @method('PATCH')
+                @method('PUT')
                 <div class="form-group">
                     <label for="exampleInputName1">{{ __('admin/hotel.hotel_edit.hotel_name') }}</label>
                     <input type="text" class="form-control" id="exampleInputName1" value="{{$hotel->name}}" name="name">
@@ -67,7 +62,7 @@
                     <p>
                         <img src="upload/hotel/{{$hotel->image}}" alt="no image" alt="Cinque Terre" width="200">
                     </p>
-                    <input type="file" name="image" class="form-control" value="{{$hotel->image}}">
+                    <input type="file" name="image" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea1">{{ __('admin/hotel.hotel_edit.hotel_description') }}</label>
