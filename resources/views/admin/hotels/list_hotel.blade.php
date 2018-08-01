@@ -8,6 +8,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">{{ __('admin/hotel.hotel_list.hotel_table') }}</h4>
+                        @if(session('message'))
+                            <div class="alert alert-{{ session('status') }}">
+                                {{session('message')}}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -25,7 +30,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hotel as $item)
+                                    @foreach ($hotels as $item)
                                     <tr class="odd gradeX" align="center">
                                         <td>{{$item->id}}</td>
                                         <td>
@@ -37,7 +42,7 @@
                                         <td>{{$item->city->city}}, {{$item->city->country}}</td>
                                         <td>{{$item->number_star}} {{ __('admin/hotel.hotel_list.hotel_star') }}</td>
                                         <td>
-                                            @if ($item->status == 1)
+                                            @if ($item->status == true)
                                                 {{ __('admin/hotel.hotel_list.hotel_status_enable') }}
                                             @else
                                                 {{ __('admin/hotel.hotel_list.hotel_status_disable') }}
@@ -62,7 +67,7 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-center mt-2">
-                            {!! $hotel->links() !!}
+                            {!! $hotels->links() !!}
                         </div>
                     </div>
                 </div>

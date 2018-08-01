@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
+    const PAGINATION_VALUE_ON_PAGE = 5;
+    const FOLDER_UPLOAD_HOTEL = "upload/hotel/";
+    
     /**
      * Declare table
      *
@@ -58,5 +61,51 @@ class Hotel extends Model
     public function city()
     {
         return $this->belongsTo('App\Models\City', 'city_id');
+    }
+
+    /**
+     * Relationship belongsTo with user
+     *
+     * @return array
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * Get List Hotels
+     *
+     * @return array
+    */
+    public function getHotels()
+    {
+        $list = $this->with(['user', 'city'])->paginate(Hotel::PAGINATION_VALUE_ON_PAGE);
+        return $list;
+    }
+
+    /**
+     * Add Hotel to database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addHotel($request)
+    {
+        return $this->create($request);
+    }
+
+    /**
+     * Delete Hotel from id
+     *
+     * @param int $id id
+     *
+     * @return void
+    */
+    public function deleteHotel($id)
+    {
+        $hotel = $this->where('id', $id)->first();
+        $hotel->delete();
     }
 }
