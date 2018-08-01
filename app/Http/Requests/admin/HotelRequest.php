@@ -3,6 +3,7 @@
 namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class HotelRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class HotelRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request, $id)
     {
         return [
             'name' => 'required|min:5|max:100|unique:hotels,name',

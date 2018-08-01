@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     const PAGINATION_VALUE_ON_PAGE = 5;
+    const FOLDER_UPLOAD = "upload/hotel/";
     
     /**
      * Declare table

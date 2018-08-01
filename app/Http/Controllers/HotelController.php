@@ -11,6 +11,7 @@ use App\Http\Controllers\Lang;
 class HotelController extends Controller
 {
     protected $hotel;
+    protected $city;
     /**
      ** Create contructor.
      *
@@ -67,10 +68,10 @@ class HotelController extends Controller
         $file = $request->file('image');
         $name = $file->getClientOriginalName();
         $image = str_random(4)."_".$name;
-        while (file_exists("upload/hotel/".$image)) {
+        while (file_exists(FOLDER_UPLOAD_HOTEL.$image)) {
             $image = str_random(4)."_".$name;
         }
-        $file->move("upload/hotel/", $image);
+        $file->move(FOLDER_UPLOAD_HOTEL, $image);
         $data['image'] = $image;
         // Create Hotel and show list hotels with meassage
         $check = $this->hotel->addHotel($data);
