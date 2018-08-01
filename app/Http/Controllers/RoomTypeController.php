@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\admin\RoomTypeRequest;
+use App\Http\Requests\Admins\RoomTypeRequest;
 use App\Models\RoomType;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +49,7 @@ class RoomTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param App\Http\Requests\Admins\RoomTypeRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
