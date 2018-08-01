@@ -85,7 +85,8 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        $roomType = $this->roomType->getRoomType($id);
+        return view('admin.room_types.edit_room_type', ['roomType'=>$roomType]);
     }
 
     /**
@@ -98,7 +99,7 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo $request + $id;
+        echo "$id";
     }
 
     /**
