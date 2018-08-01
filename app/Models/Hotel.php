@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     const PAGINATION_VALUE_ON_PAGE = 5;
+    const FOLDER_UPLOAD_HOTEL = "upload/hotel/";
     
     /**
      * Declare table
@@ -81,5 +82,17 @@ class Hotel extends Model
     {
         $list = $this->with(['user', 'city'])->paginate(Hotel::PAGINATION_VALUE_ON_PAGE);
         return $list;
+    }
+
+    /**
+     * Add Hotel to database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addHotel($request)
+    {
+        return $this->create($request);
     }
 }
