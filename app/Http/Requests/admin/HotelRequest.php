@@ -22,7 +22,7 @@ class HotelRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request, $id)
+    public function rules()
     {
         return [
             'name' => 'required|min:5|max:100|unique:hotels,name',
