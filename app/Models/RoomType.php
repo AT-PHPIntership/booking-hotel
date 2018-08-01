@@ -89,6 +89,6 @@ class RoomType extends Model
     */
     public function editRoomType($request)
     {
-        return $this->update($request->all());
+        return $request->update();
     }
 }

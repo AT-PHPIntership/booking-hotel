@@ -26,7 +26,7 @@ class RoomTypeRequest extends FormRequest
         $roomType = $this->route()->parameter('room_type');
         switch ($this->method()) {
             case 'POST':
-                return ['name' => 'required|unique:room_types,name|min:1|max:50',];
+                return ['name' => 'required|unique:room_types,name|min:1|max:50'];
                 break;
             case 'PUT':
                 return ['name' => "required|min:1|max:50|unique:room_types,name,".$roomType];
