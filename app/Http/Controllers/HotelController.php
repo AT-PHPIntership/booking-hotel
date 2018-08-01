@@ -3,20 +3,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\City;
+use App\Http\Requests\Admins\HotelRequest;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
     protected $hotel;
+    protected $city;
     /**
      ** Create contructor.
      *
      * @param App\Models\Hotel $hotel hotel
+     * @param App\Models\City  $city  city
      *
      * @return void
      */
-    public function __construct(Hotel $hotel)
+    public function __construct(Hotel $hotel, City $city)
     {
         $this->hotel = $hotel;
+        $this->city = $city;
     }
 
     /**
@@ -37,20 +43,41 @@ class HotelController extends Controller
      */
     public function create()
     {
-        echo "Create";
+        $city = $this->city->getCities();
+        return view('admin.hotels.add_hotel', ['city' => $city]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param App\Http\Requests\Admins\HotelRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HotelRequest $request)
     {
-        //
-        echo $request;
+        // Get data from view
+        $data = $request->only(['name','address','city_id','descript','number_star']);
+        if ($request->status == "on") {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+        }
+        $data['user_id'] = Auth::user()->id;
+        $file = $request->file('image');
+        $name = $file->getClientOriginalName();
+        $image = str_random(4)."_".$name;
+        while (file_exists(Hotel::FOLDER_UPLOAD_HOTEL.$image)) {
+            $image = str_random(4)."_".$name;
+        }
+        $file->move(Hotel::FOLDER_UPLOAD_HOTEL, $image);
+        $data['image'] = $image;
+        // Create Hotel and show list hotels with meassage
+        $check = $this->hotel->addHotel($data);
+        if (!empty($check)) {
+            return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_add.hotel_add_success'));
+        }
+        return $this->redirectError("hotels.index", __('admin/hotel.hotel_add.hotel_add_error'));
     }
 
     /**
@@ -63,7 +90,7 @@ class HotelController extends Controller
     public function show($id)
     {
         //
-        echo $id;
+        echo "show" . $id;
     }
 
     /**
@@ -76,7 +103,7 @@ class HotelController extends Controller
     public function edit($id)
     {
         //
-        echo $id;
+        echo "edit" . $id;
     }
 
     /**
@@ -103,6 +130,6 @@ class HotelController extends Controller
     public function destroy($id)
     {
         //
-        echo $id;
+        echo "delete" . $id;
     }
 }
