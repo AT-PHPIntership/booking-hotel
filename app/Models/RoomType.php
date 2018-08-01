@@ -66,4 +66,16 @@ class RoomType extends Model
     {
         return $this->create($request);
     }
+
+    /**
+     * Delete Room Type
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return array
+    */
+    public function delRoomType($request)
+    {
+        return $request->delete();
+    }
 }

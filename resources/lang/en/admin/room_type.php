@@ -31,6 +31,9 @@
         'rule_length' => 'The length from 1 to 50',
         'rule_require' => 'Fill in the field',
     ],
-
-    
+    'room_type_del' => [
+        // Delete room types message
+        'mes_success' => 'Delete Success',
+        'mes_fail' => 'Have error. Try again',
+    ],
     ];
