@@ -6,7 +6,6 @@ use App\Models\Hotel;
 use App\Models\City;
 use App\Http\Requests\Admins\HotelRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Lang;
 
 class HotelController extends Controller
 {
