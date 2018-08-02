@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class City extends Model
 {
@@ -43,13 +45,13 @@ class City extends Model
     }
 
     /**
-     * Get List City
+     * Get List city
      *
      * @return array
     */
     public function getCities()
     {
-        $list = $this->with('hotels')->paginate(City::PAGINATION_VALUE_ON_PAGE);
-        return $list;
+        $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
+        return $cities;
     }
 }
