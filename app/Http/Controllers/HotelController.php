@@ -118,8 +118,7 @@ class HotelController extends Controller
      */
     public function update(HotelRequest $request, $id)
     {
-        // Update hotel
-        $hotel = $this->hotel->findHotel($id);
+        // Get request from view
         $data = $request->only(['name','address','city_id','descript','number_star']);
         if ($request->status == "on") {
             $data['status'] = true;
@@ -127,18 +126,19 @@ class HotelController extends Controller
             $data['status'] = false;
         }
         $data['user_id'] = Auth::user()->id;
-        $data['image'] = $hotel->image;
         if ($request->hasFile('image')) {
+            $hotel = $this->hotel->findHotel($id);
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
             $image = str_random(4)."_".$name;
             while (file_exists(Hotel::FOLDER_UPLOAD_HOTEL.$image)) {
                 $image = str_random(4)."_".$name;
             }
-            unlink('upload/hotel/'.$hotel->image);
+            unlink(Hotel::FOLDER_UPLOAD_HOTEL.$hotel->image);
             $file->move(Hotel::FOLDER_UPLOAD_HOTEL, $image);
             $data['image'] = $image;
         }
+        // Update hotel into database and show message
         $check = $this->hotel->editHotel($data, $id);
         if (!empty($check)) {
             return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_edit.hotel_edit_success'));
