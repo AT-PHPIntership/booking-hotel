@@ -66,4 +66,16 @@ class City extends Model
     {
         return $this->create($request);
     }
+    
+    /**
+     * Delete City
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function delCity($id)
+    {
+        return $this->find($id)->delete();
+    }
 }

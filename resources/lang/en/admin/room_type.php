@@ -25,20 +25,11 @@
         'room_type_name' => 'RoomType Name',
         'submit' => 'Add',
         'reset' => 'Reset',
-        // Message and validation
-        'mes_success' => 'Create Success',
-        'mes_fail' => 'Have error. Try again',
+        // Validation
         'rule_length' => 'The length from 1 to 50',
         'rule_require' => 'Fill in the field',
         'rule_unique' => 'It was created',
     ],
-      
-     // Delete room type
-    'room_type_del' => [
-        // Delete room types message
-        'mes_success' => 'Delete Success',
-        'mes_fail' => 'Have error. Try again',
-      ],
     
     // Edit room types
     'room_type_edit' => [
@@ -46,9 +37,7 @@
         'room_type_name' => 'RoomType Name',
         'submit' => 'Edit',
         'reset' => 'Reset',
-        // Message and validation
-        'mes_success' => 'Edit Success',
-        'mes_fail' => 'Have error. Try again',
+        // Validation
         'rule_length' => 'The length from 1 to 50',
         'rule_require' => 'Fill in the field',
     ],
