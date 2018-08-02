@@ -59,9 +59,9 @@ class RoomTypeController extends Controller
         $data['user_id'] = Auth::user()->id;
         $check = $this->roomType->addRoomType($data);
         if (!empty($check)) {
-            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_add.mes_success'));
+            return $this->redirectSuccess('room-types.index', __('admin/layout.message.mes_add_success'));
         }
-        return $this->redirectError('room-types.index', __('admin/room_type.room_type_add.mes_fail'));
+        return $this->redirectError('room-types.index', __('admin/layout.message.mes_fail'));
     }
 
     /**
@@ -102,9 +102,9 @@ class RoomTypeController extends Controller
         $data = $request->only('name');
         $check = $this->roomType->editRoomType(['id' => $id], $data);
         if ($check) {
-            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_edit.mes_success'));
+            return $this->redirectSuccess('room-types.index', __('admin/layout.message.mes_edit_success'));
         }
-        return $this->redirectError('room-types.index', __('admin/room_type.room_type_edit.mes_fail'));
+        return $this->redirectError('room-types.index', __('admin/layout.message.mes_fail'));
     }
 
     /**
@@ -118,8 +118,8 @@ class RoomTypeController extends Controller
     {
         $check = $this->roomType->delRoomType($id);
         if ($check) {
-            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_del.mes_success'));
+            return $this->redirectSuccess('room-types.index', __('admin/layout.message.mes_del_success'));
         }
-        return $this->redirectError('room-types.index', __('admin/room_type.room_type_del.mes_fail'));
+        return $this->redirectError('room-types.index', __('admin/layout.message.mes_fail'));
     }
 }

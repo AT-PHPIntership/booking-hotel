@@ -102,6 +102,10 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        $check = $this->city->delCity($id);
+        if ($check) {
+            return $this->redirectSuccess('cities.index', __('admin/layout.message.mes_del_success'));
+        }
+        return $this->redirectError('cities.index', __('admin/layout.message.mes_fail'));
     }
 }
