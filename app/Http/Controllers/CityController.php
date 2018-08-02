@@ -20,7 +20,7 @@ class CityController extends Controller
      */
     public function __construct(City $city)
     {
-        $this->City = $city;
+        $this->city = $city;
     }
 
     /**
@@ -30,7 +30,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = $this->City->getCities();
+        $cities = $this->city->getCities();
         return view('admin.cities.cities', ['cities'=>$cities]);
     }
 
