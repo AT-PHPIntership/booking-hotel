@@ -95,4 +95,29 @@ class Hotel extends Model
     {
         return $this->create($request);
     }
+
+    /**
+     * Find hotel from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function findHotel($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+
+    /**
+     * Edit hotel from id
+     *
+     * @param object $request request
+     * @param int    $id      id
+     *
+     * @return array
+    */
+    public function editHotel($request, $id)
+    {
+        return $this->where('id', $id)->update($request);
+    }
 }
