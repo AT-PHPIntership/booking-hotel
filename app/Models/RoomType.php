@@ -83,7 +83,8 @@ class RoomType extends Model
     /**
      * Edit Room Type
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param array $where where
+     * @param array $data  data
      *
      * @return array
     */
