@@ -53,4 +53,10 @@
         'reset_password' => 'Reset Password',
         'send_password_reset_link' => 'Send Password Reset Link',
     ],
+    'message' => [
+        'mes_add_success' => 'Create Success',
+        'mes_del_success' => 'Delete Success',
+        'mes_edit_success' => 'Edit Success',
+        'mes_fail' => 'Have error. Try again',
+    ],
     ];
