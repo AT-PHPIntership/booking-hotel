@@ -70,12 +70,12 @@ class RoomType extends Model
     /**
      * Delete Room Type
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param int $id id
      *
      * @return array
     */
-    public function delRoomType($request)
+    public function delRoomType($id)
     {
-        return $request->delete();
+        return $this->find($id)->delete();
     }
 }

@@ -116,6 +116,10 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        echo ($id);
+        $check = $this->roomType->delRoomType($id);
+        if ($check) {
+            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_del.mes_success'));
+        }
+        return $this->redirectError('room-types.index', __('admin/room_type.room_type_del.mes_fail'));
     }
 }
