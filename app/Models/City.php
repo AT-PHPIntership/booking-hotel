@@ -51,7 +51,7 @@ class City extends Model
     */
     public function getCities()
     {
-        $cities = $this->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
+        $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
         return $cities;
     }
 }
