@@ -126,11 +126,10 @@ class Hotel extends Model
      *
      * @param int $id id
      *
-     * @return void
+     * @return array
     */
     public function deleteHotel($id)
     {
-        $hotel = $this->where('id', $id)->first();
-        $hotel->delete();
+        return $this->where('id', $id)->delete();
     }
 }
