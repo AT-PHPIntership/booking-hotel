@@ -53,10 +53,6 @@ class CityController extends Controller
      */
     public function store(CityRequest $request)
     {
-        // $data = $request->only('city', 'country');
-        // dd($data)
-        // dd($request->rules());
-
         $data = $request->only('city', 'country');
         $data['user_id'] = Auth::user()->id;
         $check = $this->city->addCity($data);
