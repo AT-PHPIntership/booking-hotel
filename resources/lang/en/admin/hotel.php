@@ -85,4 +85,8 @@
         'hotel_descript_max' => 'Description is very long',
         'hotel_image_format' => 'Image format is wrong!',
     ],
+    // Delete Hotel
+    'hotel_delete' => [
+        'hotel_delete_success' => 'Delete Success!',
+    ],
     ];

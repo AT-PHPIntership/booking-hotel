@@ -120,4 +120,16 @@ class Hotel extends Model
     {
         return $this->where('id', $id)->update($request);
     }
+
+    /**
+     * Delete Hotel from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function deleteHotel($id)
+    {
+        return $this->where('id', $id)->delete();
+    }
 }

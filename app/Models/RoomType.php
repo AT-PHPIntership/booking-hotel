@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Http\Requests\admin\RoomTypeRequest;
+use App\Http\Requests\Admins\RoomTypeRequest;
 use Illuminate\Support\Facades\Auth;
 
 class RoomType extends Model
@@ -56,6 +56,19 @@ class RoomType extends Model
     }
 
     /**
+     * Get Room Type by $id id
+     *
+     * @param int $id id
+     *
+     * @return object
+    */
+    public function getRoomType($id)
+    {
+        $roomType = $this->with('user')->find($id);
+        return $roomType;
+    }
+    
+    /**
      * Add Room Type
      *
      * @param \Illuminate\Http\Request $request request
@@ -77,5 +90,17 @@ class RoomType extends Model
     public function delRoomType($id)
     {
         return $this->find($id)->delete();
+    }
+    /**
+     * Edit Room Type
+     *
+     * @param array $where where
+     * @param array $data  data
+     *
+     * @return array
+    */
+    public function editRoomType($where, $data)
+    {
+        return $this->where($where)->update($data);
     }
 }
