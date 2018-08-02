@@ -11,6 +11,7 @@ class HotelController extends Controller
 {
     protected $hotel;
     protected $city;
+
     /**
      ** Create contructor.
      *
@@ -102,22 +103,47 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
-        echo "edit" . $id;
+        $hotel = $this->hotel->findHotel($id);
+        $city = $this->city->getCities();
+        return view('admin.hotels.edit_hotel', ['hotel' => $hotel,'city' => $city]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
-     * @param int                      $id      id
+     * @param App\Http\Requests\Admins\HotelRequest $request request
+     * @param int                                   $id      id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(HotelRequest $request, $id)
     {
-        //
-        echo $request . $id;
+        // Get request from view
+        $data = $request->only(['name','address','city_id','descript','number_star']);
+        if ($request->status == "on") {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+        }
+        $data['user_id'] = Auth::user()->id;
+        if ($request->hasFile('image')) {
+            $hotel = $this->hotel->findHotel($id);
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $image = str_random(4)."_".$name;
+            while (file_exists(Hotel::FOLDER_UPLOAD_HOTEL.$image)) {
+                $image = str_random(4)."_".$name;
+            }
+            unlink(Hotel::FOLDER_UPLOAD_HOTEL.$hotel->image);
+            $file->move(Hotel::FOLDER_UPLOAD_HOTEL, $image);
+            $data['image'] = $image;
+        }
+        // Update hotel into database and show message
+        $check = $this->hotel->editHotel($data, $id);
+        if (!empty($check)) {
+            return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_edit.hotel_edit_success'));
+        }
+        return $this->redirectError("hotels.index", __('admin/hotel.hotel_edit.hotel_edit_error'));
     }
 
     /**
@@ -129,7 +155,7 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        deleteHotel($id);
-        return $this->redirectError("hotels.index", __('admin/hotel.hotel_delete.hotel_delete_error'));
+        $this->hotel->deleteHotel($id);
+        return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_delete.hotel_delete_success'));
     }
 }
