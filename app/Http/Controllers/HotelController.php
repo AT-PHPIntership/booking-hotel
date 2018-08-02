@@ -155,7 +155,10 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
-        echo "delete" . $id;
+        $check = $this->hotel->deleteHotel($id);
+        if ($check) {
+            return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_delete.hotel_delete_success'));
+        }
+        return $this->redirectError("hotels.index", __('admin/hotel.hotel_delete.hotel_delete_error'));
     }
 }
