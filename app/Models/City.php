@@ -54,4 +54,16 @@ class City extends Model
         $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
         return $cities;
     }
+
+    /**
+     * Add City
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return array
+    */
+    public function addCity($request)
+    {
+        return $this->create($request);
+    }
 }
