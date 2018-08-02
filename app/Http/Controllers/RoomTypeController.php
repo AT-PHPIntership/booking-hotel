@@ -85,7 +85,8 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        $roomType = $this->roomType->getRoomType($id);
+        return view('admin.room_types.edit_room_type', ['roomType'=>$roomType]);
     }
 
     /**
@@ -96,9 +97,14 @@ class RoomTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoomTypeRequest $request, $id)
     {
-        echo $request + $id;
+        $data = $request->only('name');
+        $check = $this->roomType->editRoomType(['id' => $id], $data);
+        if ($check) {
+            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_edit.mes_success'));
+        }
+        return $this->redirectError('room-types.index', __('admin/room_type.room_type_edit.mes_fail'));
     }
 
     /**
@@ -110,6 +116,10 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        $check = $this->roomType->delRoomType($id);
+        if ($check) {
+            return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_del.mes_success'));
+        }
+        return $this->redirectError('room-types.index', __('admin/room_type.room_type_del.mes_fail'));
     }
 }
