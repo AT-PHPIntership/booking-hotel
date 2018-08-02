@@ -87,8 +87,8 @@ class RoomType extends Model
      *
      * @return array
     */
-    public function editRoomType($request)
+    public function editRoomType($where, $data)
     {
-        return $request->update();
+        return $this->where($where)->update($data);
     }
 }

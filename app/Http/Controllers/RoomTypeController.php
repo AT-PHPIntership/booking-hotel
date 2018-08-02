@@ -99,13 +99,12 @@ class RoomTypeController extends Controller
      */
     public function update(RoomTypeRequest $request, $id)
     {
-        $roomType = $this->roomType->where('id', $id)->first();
-        $roomType->name = $request->name;
-        $check = $this->roomType->editRoomType($roomType);
-        if (!empty($check)) {
+        $data = $request->only('name');
+        $check = $this->roomType->editRoomType(['id' => $id], $data);
+        if ($check) {
             return $this->redirectSuccess('room-types.index', __('admin/room_type.room_type_edit.mes_success'));
         }
-            return $this->redirectError('room-types.index', __('admin/room_type.room_type_edit.mes_fail'));
+        return $this->redirectError('room-types.index', __('admin/room_type.room_type_edit.mes_fail'));
     }
 
     /**
