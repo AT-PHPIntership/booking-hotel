@@ -27,8 +27,8 @@ class CityRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'city' => 'required',
-                    'country' => 'required|unique:cities,country',
+                    'city' => 'required|unique:cities,city',
+                    'country' => 'required',
                 ];
                 break;
             // case 'PUT':
@@ -47,8 +47,8 @@ class CityRequest extends FormRequest
         return
         [
             'city.required' =>  __('admin/city.city_add.rule_require'),
+            'city.unique' => __('admin/city.city_add.rule_unique'),
             'country.required' => __('admin/city.city_add.rule_require'),
-            'country.unique' => __('admin/city.city_add.rule_unique'),
         ];
     }
 }
