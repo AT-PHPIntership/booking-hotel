@@ -47,9 +47,9 @@ class City extends Model
      *
      * @return array
     */
-    public function getCities()
-    {
-        $cities = $this->with('cities')->paginate(City::PAGINATION_VALUE_ON_PAGE);
-        return $cities;
-    }
+    // public function getCities()
+    // {
+    //     $cities = $this->with('cities')->paginate(City::PAGINATION_VALUE_ON_PAGE);
+    //     return $cities;
+    // }
 }

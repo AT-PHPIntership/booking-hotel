@@ -64,18 +64,18 @@
     </div>
     </li>
     <li class="nav-item">
-    <a class="nav-link" data-toggle="collapse" href="#ui-room-type" aria-expanded="false" aria-controls="ui-basic">
+    <a class="nav-link" data-toggle="collapse" href="#ui-city" aria-expanded="false" aria-controls="ui-basic">
         <i class="menu-icon mdi mdi-content-copy"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.cities') }}</span>
         <i class="menu-arrow"></i>
     </a>
-    <div class="collapse" id="ui-room-type">
+    <div class="collapse" id="ui-city">
         <ul class="nav flex-column sub-menu">
         <li class="nav-item">
-            <a class="nav-link" href="{{route("room-types.index")}}">{{ __('admin/layout.sidebar.list_room_type') }}</a>
+            <a class="nav-link" href="{{route("cities.index")}}">{{ __('admin/layout.sidebar.list_cities') }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route("room-types.create")}}">{{ __('admin/layout.sidebar.add_room_type') }}</a>
+            <a class="nav-link" href="{{route("cities.create")}}">{{ __('admin/layout.sidebar.add_city') }}</a>
         </li>
         </ul>
     </div>

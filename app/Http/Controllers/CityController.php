@@ -28,8 +28,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = $this->City->getCities();
-        return view('admin.cities.list_city', ['cities'=>$cities]);
+        // $cities = $this->City->getCities();
+        return view('admin.cities.cities');
     }
 
     /**
