@@ -81,6 +81,17 @@ class RoomType extends Model
     }
 
     /**
+     * Delete Room Type
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function delRoomType($id)
+    {
+        return $this->find($id)->delete();
+    }
+    /**
      * Edit Room Type
      *
      * @param array $where where

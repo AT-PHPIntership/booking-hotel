@@ -32,6 +32,13 @@
         'rule_require' => 'Fill in the field',
         'rule_unique' => 'It was created',
     ],
+      
+     // Delete room type
+    'room_type_del' => [
+        // Delete room types message
+        'mes_success' => 'Delete Success',
+        'mes_fail' => 'Have error. Try again',
+      ],
     
     // Edit room types
     'room_type_edit' => [
