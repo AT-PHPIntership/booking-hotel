@@ -54,4 +54,16 @@ class City extends Model
         $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
         return $cities;
     }
+    
+    /**
+     * Delete City
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function delCity($id)
+    {
+        return $this->find($id)->delete();
+    }
 }
