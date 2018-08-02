@@ -31,6 +31,9 @@
         'room_types' => 'Room Types',
         'list_room_type' => 'List Room Type',
         'add_room_type' => 'Add Room Type',
+        'cities' => 'City',
+        'cities' => 'List Cities',
+        'add_city' => 'Add City',
     ],
     'title' => 'Admin',
     'app' => [

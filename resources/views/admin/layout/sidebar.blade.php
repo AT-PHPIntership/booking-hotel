@@ -63,5 +63,22 @@
         </ul>
     </div>
     </li>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-room-type" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.cities') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-room-type">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("room-types.index")}}">{{ __('admin/layout.sidebar.list_room_type') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("room-types.create")}}">{{ __('admin/layout.sidebar.add_room_type') }}</a>
+        </li>
+        </ul>
+    </div>
+    </li>
 </ul>
 </nav>

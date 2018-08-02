@@ -49,7 +49,7 @@ class City extends Model
     */
     public function getCities()
     {
-        $list = $this->with('hotels')->paginate(City::PAGINATION_VALUE_ON_PAGE);
-        return $list;
+        $cities = $this->with('cities')->paginate(City::PAGINATION_VALUE_ON_PAGE);
+        return $cities;
     }
 }
