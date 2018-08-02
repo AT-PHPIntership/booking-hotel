@@ -74,5 +74,15 @@
         // Localization Messages
         'hotel_edit_success' => 'Edit Success!',
         'hotel_edit_error' => 'Has Error!',
+        'hotel_name_required' => 'Hotel name is empty',
+        'hotel_name_min' => 'Hotel name have length from 5 to 100',
+        'hotel_name_max' => 'Hotel name have length from 5 to 100',
+        'hotel_name_unique' => 'Hotel name is duplication',
+        'hotel_address_required' => 'Address is empty',
+        'hotel_address_min' => 'Address have length from 5 to 100',
+        'hotel_address_max' => 'Address have length from 5 to 100',
+        'hotel_descript_required' => 'Description is empty',
+        'hotel_descript_max' => 'Description is very long',
+        'hotel_image_format' => 'Image format is wrong!',
     ],
     ];

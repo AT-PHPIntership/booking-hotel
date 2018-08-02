@@ -50,18 +50,36 @@ class HotelRequest extends FormRequest
      */
     public function messages()
     {
-        return [
-            'name.required' => __('admin/hotel.hotel_add.hotel_name_required'),
-            'name.min' => __('admin/hotel.hotel_add.hotel_name_min'),
-            'name.max' => __('admin/hotel.hotel_add.hotel_name_max'),
-            'name.unique' => __('admin/hotel.hotel_add.hotel_name_unique'),
-            'address.required' => __('admin/hotel.hotel_add.hotel_address_required'),
-            'address.min' => __('admin/hotel.hotel_add.hotel_address_min'),
-            'address.max' => __('admin/hotel.hotel_add.hotel_address_max'),
-            'descript.required' => __('admin/hotel.hotel_add.hotel_descript_required'),
-            'descript.max' => __('admin/hotel.hotel_add.hotel_descript_max'),
-            'image.required' => __('admin/hotel.hotel_add.hotel_image_required'),
-            'image.image' => __('admin/hotel.hotel_add.hotel_image_format'),
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'name.required' => __('admin/hotel.hotel_add.hotel_name_required'),
+                    'name.min' => __('admin/hotel.hotel_add.hotel_name_min'),
+                    'name.max' => __('admin/hotel.hotel_add.hotel_name_max'),
+                    'name.unique' => __('admin/hotel.hotel_add.hotel_name_unique'),
+                    'address.required' => __('admin/hotel.hotel_add.hotel_address_required'),
+                    'address.min' => __('admin/hotel.hotel_add.hotel_address_min'),
+                    'address.max' => __('admin/hotel.hotel_add.hotel_address_max'),
+                    'descript.required' => __('admin/hotel.hotel_add.hotel_descript_required'),
+                    'descript.max' => __('admin/hotel.hotel_add.hotel_descript_max'),
+                    'image.required' => __('admin/hotel.hotel_add.hotel_image_required'),
+                    'image.image' => __('admin/hotel.hotel_add.hotel_image_format'),
+                ];
+                break;
+            case 'PUT':
+                return [
+                    'name.required' => __('admin/hotel.hotel_edit.hotel_name_required'),
+                    'name.min' => __('admin/hotel.hotel_edit.hotel_name_min'),
+                    'name.max' => __('admin/hotel.hotel_edit.hotel_name_max'),
+                    'name.unique' => __('admin/hotel.hotel_edit.hotel_name_unique'),
+                    'address.required' => __('admin/hotel.hotel_edit.hotel_address_required'),
+                    'address.min' => __('admin/hotel.hotel_edit.hotel_address_min'),
+                    'address.max' => __('admin/hotel.hotel_edit.hotel_address_max'),
+                    'descript.required' => __('admin/hotel.hotel_add.hotel_descript_required'),
+                    'descript.max' => __('admin/hotel.hotel_edit.hotel_descript_max'),
+                    'image.image' => __('admin/hotel.hotel_edit.hotel_image_format'),
+                ];
+                break;
+        }
     }
 }
