@@ -68,6 +68,19 @@ class City extends Model
     }
     
     /**
+     * Get city by $id id
+     *
+     * @param int $id id
+     *
+     * @return object
+    */
+    public function getCity($id)
+    {
+        $city = $this->find($id);
+        return $city;
+    }
+
+    /**
      * Delete City
      *
      * @param int $id id
@@ -77,5 +90,18 @@ class City extends Model
     public function delCity($id)
     {
         return $this->find($id)->delete();
+    }
+
+    /**
+     * Edit City
+     *
+     * @param array $where where
+     * @param array $data  data
+     *
+     * @return array
+    */
+    public function editCity($where, $data)
+    {
+        return $this->where($where)->update($data);
     }
 }

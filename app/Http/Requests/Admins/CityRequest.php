@@ -23,6 +23,7 @@ class CityRequest extends FormRequest
      */
     public function rules()
     {
+        $city = $this->route()->parameter('city');
         switch ($this->method()) {
             case 'POST':
                 return [
@@ -30,7 +31,11 @@ class CityRequest extends FormRequest
                     'country' => 'required',
                 ];
                 break;
-            default:
+            case 'PUT':
+                return [
+                    'city' => "required|unique:cities,city,".$city,
+                    'country' => 'required',
+                ];
                 break;
         }
     }
