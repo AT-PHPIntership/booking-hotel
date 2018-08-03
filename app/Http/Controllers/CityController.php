@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admins\CityRequest;
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,19 +41,25 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cities.add_city');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param \Illuminate\Http\CityRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityRequest $request)
     {
-        echo $request;
+        $data = $request->only('city', 'country');
+        $data['user_id'] = Auth::user()->id;
+        $check = $this->city->addCity($data);
+        if (!empty($check)) {
+            return $this->redirectSuccess('cities.index', __('admin/layout.message.mes_add_success'));
+        }
+        return $this->redirectError('cities.index', __('admin/layout.message.mes_fail'));
     }
 
     /**

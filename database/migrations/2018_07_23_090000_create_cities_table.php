@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
             $table->increments('id');
             $table->string('city')->unique();
             $table->string('country');
+            $table->timestamps();
         });
     }
 

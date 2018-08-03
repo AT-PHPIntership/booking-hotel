@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-body">
     <h4 class="card-title">{{ __('admin/city.city_edit.city_table') }}</h4>
-    <form class="forms-sample" action="{{ route('room-types.update', $city->id) }}" method="post">
+    <form class="forms-sample" action="{{ route('cities.update', $city->id) }}" method="post">
         @csrf
         @method('PUT')
         <div class="form-group">

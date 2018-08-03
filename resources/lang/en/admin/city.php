@@ -30,4 +30,17 @@
         'rule_unique' => 'It was created',
         'rule_require' => 'Fill in the field',
     ],
+    // Add city
+    'city_add' => [
+        'city_table' => 'Add City',
+        'city' => 'City',
+        'city_name' => 'Add Name City',
+        'country' => 'Country',
+        'country_name' => 'Add Name Country',
+        'submit' => 'Add',
+        'reset' => 'Reset',
+        // Validation
+        'rule_require' => 'Fill in the field',
+        'rule_unique' => 'It was created',
+    ],
     ];
