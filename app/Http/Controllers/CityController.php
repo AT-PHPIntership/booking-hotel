@@ -77,7 +77,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        $city = $this->city->getCity($id);
+        return view('admin.cities.edit_city', ['city'=>$city]);
     }
 
     /**
@@ -88,9 +89,14 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityRequest $request, $id)
     {
-        echo $request + $id;
+        $data = $request->only(['city', 'country']);
+        $check = $this->city->editCity(['id' => $id], $data);
+        if ($check) {
+            return $this->redirectSuccess('cities.index', __('admin/layout.message.mes_edit_success'));
+        }
+        return $this->redirectError('citipes.index', __('admin/layout.message.mes_fail'));
     }
 
     /**

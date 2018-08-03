@@ -18,4 +18,16 @@
         'cities_delete' => 'Delete',
         'cities_confirm' => 'Are you sure?',
     ],
+
+    // Edit city
+    'city_edit' => [
+        'city_table' => 'Edit City Table',
+        'city_name' => 'City Name',
+        'country_name' => 'Country Name',
+        'submit' => 'Edit',
+        'reset' => 'Reset',
+        // Validation
+        'rule_unique' => 'It was created',
+        'rule_require' => 'Fill in the field',
+    ],
     ];
