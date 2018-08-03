@@ -65,6 +65,7 @@ class City extends Model
     public function addCity($request)
     {
         return $this->create($request);
+    }
     
     /**
      * Delete City
