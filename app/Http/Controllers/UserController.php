@@ -2,9 +2,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
+
+    protected $user;
+
+    /**
+     ** Create contructor.
+     *
+     * @param App\Models\User $user user
+     *
+     * @return void
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -12,9 +28,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        echo "index";
+        $users = $this->user->getUsers();
+        return view('admin.users.list_user', ['users' => $users]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +52,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        echo $request;
+        echo "store".$request;
     }
     /**
      * Display the specified resource.
@@ -47,7 +64,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        echo $id;
+        echo "show".$id;
     }
     /**
      * Show the form for editing the specified resource.
@@ -59,7 +76,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        echo $id;
+        echo "edit".$id;
     }
     /**
      * Update the specified resource in storage.
@@ -84,6 +101,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        echo $id;
+        echo "delete".$id;
     }
 }
