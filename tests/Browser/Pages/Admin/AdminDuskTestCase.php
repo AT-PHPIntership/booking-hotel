@@ -22,7 +22,7 @@ abstract class AdminDuskTestCase extends DuskTestCase
     {
         parent::setUp();
         // Create admin
-        $this->admin = factory('App\Models\User')->create([
+        $this->admin = factory(User::class)->create([
             'username' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123123'),
@@ -32,7 +32,7 @@ abstract class AdminDuskTestCase extends DuskTestCase
             'phone' => '01223499433',
         ]);
         // Create user
-        $this->user = factory('App\Models\User')->create([
+        $this->user = factory(User::class)->create([
             'username' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('123123'),
