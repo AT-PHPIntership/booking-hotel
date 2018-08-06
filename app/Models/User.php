@@ -12,6 +12,7 @@ class User extends Authenticatable
 
     const ADMIN_USER = 'admin';
     const NORMAL_USER = 'user';
+    const PAGINATION_VALUE_ON_PAGE = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -38,5 +39,15 @@ class User extends Authenticatable
     public function comment()
     {
         return $this->belongsTo('App\Models\Comment', 'user_id');
+    }
+
+    /**
+     * Get List Users
+     *
+     * @return array
+    */
+    public function getUsers()
+    {
+        return $this->paginate(User::PAGINATION_VALUE_ON_PAGE);
     }
 }
