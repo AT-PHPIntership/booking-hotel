@@ -11,7 +11,7 @@ abstract class AdminDuskTestCase extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $admin, $user;
+    protected $admin, $admin_wrong, $user;
 
     /**
      * Set up admin and user to test admin page.
@@ -25,6 +25,16 @@ abstract class AdminDuskTestCase extends DuskTestCase
         $this->admin = factory('App\Models\User')->create([
             'username' => 'admin',
             'email' => 'admin@gmail.com',
+            'password' => bcrypt('123123'),
+            'role' => User::ADMIN_USER,
+            'remember_token' => str_random(10),
+            'address' => 'Da Nang',
+            'phone' => '01223499433',
+        ]);
+        // Create admin so format gmail wrong
+        $this->admin_wrong = factory('App\Models\User')->create([
+            'username' => 'admin_wrong',
+            'email' => 'admin',
             'password' => bcrypt('123123'),
             'role' => User::ADMIN_USER,
             'remember_token' => str_random(10),

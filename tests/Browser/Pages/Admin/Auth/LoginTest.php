@@ -24,6 +24,23 @@ class LoginTest extends AdminDuskTestCase
      *
      * @return void
      */
+    public function test_admin_login_with_fail_because_format_email_wrong()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                    ->type('email', $this->admin_wrong->email)
+                    ->type('password','123123')
+                    ->press('Login');
+            $browser->assertPathIs('/login')
+                    ->assertSee('The email must be a valid email address.');
+        });
+    }
+
+    /**
+     * Admin login with Success
+     *
+     * @return void
+     */
     public function test_admin_login_with_success()
     {
         $this->browse(function (Browser $browser) {
@@ -91,7 +108,8 @@ class LoginTest extends AdminDuskTestCase
                     ->type('email', 'thong@gmail.com')
                     ->type('password','123123')
                     ->press('Login');
-            $browser->assertPathIs('/login');
+            $browser->assertPathIs('/login')
+                    ->assertSee('These credentials do not match our records');
         });
     }
 
@@ -107,7 +125,8 @@ class LoginTest extends AdminDuskTestCase
                     ->type('email', $this->user->email)
                     ->type('password','123456')
                     ->press('Login');
-            $browser->assertPathIs('/login');
+            $browser->assertPathIs('/login')
+                    ->assertSee('These credentials do not match our records');
         });
     }
 
