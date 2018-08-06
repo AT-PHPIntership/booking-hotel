@@ -28,7 +28,7 @@ class LoginTest extends AdminDuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->type('email', $this->admin_wrong->email)
+                    ->type('email', 'admin')
                     ->type('password','123123')
                     ->press('Login');
             $browser->assertPathIs('/login')
@@ -123,6 +123,23 @@ class LoginTest extends AdminDuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->type('email', $this->user->email)
+                    ->type('password','123456')
+                    ->press('Login');
+            $browser->assertPathIs('/login')
+                    ->assertSee('These credentials do not match our records');
+        });
+    }
+
+    /**
+     * User login with fail because email and password wrong
+     *
+     * @return void
+     */
+    public function test_admin_login_with_fail_because_email_and_password_wrong()
+    {       
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                    ->type('email', 'thong@gmail.com')
                     ->type('password','123456')
                     ->press('Login');
             $browser->assertPathIs('/login')
