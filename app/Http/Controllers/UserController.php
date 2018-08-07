@@ -98,13 +98,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $user = $this->user->findUser($id);
         // Get data from view
-        if ($user->password != $request->password) {
-            $data = $request->only(['username','email','address','phone','role']);
-            $data['password'] = bcrypt($request->password);
+        if ($request->password) {
+            $data = $request->only(['username', 'email', 'address', 'phone', 'role', 'password']);
         } else {
-            $data = $request->only(['username','email','address','phone','role']);
+            $data = $request->only(['username', 'email', 'address', 'phone', 'role']);
         }
         // Create User and show list users with meassage
         $check = $this->user->editUser($data, $id);

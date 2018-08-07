@@ -85,7 +85,7 @@ class User extends Authenticatable
     */
     public function editUser($request, $id)
     {
-        return $this->where('id', $id)->update($request);
+        return $this->find($id)->update($request);
     }
 
     /**

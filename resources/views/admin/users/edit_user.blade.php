@@ -38,11 +38,11 @@
         </div>
         <div class="form-group">
             <label for="exampleInputName1">{{ __('admin/user.user_edit.user_password') }}</label>
-            <input type="password" class="form-control" id="exampleInputName1" value="{{$user->password}}" name="password">
+            <input type="password" class="form-control" id="exampleInputName1" value="" name="password">
         </div>
         <div class="form-group">
             <label for="exampleInputName1">{{ __('admin/user.user_edit.user_password_confirm') }}</label>
-            <input type="password" class="form-control" id="exampleInputName1" value="{{$user->password}}" name="password_confirmation">
+            <input type="password" class="form-control" id="exampleInputName1" value="" name="password_confirmation">
         </div>
         <button type="submit" class="btn btn-success mr-2">{{ __('admin/user.user_edit.user_update') }}</button>
         <button type="reset" class="btn btn-light">{{ __('admin/user.user_edit.user_reset') }}</button>
