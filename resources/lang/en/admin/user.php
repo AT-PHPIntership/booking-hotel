@@ -74,8 +74,8 @@
         'user_update' => 'Update',
         'user_reset' => 'Reset',
         // Localization Messages
-        'user_edit_success' => 'Create Success!',
-        'user_edit_error' => 'Create Fail!',
+        'user_edit_success' => 'Edit Success!',
+        'user_edit_error' => 'Edit Fail!',
         'user_username_required' => 'Username is empty',
         'user_username_string' => 'Username is a string',
         'user_username_max' => 'Username length less than 255 words',

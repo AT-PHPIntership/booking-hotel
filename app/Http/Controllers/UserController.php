@@ -42,6 +42,7 @@ class UserController extends Controller
     {
         return view('admin.users.add_user');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -60,6 +61,7 @@ class UserController extends Controller
         }
         return $this->redirectError("users.index", __('admin/user.user_add.user_add_error'));
     }
+
     /**
      * Display the specified resource.
      *
@@ -72,6 +74,7 @@ class UserController extends Controller
         //
         echo "show".$id;
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,6 +87,7 @@ class UserController extends Controller
         $user = $this->user->findUser($id);
         return view('admin.users.edit_user', ['user' => $user]);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -94,10 +98,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        // Get data from view
         $user = $this->user->findUser($id);
+        // Get data from view
         if ($user->password != $request->password) {
-            $data = $request->only(['username','email','address','phone','role','password']);
+            $data = $request->only(['username','email','address','phone','role']);
+            $data['password'] = bcrypt($request->password);
         } else {
             $data = $request->only(['username','email','address','phone','role']);
         }
@@ -108,6 +113,7 @@ class UserController extends Controller
         }
         return $this->redirectError("users.index", __('admin/user.user_edit.user_edit_error'));
     }
+
     /**
      * Remove the specified resource from storage.
      *
