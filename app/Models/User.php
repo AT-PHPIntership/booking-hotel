@@ -75,4 +75,16 @@ class User extends Authenticatable
     {
         return $this->where('id', $id)->update($request);
     }
+    
+    /**
+     * Encode the password
+     *
+     * @param string $value value
+     *
+     * @return void
+    */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }

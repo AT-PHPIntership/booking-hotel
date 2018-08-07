@@ -30,6 +30,8 @@
         'user_password' => 'New Password',
         'user_password_confirm' => 'New password confirm',
         'user_role' => 'Role',
+        'user_role_user' => 'User',
+        'user_role_admin' => 'Admin',
         'user_update' => 'Update',
         'user_reset' => 'Reset',
         // Localization Messages

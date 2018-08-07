@@ -5,13 +5,7 @@
 <div class="card">
     <div class="card-body">
     <h4 class="card-title">{{ __('admin/user.user_edit.user_table') }}</h4>
-    @if(count($errors) > 0)
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $err)
-            {{$err}}<br>
-            @endforeach
-        </div>
-    @endif
+    @include('admin/layout/print_error')
     <form class="forms-sample" action="{{ route('users.update', $user->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -36,13 +30,12 @@
             <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="role">
                 <option value="{{$user->role}}" selected="selected">{{$user->role}}</option>
                 @if($user->role == 'admin')
-                    <option value="user">user</option>
+                    <option value="user">{{ __('admin/user.user_edit.user_role_user') }}</option>
                 @else
-                    <option value="admin">admin</option>
+                    <option value="admin">{{ __('admin/user.user_edit.user_role_admin') }}</option>
                 @endif
             </select>
         </div>
-
         <div class="form-group">
             <label for="exampleInputName1">{{ __('admin/user.user_edit.user_password') }}</label>
             <input type="password" class="form-control" id="exampleInputName1" value="{{$user->password}}" name="password">

@@ -34,8 +34,9 @@ class UserRequest extends FormRequest
                     'username' => 'required|string|max:255|unique:users,username,'.$this->route()->parameter('user'),
                     'email' => 'required|string|email|max:255|unique:users,email,'.$this->route()->parameter('user'),
                     'phone' => 'required|regex:/^(0)[1-9][0-9]{8,9}$/',
-                    'address' => 'required',
+                    'address' => 'required|max:255',
                     'password' => 'required|string|min:6|confirmed',
+                    'role' => 'in:admin,user',
                 ];
                 break;
         }
@@ -73,6 +74,7 @@ class UserRequest extends FormRequest
                     'password.string' => __('admin/user.user_edit.user_password_string'),
                     'password.min' => __('admin/user.user_edit.user_password_min'),
                     'password.confirmed' => __('admin/user.user_edit.user_password_confirmed'),
+                    'role.in' => __('admin/user.user_edit.user_role_check'),
                 ];
                 break;
         }
