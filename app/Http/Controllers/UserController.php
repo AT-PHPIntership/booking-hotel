@@ -52,8 +52,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         // Get data from view
-        $data = $request->only(['username','email','address','phone','role']);
-        $data['password'] = bcrypt($request->password);
+        $data = $request->only(['username','email','address','phone','role','password']);
         // Create User and show list users with meassage
         $check = $this->user->addUser($data);
         if (!empty($check)) {

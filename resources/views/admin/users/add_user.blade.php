@@ -5,13 +5,7 @@
 <div class="card">
     <div class="card-body">
     <h4 class="card-title">{{ __('admin/user.user_add.user_table') }}</h4>
-    @if(count($errors) > 0)
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $err)
-            {{$err}}<br>
-            @endforeach
-        </div>
-    @endif
+    @include('admin/layout/print_error')    
     <form class="forms-sample" action="{{route('users.store')}}" method="post">
         @csrf
         <div class="form-group">
@@ -33,8 +27,8 @@
         <div class="form-group">
             <label for="exampleInputName1">{{ __('admin/user.user_add.user_role') }}</label>
             <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="role">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="user">{{ __('admin/user.user_add.user_role_user') }}</option>
+                <option value="admin">{{ __('admin/user.user_add.user_role_admin') }}</option>
             </select>
         </div>
         <div class="form-group">
@@ -42,7 +36,7 @@
             <input type="password" class="form-control" id="exampleInputName1" value="" name="password">
         </div>
         <div class="form-group">
-            <label for="exampleInputName1">{{ __('admin/user.user_add.user_password_confirn') }}</label>
+            <label for="exampleInputName1">{{ __('admin/user.user_add.user_password_confirm') }}</label>
             <input type="password" class="form-control" id="exampleInputName1" value="" name="password_confirmation">
         </div>
         <button type="submit" class="btn btn-success mr-2">{{ __('admin/user.user_add.user_create') }}</button>

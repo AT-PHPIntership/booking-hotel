@@ -31,6 +31,8 @@
         'user_password' => 'Password',
         'user_password_confirm' => 'Password confirn',
         'user_role' => 'Role',
+        'user_role_user' => 'User',
+        'user_role_admin' => 'Admin',
         'user_create' => 'Create',
         'user_reset' => 'Reset',
         // Localization Messages
@@ -53,5 +55,6 @@
         'user_password_string' => 'Password is a string',
         'user_password_min' => 'Password length more than 6 words',
         'user_password_confirmed' => 'Password is not incorrect',
+        'user_role_check' => 'Role is admin or user',
     ],
     ];
