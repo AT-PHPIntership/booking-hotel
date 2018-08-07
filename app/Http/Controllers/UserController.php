@@ -89,7 +89,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        // Get data from view       
+        // Get data from view
         $user = $this->user->findUser($id);
         if ($user->password != $request->password) {
             $data = $request->only(['username','email','address','phone','role','password']);
