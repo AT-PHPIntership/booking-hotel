@@ -50,4 +50,29 @@ class User extends Authenticatable
     {
         return $this->paginate(User::PAGINATION_VALUE_ON_PAGE);
     }
+
+    /**
+     * Find user from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function findUser($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+
+    /**
+     * Find User follow id
+     *
+     * @param object $request request
+     * @param int    $id      id
+     *
+     * @return array
+    */
+    public function editUser($request, $id)
+    {
+        return $this->where('id', $id)->update($request);
+    }
 }

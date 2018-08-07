@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\Admins\UserRequest;
 
 class UserController extends Controller
 {
@@ -75,29 +76,31 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // Get data from view
-        $data = $request->only(['username','email','address','phone','role']);
-        $data['password'] = bcrypt($request->password);
-        $data['remember_token'] => str_random(10);
-        // Edit User and show list users with meassage
-        $check = $this->user->addUser($data);
-        if (!empty($check)) {
-            return $this->redirectSuccess("users.index", __('admin/user.user_add.user_add_success'));
-        }
-        return $this->redirectError("users.index", __('admin/user.user_add.user_add_error'));
+        $user = $this->user->findUser($id);
+        return view('admin.users.edit_user', ['user' => $user]);
     }
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param App\Http\Requests\Admins\UserRequest $request request
      * @param int                      $id      id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
-        echo $request . $id;
+        // Get data from view
+        $data = $request->only(['username','email','address','phone','role']);
+        $user = $this->user->findUser($id);
+        if ($user->password != $request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+        // Create User and show list users with meassage
+        $check = $this->user->editUser($data, $id);
+        if (!empty($check)) {
+            return $this->redirectSuccess("users.index", __('admin/user.user_edit.user_edit_success'));
+        }
+        return $this->redirectError("users.index", __('admin/user.user_edit.user_edit_error'));
     }
     /**
      * Remove the specified resource from storage.
