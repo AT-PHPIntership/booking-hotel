@@ -50,4 +50,16 @@ class User extends Authenticatable
     {
         return $this->paginate(User::PAGINATION_VALUE_ON_PAGE);
     }
+
+    /**
+     * Delete User from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function deleteUser($id)
+    {
+        return $this->where('id', $id)->delete();
+    }
 }
