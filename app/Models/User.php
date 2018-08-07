@@ -52,6 +52,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Add User into database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addUser($request)
+    {
+        return $this->create($request);
+    }
+
+    /**
      * Find user from id
      *
      * @param int $id id
@@ -75,7 +87,7 @@ class User extends Authenticatable
     {
         return $this->where('id', $id)->update($request);
     }
-    
+
     /**
      * Encode the password
      *

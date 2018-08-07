@@ -25,7 +25,7 @@ abstract class AdminDuskTestCase extends DuskTestCase
         $this->admin = factory(User::class)->create([
             'username' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('123123'),
+            'password' => '123123',
             'role' => User::ADMIN_USER,
             'remember_token' => str_random(10),
             'address' => 'Da Nang',
@@ -35,7 +35,7 @@ abstract class AdminDuskTestCase extends DuskTestCase
         $this->user = factory(User::class)->create([
             'username' => 'user',
             'email' => 'user@gmail.com',
-            'password' => bcrypt('123123'),
+            'password' => '123123',
             'role' => User::NORMAL_USER,
             'remember_token' => str_random(10),
             'address' => 'Da Nang',
