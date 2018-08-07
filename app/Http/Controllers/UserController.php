@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admins\UserRequest;
 
 class UserController extends Controller
 {
@@ -40,20 +41,25 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        echo "Create";
+        return view('admin.users.add_user');
     }
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
+     * @param App\Http\Requests\Admins\UserRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
-        echo "store".$request;
+        // Get data from view
+        $data = $request->only(['username','email','address','phone','role','password']);
+        // Create User and show list users with meassage
+        $check = $this->user->addUser($data);
+        if (!empty($check)) {
+            return $this->redirectSuccess("users.index", __('admin/user.user_add.user_add_success'));
+        }
+        return $this->redirectError("users.index", __('admin/user.user_add.user_add_error'));
     }
     /**
      * Display the specified resource.
