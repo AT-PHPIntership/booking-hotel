@@ -50,4 +50,16 @@ class User extends Authenticatable
     {
         return $this->paginate(User::PAGINATION_VALUE_ON_PAGE);
     }
+
+    /**
+     * Add User into database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addUser($request)
+    {
+        return $this->create($request);
+    }
 }
