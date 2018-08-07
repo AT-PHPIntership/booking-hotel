@@ -75,8 +75,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        echo "edit".$id;
+        // Get data from view
+        $data = $request->only(['username','email','address','phone','role']);
+        $data['password'] = bcrypt($request->password);
+        $data['remember_token'] => str_random(10);
+        // Edit User and show list users with meassage
+        $check = $this->user->addUser($data);
+        if (!empty($check)) {
+            return $this->redirectSuccess("users.index", __('admin/user.user_add.user_add_success'));
+        }
+        return $this->redirectError("users.index", __('admin/user.user_add.user_add_error'));
     }
     /**
      * Update the specified resource in storage.
