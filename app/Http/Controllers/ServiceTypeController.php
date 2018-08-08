@@ -66,18 +66,6 @@ class ServiceTypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        echo "show".$id;
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id id

@@ -73,7 +73,7 @@ class ServiceType extends Model
     */
     public function findServiceType($id)
     {
-        return $this->where('id', $id)->first();
+        return $this->find($id);
     }
     
     /**
