@@ -37,6 +37,9 @@
         'services' => 'Services',
         'list_services' => 'List Services',
         'add_service' => 'Add Service',
+        'service_types' => 'Service Types',
+        'list_service_type' => 'List Service Type',
+        'add_service_type' => 'Add Service Type',
     ],
     'title' => 'Admin',
     'app' => [

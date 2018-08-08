@@ -51,4 +51,63 @@ class ServiceType extends Model
     {
         return $this->select("id", "name")->get();
     }
+
+    /**
+     * Get List Service Types
+     *
+     * @return array
+    */
+    public function getServiceTypes()
+    {
+        return $this->with(['user'])->paginate(ServiceType::PAGINATION_VALUE_ON_PAGE);
+    }
+
+    /**
+     * Add Service Type into database
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function addServiceType($request)
+    {
+        return $this->create($request);
+    }
+
+    /**
+     * Find Service Type from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function findServiceType($id)
+    {
+        return $this->find($id);
+    }
+    
+    /**
+     * Edit Service Type from id
+     *
+     * @param object $request request
+     * @param int    $id      id
+     *
+     * @return array
+    */
+    public function editServiceType($request, $id)
+    {
+        return $this->where('id', $id)->update($request);
+    }
+
+    /**
+     * Delete Service Type from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function deleteServiceType($id)
+    {
+        return $this->where('id', $id)->delete();
+    }
 }

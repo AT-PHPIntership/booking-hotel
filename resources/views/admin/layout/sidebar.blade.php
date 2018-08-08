@@ -41,12 +41,6 @@
     </div>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="menu-icon mdi mdi-sticker"></i>
-        <span class="menu-title">{{ __('admin/layout.sidebar.print_invoice') }}</span>
-    </a>
-    </li>
-    <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#ui-room-type" aria-expanded="false" aria-controls="ui-basic">
         <i class="menu-icon mdi mdi-content-copy"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.room_types') }}</span>
@@ -59,6 +53,23 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route("room-types.create")}}">{{ __('admin/layout.sidebar.add_room_type') }}</a>
+        </li>
+        </ul>
+    </div>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-service-type" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.service_types') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-service-type">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("service-types.index")}}">{{ __('admin/layout.sidebar.list_service_type') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("service-types.create")}}">{{ __('admin/layout.sidebar.add_service_type') }}</a>
         </li>
         </ul>
     </div>
@@ -96,6 +107,12 @@
         </li>
         </ul>
     </div>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">
+        <i class="menu-icon mdi mdi-sticker"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.print_invoice') }}</span>
+    </a>
     </li>
 </ul>
 </nav>
