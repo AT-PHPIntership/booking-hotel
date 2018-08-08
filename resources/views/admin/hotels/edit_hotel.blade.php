@@ -5,13 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">{{ __('admin/hotel.hotel_edit.hotel_table') }}</h4>
-            @if(count($errors) > 0)
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $err)
-                    {{$err}}<br>
-                    @endforeach
-                </div>
-            @endif
+            @include('admin/layout/print_error')
             <form class="forms-sample" method="post" action="{{ route('hotels.update', $hotel->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
