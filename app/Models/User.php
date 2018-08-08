@@ -72,7 +72,7 @@ class User extends Authenticatable
     */
     public function findUser($id)
     {
-        return $this->where('id', $id)->first();
+        return $this->find($id);
     }
 
     /**
