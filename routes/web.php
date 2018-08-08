@@ -26,6 +26,9 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function()
     Route::resource('room-types', 'RoomTypeController');
 
     Route::resource('cities', 'CityController');
+
+    Route::resource('services', 'ServiceController')->except(['show']);
+
 });
 
 Auth::routes();

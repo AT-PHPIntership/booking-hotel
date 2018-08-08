@@ -34,6 +34,9 @@
         'cities' => 'Cities',
         'list_cities' => 'List City',
         'add_city' => 'Add City',
+        'services' => 'Services',
+        'list_services' => 'List Services',
+        'add_service' => 'Add Service',
     ],
     'title' => 'Admin',
     'app' => [

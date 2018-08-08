@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceType extends Model
 {
+    const PAGINATION_VALUE_ON_PAGE = 5;
+
     /**
      * Declare table
      *
@@ -18,7 +20,7 @@ class ServiceType extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['hotel_id', 'service_id', 'user_id'];
+    protected $fillable = ['name', 'user_id'];
 
     /**
      * Relationship hasMany with service
@@ -28,5 +30,25 @@ class ServiceType extends Model
     public function services()
     {
         return $this->hasMany('App\Models\Service');
+    }
+
+    /**
+     * Relationship belongsTo with user
+     *
+     * @return array
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * Get List Service Type no using pagination
+     *
+     * @return array
+    */
+    public function getListServiceType()
+    {
+        return $this->select("id", "name")->get();
     }
 }
