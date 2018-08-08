@@ -64,6 +64,31 @@ class User extends Authenticatable
     }
 
     /**
+     * Find user from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function findUser($id)
+    {
+        return $this->find($id);
+    }
+
+    /**
+     * Find User follow id
+     *
+     * @param object $request request
+     * @param int    $id      id
+     *
+     * @return array
+    */
+    public function editUser($request, $id)
+    {
+        return $this->find($id)->update($request);
+    }
+
+    /**
      * Encode the password
      *
      * @param string $value value

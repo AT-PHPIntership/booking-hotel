@@ -42,6 +42,7 @@ class UserController extends Controller
     {
         return view('admin.users.add_user');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -60,6 +61,7 @@ class UserController extends Controller
         }
         return $this->redirectError("users.index", __('admin/user.user_add.user_add_error'));
     }
+
     /**
      * Display the specified resource.
      *
@@ -72,6 +74,7 @@ class UserController extends Controller
         //
         echo "show".$id;
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,22 +84,33 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        echo "edit".$id;
+        $user = $this->user->findUser($id);
+        return view('admin.users.edit_user', ['user' => $user]);
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request request
-     * @param int                      $id      id
+     * @param App\Http\Requests\Admins\UserRequest $request request
+     * @param int                                  $id      id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
-        echo $request . $id;
+        // Get data from view
+        $data = $request->only(['username', 'email', 'address', 'phone', 'role']);
+        if ($request->password) {
+            $data['password'] = $request->password;
+        }
+        // Create User and show list users with meassage
+        $check = $this->user->editUser($data, $id);
+        if (!empty($check)) {
+            return $this->redirectSuccess("users.index", __('admin/user.user_edit.user_edit_success'));
+        }
+        return $this->redirectError("users.index", __('admin/user.user_edit.user_edit_error'));
     }
+
     /**
      * Remove the specified resource from storage.
      *
