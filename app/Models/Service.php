@@ -18,7 +18,7 @@ class Service extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['name', 'status', 'user_id'];
+    protected $fillable = ['name', 'service_type_id', 'status', 'user_id'];
 
     /**
      * Relationship belongsTo with serviceType
@@ -27,7 +27,7 @@ class Service extends Model
     */
     public function serviceType()
     {
-        return $this->belongsTo('App\Models\ServiceType');
+        return $this->belongsTo('App\Models\ServiceType', 'service_type_id');
     }
 
     /**
