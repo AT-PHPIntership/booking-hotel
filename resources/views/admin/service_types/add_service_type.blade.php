@@ -9,16 +9,8 @@
     <form class="forms-sample" action="{{route('service-types.store')}}" method="post">
         @csrf
         <div class="form-group">
-            <label for="exampleInputName1">{{ __('admin/service_type.service_type_add.service_type_name') }}</label>
-            <input type="text" class="form-control" id="exampleInputName1" value="{{ old('name') }}" name="name" placeholder="{{ __('admin/service_type.service_type_add.service_type_name') }}">
-        </div>
-				<div class="form-group">
             <label for="exampleInputName1">{{ __('admin/service_type.service_type_add.service_type_service') }}</label>
-            <input type="text" class="form-control" id="exampleInputName1" value="{{ old('name') }}" name="service_id" placeholder="{{ __('admin/service_type.service_type_add.service_type_service') }}">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputName1">{{ __('admin/service_type.service_type_add.service_type_hotel') }}</label>
-            <input type="text" class="form-control" id="exampleInputName1" value="{{ old('name') }}" name="hotel_id" placeholder="{{ __('admin/service_type.service_type_add.service_type_hotel') }}">
+            <input type="text" class="form-control" id="exampleInputName1" value="{{ old('name') }}" name="name" placeholder="{{ __('admin/service_type.service_type_add.service_type_service') }}">
         </div>
         <button type="submit" class="btn btn-success mr-2">{{ __('admin/service_type.service_type_add.service_type_create') }}</button>
         <button type="reset" class="btn btn-light">{{ __('admin/service_type.service_type_add.service_type_reset') }}</button>

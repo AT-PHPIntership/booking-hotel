@@ -17,18 +17,17 @@
                 <tr>
                     <th>{{ __('admin/service_type.service_type_list.service_type_id') }}</th>
                     <th>{{ __('admin/service_type.service_type_list.service_type_service') }}</th>
-                    <th>{{ __('admin/service_type.service_type_list.service_type_hotel') }}</th>
+                    <th>{{ __('admin/service_type.service_type_list.service_type_user') }}</th>
                     <th>{{ __('admin/service_type.service_type_list.service_type_edit') }}</th>
                     <th>{{ __('admin/service_type.service_type_list.service_type_delete') }}</th>
-                    <th>{{ __('admin/service_type.service_type_list.service_type_show') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                 	@foreach($service_types as $item)
+                 	@foreach($serviceType as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{ $item->service_id }}</td>
-                        <td>{{ $item->hotel_id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->user->username }}</td>
                         <td>
                             <a href="{{ route('service-types.edit', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/service_type.service_type_list.service_type_edit') }}</i></a>
                         </td>
@@ -36,13 +35,10 @@
                             <form action="{{ route('service-types.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('{{ __('admin/service_type.service_type_list.service_type_confirm') }}')">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('{{ __('admin/service_type.service_type_list.service_type_confirm')  }} {{$item->name}}')">
                                     <i class="fas fa-trash-alt">{{ __('admin/service_type.service_type_list.service_type_delete') }}</i>
                                 </button>
                             </form>
-                        </td>
-                        <td>
-                            <a href="{{ route('service-types.show', $item->id) }}" class="btn btn-outline-info"><i class="fas fa-edit">{{ __('admin/service_type.service_type_list.service_type_show') }}</i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -50,7 +46,7 @@
             </table>
             </div>
             <div class="d-flex justify-content-center mt-2">
-                {!! $service_types->links() !!}
+                {!! $serviceType->links() !!}
             </div>
         </div>
         </div>

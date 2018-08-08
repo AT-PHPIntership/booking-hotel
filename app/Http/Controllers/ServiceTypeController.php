@@ -5,21 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ServiceType;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admins\ServiceTypeRequest;
 
 class ServiceTypeController extends Controller
 {
-    protected $service_type;
+
+    protected $serviceType;
 
     /**
      ** Create contructor.
      *
-     * @param App\Models\ServiceType $service_type service_type
+     * @param App\Models\ServiceType $serviceType serviceType
      *
      * @return void
      */
-    public function __construct(ServiceType $service_type)
+    public function __construct(ServiceType $serviceType)
     {
-        $this->service_type = $service_type;
+        $this->serviceType = $serviceType;
     }
 
     /**
@@ -29,8 +31,8 @@ class ServiceTypeController extends Controller
      */
     public function index()
     {
-        $service_types = $this->service_type->getServiceTypes();
-        return view('admin.service_types.list_service_type', ['service_types' => $service_types]);
+        $serviceType = $this->serviceType->getServiceTypes();
+        return view('admin.service_types.list_service_type', ['serviceType' => $serviceType]);
     }
 
     /**
@@ -46,26 +48,28 @@ class ServiceTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param App\Http\Requests\Admins\ServiceTypeRequest $request request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceTypeRequest $request)
     {
         // Get data from view
-        $data = $request->only(['name','service_id','hotel_id']);
+        $data = $request->only(['name']);
         $data['user_id'] = Auth::user()->id;
         // Create User and show list users with meassage
-        $check = $this->service_type->addServiceType($data);
+        $check = $this->serviceType->addServiceType($data);
         if (!empty($check)) {
-            return $this->redirectSuccess("service_types.index", __('admin/service_type.service_type_add.service_type_add_success'));
+            return $this->redirectSuccess("service-types.index", __('admin/service_type.service_type_add.service_type_add_success'));
         }
-        return $this->redirectError("service_types.index", __('admin/service_type.service_type_add.service_type_add_error'));
+        return $this->redirectError("service-types.index", __('admin/service_type.service_type_add.service_type_add_error'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,34 +80,50 @@ class ServiceTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        echo "edit".$id;
+        $serviceType = $this->serviceType->findServiceType($id);
+        return view('admin.service_types.edit_service_type', ['serviceType' => $serviceType]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param App\Http\Requests\Admins\ServiceTypeRequest $request request
+     * @param int                                         $id      id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceTypeRequest $request, $id)
     {
-        echo "update".$id;
+        // Get data from view
+        $data = $request->only(['name']);
+        $data['user_id'] = Auth::user()->id;
+        // Create User and show list users with meassage
+        $check = $this->serviceType->editServiceType($data, $id);
+        if (!empty($check)) {
+            return $this->redirectSuccess("service-types.index", __('admin/service_type.service_type_edit.service_type_edit_success'));
+        }
+        return $this->redirectError("service-types.index", __('admin/service_type.service_type_edit.service_type_edit_error'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        echo "delete".$id;
+        $check = $this->serviceType->deleteServiceType($id);
+        if ($check) {
+            return $this->redirectSuccess("service-types.index", __('admin/service_type.service_type_delete.service_type_delete_success'));
+        }
+        return $this->redirectError("service-types.index", __('admin/service_type.service_type_delete.service_type_delete_error'));
     }
 }

@@ -20,7 +20,7 @@ class ServiceType extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['name', 'user_id', 'hotel_id', 'service_id'];
+    protected $fillable = ['name', 'user_id'];
 
     /**
      * Relationship hasMany with service
@@ -33,13 +33,23 @@ class ServiceType extends Model
     }
 
     /**
+     * Relationship belongsTo with user
+     *
+     * @return array
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
      * Get List Service Types
      *
      * @return array
     */
     public function getServiceTypes()
     {
-        return $this->paginate(ServiceType::PAGINATION_VALUE_ON_PAGE);
+        return $this->with(['user'])->paginate(ServiceType::PAGINATION_VALUE_ON_PAGE);
     }
 
     /**
@@ -54,4 +64,40 @@ class ServiceType extends Model
         return $this->create($request);
     }
 
+    /**
+     * Find Service Type from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function findServiceType($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+    
+    /**
+     * Edit Service Type from id
+     *
+     * @param object $request request
+     * @param int    $id      id
+     *
+     * @return array
+    */
+    public function editServiceType($request, $id)
+    {
+        return $this->where('id', $id)->update($request);
+    }
+
+    /**
+     * Delete Service Type from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function deleteServiceType($id)
+    {
+        return $this->where('id', $id)->delete();
+    }
 }
