@@ -23,7 +23,6 @@ class BookedRoomRequest extends FormRequest
      */
     public function rules()
     {
-        return [
         switch ($this->method()) {
             case 'POST':
                 return [
@@ -36,7 +35,6 @@ class BookedRoomRequest extends FormRequest
                 ];
                 break;
         }
-        ];
     }
 
     /**
