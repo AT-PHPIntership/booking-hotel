@@ -41,13 +41,12 @@ class ListUserTest extends AdminDuskTestCase
         $lastUser = User::latest('id')->first();
         $this->browse(function (Browser $browser) use ($firstUser, $middUser, $lastUser) {
             // Login as admin for test Page elements
-            // Each page list 5 Users 
+            // Each page list 5 Users
             $browser->loginAs($this->admin)
                     ->visit(new ListUserPage)
                     ->assertQueryStringMissing('page')
                     ->assertSee($firstUser->username)
                     ->assertSee($firstUser->role);
-            $browser->press('Delete');
             $rows = $browser->elements('table tbody tr');
             $actualCount = count($rows);
             $expectedCount = ListUserPage::USERS_LIST_ON_EACH_PAGE;
@@ -70,11 +69,11 @@ class ListUserTest extends AdminDuskTestCase
             $actualCount = count($rows);
             $expectedCount = (self::NUMBER_USER_CREAT_BY_FACTORY + self::NUMBER_USER_CREAT_BY_SET_UP) % ListUserPage::USERS_LIST_ON_EACH_PAGE;
             $this->assertEquals($expectedCount, $actualCount);
-            // Test Delete User can see message
-            $browser->click('.table-bordered > tbody > tr > form > Delete')
-                    ->assertDialogOpened("Are you sure?");
-            // $browser->acceptDialog();
-                    // ->assertSee('Are you delete');
+            // Press Delete then ablert confirm display
+            $browser->clickLink('1')
+                    ->click("@delete-".$this->admin->id)
+                    ->assertDialogOpened(__('admin/user.user_list.user_confirm')." ".$this->admin->username)
+                    ->dismissDialog();
         });
     }
 }
