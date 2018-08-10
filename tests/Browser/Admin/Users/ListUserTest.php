@@ -70,6 +70,11 @@ class ListUserTest extends AdminDuskTestCase
             $actualCount = count($rows);
             $expectedCount = (self::NUMBER_USER_CREAT_BY_FACTORY + self::NUMBER_USER_CREAT_BY_SET_UP) % ListUserPage::USERS_LIST_ON_EACH_PAGE;
             $this->assertEquals($expectedCount, $actualCount);
+            // Test Delete User can see message
+            $browser->click('.table-bordered > tbody > tr > form > Delete')
+                    ->assertDialogOpened("Are you sure?");
+            // $browser->acceptDialog();
+                    // ->assertSee('Are you delete');
         });
     }
 }
