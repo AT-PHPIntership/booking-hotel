@@ -35,11 +35,7 @@
                         <td>{{ $item->date_in }}</td>
                         <td>{{ $item->date_out }}</td>
                         <td>
-                            @if($item->status == 1)
-                                {{ __('admin/booked_room.booked_room_list.booked_room_enable') }}
-                            @else
-                                {{ __('admin/booked_room.booked_room_list.booked_room_disable') }}
-                            @endif
+                            {{$item->status == config("define.status.enable") ?  __('admin/booked_room.booked_room_list.booked_room_enable') : __('admin/booked_room.booked_room_list.booked_room_disable') }}
                         </td>
                         <td>{{ $item->notes }}</td>
                         <td>
