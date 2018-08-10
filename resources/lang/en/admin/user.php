@@ -14,7 +14,7 @@
         'user_id' => '#',
         'user_name' => 'User Name',
         'user_role' => 'Role',
-        'user_confirm' => 'Are you sure?',
+        'user_confirm' => 'Are you delete',
         'user_delete' => 'Delete',
         'user_edit' => 'Edit',
         'user_show' => 'Detail',
@@ -94,5 +94,10 @@
         'user_password_min' => 'Password length more than 6 words',
         'user_password_confirmed' => 'Password is not incorrect',
         'user_role_check' => 'Role is admin or user',
+    ],
+    // Delete user
+    'user_delete' => [
+        'user_delete_success' => 'Delete Success!',
+        'user_delete_error' => 'Delete Fail!',
     ],
     ];

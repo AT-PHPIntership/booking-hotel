@@ -36,7 +36,7 @@
                             <form action="{{ route('users.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('{{ __('admin/user.user_list.user_confirm') }}')">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('{{ __('admin/user.user_list.user_confirm') }} {{$item->username}}')">
                                     <i class="fas fa-trash-alt">{{ __('admin/user.user_list.user_delete') }}</i>
                                 </button>
                             </form>
