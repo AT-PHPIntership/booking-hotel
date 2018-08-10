@@ -14,7 +14,7 @@
         'user_id' => '#',
         'user_name' => 'User Name',
         'user_role' => 'Role',
-        'user_confirm' => 'Are you delelte',
+        'user_confirm' => 'Are you delete',
         'user_delete' => 'Delete',
         'user_edit' => 'Edit',
         'user_show' => 'Detail',

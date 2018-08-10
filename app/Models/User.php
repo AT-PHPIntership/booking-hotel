@@ -109,6 +109,6 @@ class User extends Authenticatable
     */
     public function deleteUser($id)
     {
-        return $this->where('id', $id)->delete();
+        return $this->find($id)->delete();
     }
 }
