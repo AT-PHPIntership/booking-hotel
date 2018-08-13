@@ -5,11 +5,12 @@ namespace Tests\Browser\Admin\User;
 use Tests\Browser\Admin\AdminDuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Browser\Pages\Admin\Users\AddUserPage;
+use Tests\Browser\Pages\Admin\Users\EditUserPage;
 use App\Models\User;
 
-class AddUserTest extends AdminDuskTestCase
+class EditUserTest extends AdminDuskTestCase
 {
+
     // Define amount of users is created by set up function 
     public const NUMBER_USER_CREAT_BY_SET_UP = 2;
 
@@ -24,91 +25,49 @@ class AddUserTest extends AdminDuskTestCase
     }
 
     /**
-     * Admin can create admin user
+     * Edit normal user with success
      *
      * @return void
      */
-    public function test_admin_can_create_admin_user()
+    public function test_edit_user_with_success()
     {
         $this->browse(function (Browser $browser) {
-            // Create new admin user
             $browser->loginAs($this->admin)
-                    ->visit(new AddUserPage)
+                    ->visit(new EditUserPage)
                     ->type('username', 'admin1')
                     ->type('email', 'admin1@gamil.com')
-                    ->type('address', 'DaNang')
-                    ->type('phone', '0123466433')
+                    ->type('address', 'Ho Chi Minh')
+                    ->type('phone', '0123444433')
                     ->select('role', 'admin')
                     ->type('password', '123123')
                     ->type('password_confirmation', '123123')
-                    ->press('Create');
+                    ->press('Update');
             $browser->assertPathIs('/admin/users')
-                    ->assertSee(trans('admin/user.user_add.user_add_success'));
-            // Check last user into list is new user
+                    ->assertSee(trans('admin/user.user_edit.user_edit_success'));
+            // Check User is edited
             $lastUser = User::latest('id')->first();
-            $browser->assertSee($lastUser->username)
-                    ->assertSee($lastUser->role);
-            // Check new user is created into database
+            $this->assertEquals($lastUser->id, self::NUMBER_USER_CREAT_BY_SET_UP);
+            $this->assertEquals($lastUser->username, "admin1");
+            $this->assertEquals($lastUser->email, 'admin1@gamil.com');
+            $this->assertEquals($lastUser->address, 'Ho Chi Minh');
+            $this->assertEquals($lastUser->phone, '0123444433');
+            $this->assertEquals($lastUser->role, 'admin');
+            // Check user is edited into database
             $this->assertDatabaseHas('users', [
                 'username' => 'admin1',
                 'email' => 'admin1@gamil.com',
-                'address' => 'DaNang',
-                'phone' => '0123466433',
+                'address' => 'Ho Chi Minh',
+                'phone' => '0123444433',
                 'role' => 'admin',
             ]);
-            // Logout and login by new admin user
+            // Logout and login by edited user
             $browser->visit('/logout')->logout()
                     ->visit('/login')
                     ->type('email', 'admin1@gamil.com')
                     ->type('password','123123')
                     ->press('Login')
-                    ->visit(new AddUserPage);
-            // Log out Admin
-            $browser->visit('/logout')->logout();
-        });
-    }
-
-    /**
-     * Admin can create normal user
-     *
-     * @return void
-     */
-    public function test_admin_can_create_normal_user()
-    {
-        $this->browse(function (Browser $browser) {
-            // Create new admin user
-            $browser->loginAs($this->admin)
-                    ->visit(new AddUserPage)
-                    ->type('username', 'user1')
-                    ->type('email', 'user1@gamil.com')
-                    ->type('address', 'DaNang')
-                    ->type('phone', '0123466433')
-                    ->select('role', 'user')
-                    ->type('password', '123123')
-                    ->type('password_confirmation', '123123')
-                    ->press('Create');
-            $browser->assertPathIs('/admin/users')
-                    ->assertSee(trans('admin/user.user_add.user_add_success'));
-            // Check last user into list is new user
-            $lastUser = User::latest('id')->first();
-            $browser->assertSee($lastUser->username)
-                    ->assertSee($lastUser->role);
-            // Check new user is created into database
-            $this->assertDatabaseHas('users', [
-                'username' => 'user1',
-                'email' => 'user1@gamil.com',
-                'address' => 'DaNang',
-                'phone' => '0123466433',
-                'role' => 'user',
-            ]);
-            // Logout and login by new normal user
-            $browser->visit('/logout')->logout()
-                    ->visit('/login')
-                    ->type('email', 'user1@gamil.com')
-                    ->type('password','123123')
-                    ->press('Login')
                     ->clickLink('Admin');
-            $browser->assertPathIs('/home');
+            $browser->visit(new EditUserPage);
             // Log out Admin
             $browser->visit('/logout')->logout();
         });
@@ -138,13 +97,13 @@ class AddUserTest extends AdminDuskTestCase
             ['address', '', 'Address is not empty'],
             ['address', str_random(256), 'Address length less than 255 words'],
             // Validation for password
-            ['password', '', 'Password is empty'],
+            ['password', '', 'Password is a string'],
             ['password', '123', 'Password length more than 6 words'],
         ];
     }
 
     /**
-     * Fill to wrong validation value can't create new user
+     * Fill to wrong validation value can't edit user
      *
      * @param string $name name of field
      * @param string $content content
@@ -154,28 +113,30 @@ class AddUserTest extends AdminDuskTestCase
      *
      * @return void
      */
-    public function test_fill_to_wrong_validation_value_can_not_create_new_user($name, $content, $message)
+    public function test_fill_to_wrong_validation_value_can_not_edit_user($name, $content, $message)
     {
         $this->browse(function (Browser $browser) use ($name, $content, $message) {
+            // Before information user is edited
+            $beforeUpdateUser = User::find(self::NUMBER_USER_CREAT_BY_SET_UP);
             // Validation for create user
             // username ,email, phone, address, password
             $browser->loginAs($this->admin)
-                    ->visit(new AddUserPage)
+                    ->visit(new EditUserPage)
                     ->type($name, $content)
-                    ->press('Create');
-            $browser->assertPathIs('/admin/users/create')
+                    ->press('Update');
+            $browser->assertPathIs('/admin/users/2/edit')
                     ->assertSee($message);
             // Confimed Password is wrong
             $browser->loginAs($this->admin)
-                    ->visit(new AddUserPage)
+                    ->visit(new EditUserPage)
                     ->type('password', '123123')
                     ->type('password_confirmation', '123456')
-                    ->press('Create');
-            $browser->assertPathIs('/admin/users/create')
-                    ->assertSee(__('admin/user.user_add.user_password_confirmed'));
-            // Check new user can not create into database
-            $lastUser = User::latest('id')->first();
-            $this->assertEquals($lastUser->id, self::NUMBER_USER_CREAT_BY_SET_UP);
+                    ->press('Update');
+            $browser->assertPathIs('/admin/users/2/edit')
+                    ->assertSee(__('admin/user.user_edit.user_password_confirmed'));
+            // After information user is edited
+            $afterUpdateUser = User::find(self::NUMBER_USER_CREAT_BY_SET_UP);
+            $this->assertEquals($beforeUpdateUser, $afterUpdateUser);
             // Log out Admin
             $browser->visit('/logout')->logout();
         });
