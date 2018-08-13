@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admins\UserRequest;
 
 class UserController extends Controller
@@ -120,7 +121,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-        echo "delete".$id;
+        if (Auth::user()->id != $id) {
+            $check = $this->user->deleteUser($id);
+            if ($check) {
+                return $this->redirectSuccess("users.index", __('admin/user.user_delete.user_delete_success'));
+            }
+            return $this->redirectError("users.index", __('admin/user.user_delete.user_delete_error'));
+        }
+        return $this->redirectError("users.index", __('admin/user.user_delete.user_delete_error'));
     }
 }

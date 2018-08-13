@@ -99,4 +99,16 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    /**
+     * Delete User from id
+     *
+     * @param int $id id
+     *
+     * @return array
+    */
+    public function deleteUser($id)
+    {
+        return $this->find($id)->delete();
+    }
 }
