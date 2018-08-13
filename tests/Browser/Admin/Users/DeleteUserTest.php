@@ -6,7 +6,6 @@ use Tests\Browser\Admin\AdminDuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\Browser\Pages\Admin\Users\ListUserPage;
-use App\Models\User;
 
 class DeleteUserTest extends AdminDuskTestCase
 {
