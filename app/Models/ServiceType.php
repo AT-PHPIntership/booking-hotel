@@ -43,6 +43,16 @@ class ServiceType extends Model
     }
 
     /**
+     * Get List Service Type no using pagination
+     *
+     * @return array
+    */
+    public function getListServiceType()
+    {
+        return $this->select("id", "name")->get();
+    }
+
+    /**
      * Get List Service Types
      *
      * @return array
