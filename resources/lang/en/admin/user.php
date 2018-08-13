@@ -22,14 +22,14 @@
     // Add User
     'user_add' => [
         // Localization UI
-        'user_table' => 'Users List Table',
+        'user_table' => 'Users Add Table',
         'user_id' => '#',
         'user_name' => 'User Name',
         'user_email' => 'Email',
         'user_address' => 'Address',
         'user_phone' => 'Phone',
         'user_password' => 'Password',
-        'user_password_confirm' => 'Password confirn',
+        'user_password_confirm' => 'Password Confirm',
         'user_role' => 'Role',
         'user_role_user' => 'User',
         'user_role_admin' => 'Admin',
@@ -60,14 +60,14 @@
     // Edit User
     'user_edit' => [
         // Localization UI
-        'user_table' => 'Users List Table',
+        'user_table' => 'Users Edit Table',
         'user_id' => '#',
         'user_name' => 'User Name',
         'user_email' => 'Email',
         'user_address' => 'Address',
         'user_phone' => 'Phone',
         'user_password' => 'New Password',
-        'user_password_confirm' => 'New password confirm',
+        'user_password_confirm' => 'New Password Confirm',
         'user_role' => 'Role',
         'user_role_user' => 'User',
         'user_role_admin' => 'Admin',
