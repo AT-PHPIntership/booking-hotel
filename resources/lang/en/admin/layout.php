@@ -37,6 +37,8 @@
         'service_types' => 'Service Types',
         'list_service_type' => 'List Service Type',
         'add_service_type' => 'Add Service Type',
+        'booked_rooms' => 'Booked Rooms',
+        'list_booked_rooms' => 'List Booked Room',
     ],
     'title' => 'Admin',
     'app' => [

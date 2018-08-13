@@ -18,14 +18,14 @@ class Room extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['user_id', 'room_type_id', 'image', 'status', 'descipt', 'price', 'discount'];
+    protected $fillable = ['user_id', 'room_type_id', 'hotel_id','image', 'status', 'descipt', 'price', 'discount'];
 
     /**
      * Relationship hasMany with roomBooked
      *
      * @return array
     */
-    public function bookRooms()
+    public function bookedRooms()
     {
         return $this->hasMany('App\Models\Room');
     }
@@ -38,5 +38,16 @@ class Room extends Model
     public function roomTypes()
     {
         return $this->hasMany('App\Models\RoomType');
+    }
+
+
+    /**
+     * Relationship belongsTo with hotel
+     *
+     * @return array
+    */
+    public function hotel()
+    {
+        return $this->belongsTo('App\Models\Hotel', 'hotel_id');
     }
 }

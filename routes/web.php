@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function()
     Route::resource('cities', 'CityController');
 
     Route::resource('service-types', 'ServiceTypeController')->except(['show']);
+
+    Route::resource('booked-rooms', 'BookedRoomController')->only(['index', 'edit', 'update', 'destroy']);
 });
 
 Auth::routes();
