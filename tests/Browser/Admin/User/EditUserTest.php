@@ -13,6 +13,13 @@ class EditUserTest extends AdminDuskTestCase
 
     // Define amount of users is created by set up function 
     public const NUMBER_USER_CREAT_BY_SET_UP = 2;
+    // Define information for edited admin user
+    public const EDITED_ADMIN_USER_USER_NAME = 'admin2';
+    public const EDITED_ADMIN_USER_EMAIl = 'admin2@gamil.com';
+    public const EDITED_ADMIN_USER_ADDRESS = 'HO CHI MINH';
+    public const EDITED_ADMIN_USER_PHONE = '0123444433';
+    public const EDITED_ADMIN_USER_ROLE = 'admin';
+    public const EDITED_ADMIN_USER_PASSWORD = '123123';
 
     /**
      * Function setUp() to make user login.
@@ -34,37 +41,40 @@ class EditUserTest extends AdminDuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->admin)
                     ->visit(new EditUserPage)
-                    ->type('username', 'admin1')
-                    ->type('email', 'admin1@gamil.com')
-                    ->type('address', 'Ho Chi Minh')
-                    ->type('phone', '0123444433')
-                    ->select('role', 'admin')
-                    ->type('password', '123123')
-                    ->type('password_confirmation', '123123')
+                    ->type('username', self::EDITED_ADMIN_USER_USER_NAME)
+                    ->type('email', self::EDITED_ADMIN_USER_EMAIl)
+                    ->type('address', self::EDITED_ADMIN_USER_ADDRESS)
+                    ->type('phone', self::EDITED_ADMIN_USER_PHONE)
+                    ->select('role', self::EDITED_ADMIN_USER_ROLE)
+                    ->type('password', self::EDITED_ADMIN_USER_PASSWORD)
+                    ->type('password_confirmation', self::EDITED_ADMIN_USER_PASSWORD)
                     ->press('Update');
             $browser->assertPathIs('/admin/users')
                     ->assertSee(trans('admin/user.user_edit.user_edit_success'));
             // Check User is edited
             $lastUser = User::latest('id')->first();
             $this->assertEquals($lastUser->id, self::NUMBER_USER_CREAT_BY_SET_UP);
-            $this->assertEquals($lastUser->username, "admin1");
-            $this->assertEquals($lastUser->email, 'admin1@gamil.com');
-            $this->assertEquals($lastUser->address, 'Ho Chi Minh');
-            $this->assertEquals($lastUser->phone, '0123444433');
-            $this->assertEquals($lastUser->role, 'admin');
+            $this->assertEquals($lastUser->username, self::EDITED_ADMIN_USER_USER_NAME);
+            $this->assertEquals($lastUser->email, self::EDITED_ADMIN_USER_EMAIl);
+            $this->assertEquals($lastUser->address, self::EDITED_ADMIN_USER_ADDRESS);
+            $this->assertEquals($lastUser->phone, self::EDITED_ADMIN_USER_PHONE);
+            $this->assertEquals($lastUser->role, self::EDITED_ADMIN_USER_ROLE);
             // Check user is edited into database
             $this->assertDatabaseHas('users', [
-                'username' => 'admin1',
-                'email' => 'admin1@gamil.com',
-                'address' => 'Ho Chi Minh',
-                'phone' => '0123444433',
-                'role' => 'admin',
+                'username' => self::EDITED_ADMIN_USER_USER_NAME,
+                'email' => self::EDITED_ADMIN_USER_EMAIl,
+                'address' => self::EDITED_ADMIN_USER_ADDRESS,
+                'phone' => self::EDITED_ADMIN_USER_PHONE,
+                'role' => self::EDITED_ADMIN_USER_ROLE,
+            ]);
+            $this->assertDatabaseMissing('users', [
+                'remember_token' => null,
             ]);
             // Logout and login by edited user
             $browser->visit('/logout')->logout()
                     ->visit('/login')
-                    ->type('email', 'admin1@gamil.com')
-                    ->type('password','123123')
+                    ->type('email', self::EDITED_ADMIN_USER_EMAIl)
+                    ->type('password',self::EDITED_ADMIN_USER_PASSWORD)
                     ->press('Login')
                     ->clickLink('Admin');
             $browser->visit(new EditUserPage);
