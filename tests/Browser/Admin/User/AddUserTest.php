@@ -12,6 +12,20 @@ class AddUserTest extends AdminDuskTestCase
 {
     // Define amount of users is created by set up function 
     public const NUMBER_USER_CREAT_BY_SET_UP = 2;
+    // Define information for new admin user
+    public const NEW_ADMIN_USER_USER_NAME = 'admin1';
+    public const NEW_ADMIN_USER_EMAIl = 'admin1@gamil.com';
+    public const NEW_ADMIN_USER_ADDRESS = 'DaNang';
+    public const NEW_ADMIN_USER_PHONE = '0123466433';
+    public const NEW_ADMIN_USER_ROLE = 'admin';
+    public const NEW_ADMIN_USER_PASSWORD = '123123';
+    // Define information for new normal user
+    public const NEW_NORMAL_USER_USER_NAME = 'user1';
+    public const NEW_NORMAL_USER_EMAIl = 'user1@gamil.com';
+    public const NEW_NORMAL_USER_ADDRESS = 'DaNang';
+    public const NEW_NORMAL_USER_PHONE = '0123466433';
+    public const NEW_NORMAL_USER_ROLE = 'user';
+    public const NEW_NORMAL_USER_PASSWORD = '123123';
 
     /**
      * Function setUp() to make user login.
@@ -34,13 +48,13 @@ class AddUserTest extends AdminDuskTestCase
             // Create new admin user
             $browser->loginAs($this->admin)
                     ->visit(new AddUserPage)
-                    ->type('username', 'admin1')
-                    ->type('email', 'admin1@gamil.com')
-                    ->type('address', 'DaNang')
-                    ->type('phone', '0123466433')
-                    ->select('role', 'admin')
-                    ->type('password', '123123')
-                    ->type('password_confirmation', '123123')
+                    ->type('username', self::NEW_ADMIN_USER_USER_NAME)
+                    ->type('email', self::NEW_ADMIN_USER_EMAIl)
+                    ->type('address', self::NEW_ADMIN_USER_ADDRESS)
+                    ->type('phone', self::NEW_ADMIN_USER_PHONE)
+                    ->select('role', self::NEW_ADMIN_USER_ROLE)
+                    ->type('password', self::NEW_ADMIN_USER_PASSWORD)
+                    ->type('password_confirmation', self::NEW_ADMIN_USER_PASSWORD)
                     ->press('Create');
             $browser->assertPathIs('/admin/users')
                     ->assertSee(trans('admin/user.user_add.user_add_success'));
@@ -50,17 +64,20 @@ class AddUserTest extends AdminDuskTestCase
                     ->assertSee($lastUser->role);
             // Check new user is created into database
             $this->assertDatabaseHas('users', [
-                'username' => 'admin1',
-                'email' => 'admin1@gamil.com',
-                'address' => 'DaNang',
-                'phone' => '0123466433',
-                'role' => 'admin',
+                'username' => self::NEW_ADMIN_USER_USER_NAME,
+                'email' => self::NEW_ADMIN_USER_EMAIl,
+                'address' => self::NEW_ADMIN_USER_ADDRESS,
+                'phone' => self::NEW_ADMIN_USER_PHONE,
+                'role' => self::NEW_ADMIN_USER_ROLE,
+            ]);
+            $this->assertDatabaseMissing('users', [
+                'remember_token' => null,
             ]);
             // Logout and login by new admin user
             $browser->visit('/logout')->logout()
                     ->visit('/login')
-                    ->type('email', 'admin1@gamil.com')
-                    ->type('password','123123')
+                    ->type('email', self::NEW_ADMIN_USER_EMAIl)
+                    ->type('password',self::NEW_ADMIN_USER_PASSWORD)
                     ->press('Login')
                     ->visit(new AddUserPage);
             // Log out Admin
@@ -79,13 +96,13 @@ class AddUserTest extends AdminDuskTestCase
             // Create new admin user
             $browser->loginAs($this->admin)
                     ->visit(new AddUserPage)
-                    ->type('username', 'user1')
-                    ->type('email', 'user1@gamil.com')
-                    ->type('address', 'DaNang')
-                    ->type('phone', '0123466433')
-                    ->select('role', 'user')
-                    ->type('password', '123123')
-                    ->type('password_confirmation', '123123')
+                    ->type('username', self::NEW_NORMAL_USER_USER_NAME)
+                    ->type('email', self::NEW_NORMAL_USER_EMAIl)
+                    ->type('address', self::NEW_NORMAL_USER_ADDRESS)
+                    ->type('phone', self::NEW_NORMAL_USER_PHONE)
+                    ->select('role', self::NEW_NORMAL_USER_ROLE)
+                    ->type('password', self::NEW_NORMAL_USER_PASSWORD)
+                    ->type('password_confirmation', self::NEW_NORMAL_USER_PASSWORD)
                     ->press('Create');
             $browser->assertPathIs('/admin/users')
                     ->assertSee(trans('admin/user.user_add.user_add_success'));
@@ -95,20 +112,23 @@ class AddUserTest extends AdminDuskTestCase
                     ->assertSee($lastUser->role);
             // Check new user is created into database
             $this->assertDatabaseHas('users', [
-                'username' => 'user1',
-                'email' => 'user1@gamil.com',
-                'address' => 'DaNang',
-                'phone' => '0123466433',
-                'role' => 'user',
+                'username' => self::NEW_NORMAL_USER_USER_NAME,
+                'email' => self::NEW_NORMAL_USER_EMAIl,
+                'address' => self::NEW_NORMAL_USER_ADDRESS,
+                'phone' => self::NEW_NORMAL_USER_PHONE,
+                'role' => self::NEW_NORMAL_USER_ROLE,
+            ]);
+            $this->assertDatabaseMissing('users', [
+                'remember_token' => null,
             ]);
             // Logout and login by new normal user
             $browser->visit('/logout')->logout()
                     ->visit('/login')
-                    ->type('email', 'user1@gamil.com')
-                    ->type('password','123123')
+                    ->type('email', self::NEW_NORMAL_USER_EMAIl)
+                    ->type('password', self::NEW_NORMAL_USER_PASSWORD)
                     ->press('Login')
                     ->clickLink('Admin');
-            $browser->assertPathIs('/home');
+            $browser->assertPathIsNot('/admin/users/create');
             // Log out Admin
             $browser->visit('/logout')->logout();
         });
