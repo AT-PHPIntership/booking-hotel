@@ -45,13 +45,24 @@ class City extends Model
     }
 
     /**
+     * Get List city with paginate
+     *
+     * @return array
+    */
+    public function getCitiesPaginate()
+    {
+        $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
+        return $cities;
+    }
+
+    /**
      * Get List city
      *
      * @return array
     */
     public function getCities()
     {
-        $cities = $this->paginate(City::PAGINATION_VALUE_ON_PAGE);
+        $cities = $this->all();
         return $cities;
     }
 
