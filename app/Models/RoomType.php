@@ -25,13 +25,13 @@ class RoomType extends Model
     protected $fillable = ['user_id', 'name'];
     
     /**
-     * Relationship belongsTo with room
+     * Relationship hasMany with room
      *
      * @return array
     */
     public function room()
     {
-        return $this->belongsTo('App\Models\Room');
+        return $this->HasMany('App\Models\Room');
     }
 
     /**
@@ -49,9 +49,20 @@ class RoomType extends Model
      *
      * @return array
     */
-    public function getRoomTypes()
+    public function getRoomTypesPaginate()
     {
         $list = $this->with('user')->paginate(RoomType::PAGINATION_VALUE_ON_PAGE);
+        return $list;
+    }
+
+    /**
+     * Get List Room Types
+     *
+     * @return array
+    */
+    public function getRoomTypes()
+    {
+        $list = $this->all();
         return $list;
     }
 

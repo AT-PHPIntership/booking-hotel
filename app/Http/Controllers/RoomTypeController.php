@@ -32,7 +32,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomTypes = $this->roomType->getRoomTypes();
+        $roomTypes = $this->roomType->getRoomTypesPaginate();
         return view('admin.room_types.list_room_type', ['roomTypes'=>$roomTypes]);
     }
 

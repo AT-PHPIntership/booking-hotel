@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 <ul class="nav">
     <li class="nav-item">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{route("admin")}}">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.dashboard') }}</span>
     </a>
@@ -53,6 +53,23 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route("room-types.create")}}">{{ __('admin/layout.sidebar.add_room_type') }}</a>
+        </li>
+        </ul>
+    </div>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-room" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.rooms') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-room">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("rooms.index")}}">{{ __('admin/layout.sidebar.list_room') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("rooms.create")}}">{{ __('admin/layout.sidebar.add_room') }}</a>
         </li>
         </ul>
     </div>
