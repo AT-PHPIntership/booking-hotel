@@ -10,6 +10,7 @@ class Room extends Model
     const PAGINATION_VALUE_ON_PAGE = 5;
     const FOLDER_UPLOAD_ROOM = "upload/room/";
     const CREATED_ROOM_ID_INCREASE = 1;
+    const RADIO_STATUS_VALUE_FROM_VIEW = "on";
 
     /**
      * Declare table

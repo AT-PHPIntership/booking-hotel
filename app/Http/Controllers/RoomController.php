@@ -20,10 +20,10 @@ class RoomController extends Controller
     /**
      ** Create contructor.
      *
-     * @param App\Models\Hotel     $hotel     hotel
-     * @param App\Models\Room      $room      room
-     * @param App\Models\RoomType  $roomType  room type
-     * @param App\Models\RoomImage $roomImage Images of room
+     * @param Hotel     $hotel     hotel
+     * @param Room      $room      room
+     * @param RoomType  $roomType  room type
+     * @param RoomImage $roomImage Images of room
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class RoomController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param App\Http\Requests\Admins\RoomRequest $request request
+     * @param RoomRequest $request request
      *
      * @return \Illuminate\Http\Response
      */
@@ -69,11 +69,7 @@ class RoomController extends Controller
     {
         $data = $request->only(['name', 'price', 'discount', 'descript', 'hotel_id', 'room_type_id']);
         $data['user_id'] = Auth::user()->id;
-        if ($request->status == "on") {
-            $data['status'] = true;
-        } else {
-            $data['status'] = false;
-        }
+        $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
         $checkRoom = $this->room->addRoom($data);
         // Store image into ImageRoom
         $imagesData['room_id'] = $this->room->findLastIdRoom();
@@ -127,8 +123,8 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param App\Http\Requests\Admins\RoomRequest $request request
-     * @param int                                  $id      id
+     * @param RoomRequest $request request
+     * @param int         $id      id
      *
      * @return \Illuminate\Http\Response
      */
@@ -136,13 +132,9 @@ class RoomController extends Controller
     {
         $data = $request->only(['name', 'price', 'discount', 'descript', 'hotel_id', 'room_type_id']);
         $data['user_id'] = Auth::user()->id;
-        if ($request->status == "on") {
-            $data['status'] = true;
-        } else {
-            $data['status'] = false;
-        }
+        $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
         $checkRoom = $this->room->editRoom($data, $id);
-        // Add Image
+        // Add Image for room
         if ($request->hasFile('image')) {
             $imagesData['room_id'] = $id;
             $file = $request->file('image');
@@ -175,9 +167,9 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        $check = $this->roomImage->deleteRoomImages($id);
-        $check = $this->room->deleteRoom($id);
-        if ($check) {
+        $checkImageRoom = $this->roomImage->deleteRoomImages($id);
+        $checkRoom = $this->room->deleteRoom($id);
+        if (!empty($checkRoom) && !empty($checkImageRoom)) {
             return $this->redirectSuccess("rooms.index", __('admin/room.room_delete.room_delete_success'));
         }
         return $this->redirectError("rooms.index", __('admin/room.room_delete.room_delete_error'));

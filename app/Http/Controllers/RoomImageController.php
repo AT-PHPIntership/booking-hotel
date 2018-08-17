@@ -12,7 +12,7 @@ class RoomImageController extends Controller
     /**
      ** Create contructor.
      *
-     * @param App\Models\RoomType $roomImage roomImage
+     * @param RoomType $roomImage roomImage
      *
      * @return void
      */
