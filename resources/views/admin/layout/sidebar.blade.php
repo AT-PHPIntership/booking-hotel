@@ -92,6 +92,36 @@
     </div>
     </li>
     <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-service" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.services') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-service">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("services.index")}}">{{ __('admin/layout.sidebar.list_services') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("services.create")}}">{{ __('admin/layout.sidebar.add_service') }}</a>
+        </li>
+        </ul>
+    </div>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#ui-booked-room" aria-expanded="false" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">{{ __('admin/layout.sidebar.booked_rooms') }}</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="ui-booked-room">
+        <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("booked-rooms.index")}}">{{ __('admin/layout.sidebar.list_booked_rooms') }}</a>
+        </li>
+        </ul>
+    </div>
+    </li>
+    <li class="nav-item">
     <a class="nav-link" href="#">
         <i class="menu-icon mdi mdi-sticker"></i>
         <span class="menu-title">{{ __('admin/layout.sidebar.print_invoice') }}</span>
