@@ -5,7 +5,7 @@ namespace Tests\Browser\Pages\Admin\Auth;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Models\User;
-use Tests\Browser\Pages\Admin\AdminDuskTestCase;
+use Tests\Browser\Admin\AdminDuskTestCase;
 
 class LoginTest extends AdminDuskTestCase
 {
