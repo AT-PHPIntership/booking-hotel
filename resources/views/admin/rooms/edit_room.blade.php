@@ -62,7 +62,7 @@
                     <label>{{ __('admin/room.room_edit.image_upload') }}</label>
                     <input type="file" name="image[]" class="form-control" multiple>
                     @foreach ($roomImages as $item)
-                        <div class="card-body" style="width: 50%; display: inline;">
+                        <div class="card" style="width: 50%; display: inline;">
                         	<img src="upload/room/{{$item->image}}" alt="no image" alt="Cinque Terre" style="width: 10%;" id="room-image-{{$item->id}}">
                         </div>
                     @endforeach

@@ -32,7 +32,8 @@ class RoomRequest extends FormRequest
                     'descript' => 'required|max:1000',
                     'price' => 'required|numeric|min:5|max:99999999',
                     'discount' => 'numeric|max:100',
-                    'image.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+                    'image.*' => 'image|mimes:jpg,png,jpeg,gif,svg',
+                    'image' => 'required',
                 ];
             break;
             case 'PUT':

@@ -72,7 +72,7 @@ class RoomController extends Controller
         $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
         $checkRoom = $this->room->addRoom($data);
         // Store image into ImageRoom
-        $imagesData['room_id'] = $this->room->findLastIdRoom();
+        $id = $this->room->findLastIdRoom();
         $file = $request->file('image');
         foreach ($file as $item) {
             $name = $item->getClientOriginalName();
@@ -81,9 +81,12 @@ class RoomController extends Controller
                 $image = str_random(4)."_".$name;
             }
             $item->move(Room::FOLDER_UPLOAD_ROOM, $image);
-            $imagesData['image'] = $image;
-            $checkImageRoom = $this->roomImage->addRoomImage($imagesData);
+            $imagesData[] = [
+                'room_id' => $id,
+                'image' => $image,
+            ];
         }
+        $checkImageRoom = $this->room->addRoomImage($imagesData, $id);
         // Check create room
         $check = $checkRoom && $checkImageRoom;
         if (!empty($check)) {
@@ -136,7 +139,6 @@ class RoomController extends Controller
         $checkRoom = $this->room->editRoom($data, $id);
         // Add Image for room
         if ($request->hasFile('image')) {
-            $imagesData['room_id'] = $id;
             $file = $request->file('image');
             foreach ($file as $item) {
                 $name = $item->getClientOriginalName();
@@ -145,12 +147,13 @@ class RoomController extends Controller
                     $image = str_random(4)."_".$name;
                 }
                 $item->move(Room::FOLDER_UPLOAD_ROOM, $image);
-                $imagesData['image'] = $image;
-                $checkImageRoom = $this->roomImage->addRoomImage($imagesData);
+                $imagesData[] = [
+                    'room_id' => $id,
+                    'image' => $image,
+                ];
             }
-        } else {
-            $checkImageRoom = "";
         }
+        $checkImageRoom = $this->room->addRoomImage($imagesData, $id);
         // Check edit room
         if (!empty($checkRoom) || !empty($checkImageRoom)) {
             return $this->redirectSuccess("rooms.index", __('admin/room.room_edit.room_edit_success'));

@@ -74,7 +74,7 @@ class Room extends Model
     */
     public function roomImage()
     {
-        return $this->hasMany('App\Models\RoomImage');
+        return $this->hasMany('App\Models\RoomImage', 'room_id', 'id');
     }
 
     /**
@@ -118,6 +118,20 @@ class Room extends Model
     public function addRoom($request)
     {
         return $this->create($request);
+    }
+
+    /**
+     * Add Room into database
+     *
+     * @param array $request request
+     * @param int   $id      Room id is created
+     *
+     * @return array
+    */
+    public function addRoomImage($request, $id)
+    {
+        $room = $this->find($id);
+        return $room->roomImage()->createMany($request);
     }
 
     /**

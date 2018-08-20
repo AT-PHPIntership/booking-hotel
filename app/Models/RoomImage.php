@@ -30,7 +30,7 @@ class RoomImage extends Model
     */
     public function room()
     {
-        return $this->belongsTo('App\Models\Room', 'room_id');
+        return $this->belongsTo('App\Models\Room', 'room_id', 'id');
     }
 
     /**
@@ -43,18 +43,6 @@ class RoomImage extends Model
     public function getRoomImagesPaginate($id)
     {
         return $this->where('room_id', $id)->paginate(RoomImage::PAGINATION_VALUE_ON_PAGE);
-    }
-
-    /**
-     * Add Room Image into database
-     *
-     * @param object $request request
-     *
-     * @return array
-    */
-    public function addRoomImage($request)
-    {
-        return $this->create($request);
     }
 
     /**
