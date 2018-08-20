@@ -56,7 +56,7 @@ class City extends Model
     }
 
     /**
-     * Get List city
+     * Get List city with out paginate
      *
      * @return array
     */
