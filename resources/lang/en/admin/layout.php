@@ -48,6 +48,7 @@
         'title' => 'Login Page',
         'logo' => 'Home',
         'admin' => 'Admin',
+        'home' => 'Home',
         'login' => 'Login',
         'register' => 'Register',
         'email_address' => 'E-Mail Address',

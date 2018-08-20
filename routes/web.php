@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.hotels.show_hotels');
+});
+
+Route::get('/user/hotels', function () {
+    return view('user.hotels.show_hotels');
+});
+
+Route::get('/user/rooms', function () {
+    return view('user.rooms.show_rooms');
 });
 
 Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
