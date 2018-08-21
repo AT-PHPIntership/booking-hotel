@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Pages\Admin;
+namespace Tests\Browser\Admin;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
@@ -10,8 +10,7 @@ use App\Models\User;
 abstract class AdminDuskTestCase extends DuskTestCase
 {
     use DatabaseMigrations;
-
-    protected $admin, $admin_wrong, $user;
+    protected $admin, $user;
 
     /**
      * Set up admin and user to test admin page.
