@@ -14,12 +14,10 @@
 	<meta property="og:url" content=""/>
 	<meta property="og:site_name" content=""/>
 	<meta property="og:description" content=""/>
-
 	<meta name="twitter:title" content="" />
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="user/css/animate.css">
 	<link rel="stylesheet" href="user/css/icomoon.css">
@@ -52,7 +50,7 @@
 									@if (Route::has('login'))
                     @auth
                     <li>
-                        <a href="{{ url('/home') }}">{{ __('user/layout.header.home') }}</a>
+                        <a href="{{ route('home') }}">{{ __('user/layout.header.home') }}</a>
                     </li>
                     <li>
                     	<strong>{{ Auth::user()->username }}</strong>
@@ -65,8 +63,8 @@
                     </li>
                     @else
                     <li>
-                        <a href="{{ route('login') }}">{{ __('user/layout.header.login') }}</a>
-                        <a href="{{ route('register') }}">{{ __('user/layout.header.register') }}</a>
+                        <a href="{{ route('user.login') }}">{{ __('user/layout.header.login') }}</a>
+                        <a href="{{ route('user.register') }}">{{ __('user/layout.header.register') }}</a>
                     </li>
                     @endauth
 	            @endif
