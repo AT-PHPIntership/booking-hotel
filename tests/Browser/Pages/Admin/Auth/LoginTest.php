@@ -78,8 +78,8 @@ class LoginTest extends AdminDuskTestCase
                     ->type('email', $this->user->email)
                     ->type('password','123123')
                     ->press('Login')
-                    ->clickLink('Admin');
-            $browser->assertPathIs('/home');
+                    ->clickLink('Home');
+            $browser->assertPathIs('/');
         });
     }
 
