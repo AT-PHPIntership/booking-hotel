@@ -46,7 +46,7 @@ class SlideController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param SlideRequest $request
+     * @param SlideRequest $request Slide Request
      *
      * @return \Illuminate\Http\Response
      */
