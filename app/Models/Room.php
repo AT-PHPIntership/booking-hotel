@@ -111,27 +111,15 @@ class Room extends Model
     /**
      * Add Room into database
      *
-     * @param object $request request
+     * @param object $data  data of room
+     * @param object $image image of room
      *
      * @return array
     */
-    public function addRoom($request)
+    public function addRoom($data, $image)
     {
-        return $this->create($request);
-    }
-
-    /**
-     * Add Room into database
-     *
-     * @param array $request request
-     * @param int   $id      Room id is created
-     *
-     * @return array
-    */
-    public function addRoomImage($request, $id)
-    {
-        $room = $this->find($id);
-        return $room->roomImage()->createMany($request);
+        $room = $this->create($data);
+        return $room->roomImage()->createMany($image);
     }
 
     /**
@@ -149,14 +137,18 @@ class Room extends Model
     /**
      * Edit room from id
      *
-     * @param object $request request
-     * @param int    $id      id
+     * @param object $data  data
+     * @param int    $id    id
+     * @param object $image image
      *
      * @return array
     */
-    public function editRoom($request, $id)
+    public function editRoom($data, $id, $image)
     {
-        return $this->find($id)->update($request);
+        if ($image != null) {
+            $this->find($id)->roomImage()->createMany($image);
+        }
+        return $this->find($id)->update($data);
     }
 
     /**

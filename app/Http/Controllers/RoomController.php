@@ -70,9 +70,7 @@ class RoomController extends Controller
         $data = $request->only(['name', 'price', 'discount', 'descript', 'hotel_id', 'room_type_id']);
         $data['user_id'] = Auth::user()->id;
         $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
-        $checkRoom = $this->room->addRoom($data);
         // Store image into ImageRoom
-        $id = $this->room->findLastIdRoom();
         $file = $request->file('image');
         foreach ($file as $item) {
             $name = $item->getClientOriginalName();
@@ -82,17 +80,15 @@ class RoomController extends Controller
             }
             $item->move(Room::FOLDER_UPLOAD_ROOM, $image);
             $imagesData[] = [
-                'room_id' => $id,
                 'image' => $image,
             ];
         }
-        $checkImageRoom = $this->room->addRoomImage($imagesData, $id);
+        $check = $this->room->addRoom($data, $imagesData);
         // Check create room
-        $check = $checkRoom && $checkImageRoom;
         if (!empty($check)) {
             return $this->redirectSuccess("rooms.index", __('admin/room.room_add.room_add_success'));
         }
-            return $this->redirectError("rooms.index", __('admin/room.room_add.room_add_error'));
+        return $this->redirectError("rooms.index", __('admin/room.room_add.room_add_error'));
     }
 
     /**
@@ -136,7 +132,6 @@ class RoomController extends Controller
         $data = $request->only(['name', 'price', 'discount', 'descript', 'hotel_id', 'room_type_id']);
         $data['user_id'] = Auth::user()->id;
         $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
-        $checkRoom = $this->room->editRoom($data, $id);
         // Add Image for room
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -148,17 +143,18 @@ class RoomController extends Controller
                 }
                 $item->move(Room::FOLDER_UPLOAD_ROOM, $image);
                 $imagesData[] = [
-                    'room_id' => $id,
                     'image' => $image,
                 ];
             }
+        } else {
+            $imagesData = null;
         }
-        $checkImageRoom = $this->room->addRoomImage($imagesData, $id);
+        $check = $this->room->editRoom($data, $id, $imagesData);
         // Check edit room
-        if (!empty($checkRoom) || !empty($checkImageRoom)) {
+        if (!empty($check)) {
             return $this->redirectSuccess("rooms.index", __('admin/room.room_edit.room_edit_success'));
         }
-            return $this->redirectError("rooms.index", __('admin/room.room_edit.room_edit_error'));
+        return $this->redirectError("rooms.index", __('admin/room.room_edit.room_edit_error'));
     }
 
     /**
