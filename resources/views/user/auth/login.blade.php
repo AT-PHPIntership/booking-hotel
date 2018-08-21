@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('user/layout.app.login') }}</div>
 
                 <div class="card-body">
-                    <form novalidate>
+                    <form>
+
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
 
@@ -45,9 +46,9 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="btn-submit">
+                                <a type="button" class="btn btn-primary" id="btn-submit">
                                     {{ __('user/layout.app.login') }}
-                                </button>
+                                </a>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('user/layout.app.forgot_your_password') }}

@@ -1,33 +1,34 @@
 $(document).ready(function () {
-    if (localStorage.getItem('login-token')) {
-        window.location.href = 'http://' + window.location.hostname;
-    }
+    // if (localStorage.getItem('login-token')) {
+    //     window.location.href = 'http://' + window.location.hostname;
+    // }
 
     $(document).on('click', '#btn-submit', function (event) {
         event.preventDefault();
         $.ajax({
-            url: "/api/login",
-            type: "post",
+        
             headers: {
                 'Accept': 'application/json',
             },
 
+            url: route('api.login'),
+            type: "post",
+
             data: {
-                email: $('input[id="email"]').val(),
-                password: $('input[id="password"]').val()
+                email: $('.login-form input[name="email"]').val(),
+                password: $('.login-form input[type="password"]').val(),
             },
 
-            success: function (response) {
-                console.log(response.result.remenber_token);
-                localStorage.setItem('login-token', response.result.remenber_token);
-                window.location.href = 'http://' + window.location.hostname;
-            },
+            // success: function (response) {
+            //     localStorage.setItem('token-login', response.result.remenber_token);
+            //     localStorage.setItem('username', response.result.user.username);
 
-            statusCode: {
-                401: function (response) {
-                    alert(response.responseJSON.error);
-                    $('input[id="password"]').val('');
-                }
+            //     window.location.href = 'http://' + window.location.hostname;
+            // },
+
+            error: function (response) {
+                alert(response.responseJSON.error + $('input[name="email"]').val());
+                $('input[name="email"]').val();
             }
         });
     });

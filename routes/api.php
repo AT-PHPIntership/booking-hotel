@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -10,16 +12,19 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(['as' => 'api.'], function() {
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return response()->json($request->user());
+    })->name('user');
 
-Route::group(['as' => 'api.','namespace' => 'User\Auth'], function () {
-    Route::post('/login', 'LoginController@login');
+    Route::group(['namespace' => 'User\Auth'], function() {
 
-    Route::post('/register', 'RegisterController@register');
+        Route::post('login', 'LoginController@login')->name('login');
+        // Route::post('register', 'AuthController@register')->name('register');
 
-    Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('logout', 'LoginController@logout');
+        // Route::group(['middleware' => 'auth:api'], function() {
+        //     Route::post('logout', 'AuthController@logout')->name('logout');
+        //     Route::put('password', 'AuthController@changePassword');
+        // });
     });
 });
