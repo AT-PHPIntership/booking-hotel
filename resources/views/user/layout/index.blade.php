@@ -47,27 +47,18 @@
 								<li><a href="#">{{ __('user/layout.header.about') }}</a></li>
 								<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
 								
-									@if (Route::has('login'))
-                    @auth
-                    <li>
-                        <a href="{{ route('home') }}">{{ __('user/layout.header.home') }}</a>
-                    </li>
-                    <li>
-                    	<strong>{{ Auth::user()->username }}</strong>
-                  	</li>
-                  	<li>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('user/layout.header.logout') }}</a>
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                              @csrf
-                          </form>
-                    </li>
-                    @else
-                    <li>
-                        <a href="{{ route('user.login') }}">{{ __('user/layout.header.login') }}</a>
-                        <a href="{{ route('user.register') }}">{{ __('user/layout.header.register') }}</a>
-                    </li>
-                    @endauth
-	            @endif
+                <li class="js-user-login">
+                    <a href="{{ route('home') }}">{{ __('user/layout.header.home') }}</a>
+                </li>
+                <li class="js-user-logined"></li>
+              	<li class="js-user-login">
+                		<button id="js-logout">{{ __('user/layout.header.logout') }}</button>
+                </li>
+
+                <li class="js-user-not-login">
+                    <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
+                    <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
+                </li>
 					      		
 							</ul>
 						</div>
@@ -162,7 +153,6 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-	@yield('java_script')
 	<script src="user/js/jquery.min.js"></script>
 	<script src="user/js/jquery.easing.1.3.js"></script>
 	<script src="user/js/bootstrap.min.js"></script>
@@ -174,5 +164,6 @@
 	<script src="user/js/bootstrap-datepicker.js"></script>
 	<script src="user/js/jquery.stellar.min.js"></script>
 	<script src="user/js/main.js"></script>
+	@yield('java-script')
 </body>
 </html>
