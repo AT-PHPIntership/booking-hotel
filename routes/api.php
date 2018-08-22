@@ -19,12 +19,11 @@ Route::group(['as' => 'api.'], function() {
 
     Route::group(['namespace' => 'User\Auth'], function() {
 
-        Route::post('login', 'LoginController@login')->name('login');
-        // Route::post('register', 'AuthController@register')->name('register');
+        Route::post('login', 'LoginController@login');
 
-        // Route::group(['middleware' => 'auth:api'], function() {
-        //     Route::post('logout', 'AuthController@logout')->name('logout');
-        //     Route::put('password', 'AuthController@changePassword');
-        // });
+        Route::group(['middleware' => 'auth:api'], function() {
+        	Route::post('logout', 'LoginController@logout');
+        });
+
     });
 });

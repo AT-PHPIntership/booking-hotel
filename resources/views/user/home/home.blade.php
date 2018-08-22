@@ -131,3 +131,7 @@
     </div>
 </div>
 @endsection
+
+@section('java-script')
+    <script src="{{ asset('js/user/auth/home.js') }}"></script>
+@endsection
