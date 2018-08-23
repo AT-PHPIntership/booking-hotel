@@ -14,10 +14,7 @@
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
-
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong></strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert"></span>
                             </div>
                         </div>
 
