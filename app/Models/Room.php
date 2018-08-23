@@ -94,8 +94,7 @@ class Room extends Model
     */
     public function getRoomsPaginate()
     {
-        $list = $this->with(['roomTypes','hotel'])->paginate(Room::PAGINATION_VALUE_ON_PAGE);
-        return $list;
+        return $this->with(['roomTypes','hotel'])->paginate(Room::PAGINATION_VALUE_ON_PAGE);
     }
 
     /**

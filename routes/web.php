@@ -34,9 +34,6 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function()
     Route::resource('service-types', 'ServiceTypeController')->except(['show']);
 
     Route::resource('booked-rooms', 'BookedRoomController')->only(['index', 'edit', 'update', 'destroy']);
-    
-    Route::get('room-images/{id}', 'RoomImageController@listRoomImage')->name('room-images');
-    Route::post('room-images-delete/{id}', 'RoomImageController@deleteRoomImage')->name('room-images-delete');
 
 });
 

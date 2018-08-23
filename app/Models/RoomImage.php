@@ -32,19 +32,7 @@ class RoomImage extends Model
     {
         return $this->belongsTo('App\Models\Room', 'room_id', 'id');
     }
-
-    /**
-     * Get rooms with paginate
-     *
-     * @param int $id Room Id
-     *
-     * @return array
-    */
-    public function getRoomImagesPaginate($id)
-    {
-        return $this->where('room_id', $id)->paginate(RoomImage::PAGINATION_VALUE_ON_PAGE);
-    }
-
+    
     /**
      * Find Room Image from Room id
      *
@@ -92,11 +80,10 @@ class RoomImage extends Model
     public function deleteRoomImages($id)
     {
         $list = $this->select('image')
-                    ->where('room_id', $id)
-                    ->get();
-        foreach ($list as $item) {
+                     ->where('room_id', $id);
+        foreach ($list->get() as $item) {
             unlink(Room::FOLDER_UPLOAD_ROOM.$item->image);
         }
-        return $this->where('room_id', $id)->delete();
+        return $list->delete();
     }
 }

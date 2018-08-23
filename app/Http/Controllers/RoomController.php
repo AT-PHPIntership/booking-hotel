@@ -131,6 +131,13 @@ class RoomController extends Controller
     {
         $data = $request->only(['name', 'price', 'discount', 'descript', 'hotel_id', 'room_type_id']);
         $data['user_id'] = Auth::user()->id;
+        $deleteImage = explode(",", $request['image-delete']);
+        // Delete Image array
+        if ($deleteImage[0] != "") {
+            foreach ($deleteImage as $item) {
+                $this->roomImage->deleteRoomImage($item);
+            }
+        }
         $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
         // Add Image for room
         if ($request->hasFile('image')) {

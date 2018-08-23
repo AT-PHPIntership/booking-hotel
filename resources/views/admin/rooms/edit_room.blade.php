@@ -61,12 +61,13 @@
                 <div class="form-group">
                     <label>{{ __('admin/room.room_edit.image_upload') }}</label>
                     <input type="file" name="image[]" class="form-control" multiple>
+                    <input type="text" name="image-delete" class="form-control" hidden id="image-delete">
                     @foreach ($roomImages as $item)
-                        <div class="card" style="width: 50%; display: inline;">
-                        	<img src="upload/room/{{$item->image}}" alt="no image" alt="Cinque Terre" style="width: 10%;" id="room-image-{{$item->id}}">
+                        <div class="card js-room-image" id="js-room-image-{{$item->id}}" style="width: 50%; display: inline;">
+                        	<img src="upload/room/{{$item->image}}" alt="no image" alt="Cinque Terre" style="width: 10%;" id="{{$item->id}}" class="js-room-image-item">
+                            <span id='js-delele-{{$item->id}}' style="display: none;">{{ __('admin/room.room_edit.room_delete_image') }}</span>
                         </div>
                     @endforeach
-                        <a id="delete-room-images"style="width: 50%; display: block;" href="{{route('room-images', $room->id) }}">{{ __('admin/room.room_edit.room_delete_image') }}</a>
                 </div>
 
                 <div class="form-group">
@@ -79,4 +80,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/admin/edit_room.js') }}"></script>
 @endsection

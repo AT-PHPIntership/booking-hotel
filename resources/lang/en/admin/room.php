@@ -71,7 +71,7 @@
         'room_disable' => 'Disable',
         'image_upload' => 'Image Upload',
         'room_description' => 'Description',
-        'room_delete_image' => 'Delete Image',
+        'room_delete_image' => 'Deleted',
         'room_submit' => 'Update',
         'room_reset' => 'Reset',
         // Localization and message
