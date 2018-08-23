@@ -26,7 +26,6 @@ abstract class AdminDuskTestCase extends DuskTestCase
             'email' => 'admin@gmail.com',
             'password' => '123123',
             'role' => User::ADMIN_USER,
-            'remember_token' => str_random(10),
             'address' => 'Da Nang',
             'phone' => '01223499433',
         ]);
@@ -36,7 +35,6 @@ abstract class AdminDuskTestCase extends DuskTestCase
             'email' => 'user@gmail.com',
             'password' => '123123',
             'role' => User::NORMAL_USER,
-            'remember_token' => str_random(10),
             'address' => 'Da Nang',
             'phone' => '01223499433',
         ]);
