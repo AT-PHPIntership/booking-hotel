@@ -13,7 +13,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
 
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
@@ -25,7 +25,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="text" class="form-control" name="email" value="" required>
 
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
@@ -37,7 +37,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autofocus>
+                                <input id="address" type="text" class="form-control" name="address" value="" required autofocus>
 
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>

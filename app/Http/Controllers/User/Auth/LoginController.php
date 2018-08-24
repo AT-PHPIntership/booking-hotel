@@ -37,7 +37,10 @@ class LoginController extends ApiController
      */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
-        return $this->successResponse(null, Response::HTTP_NO_CONTENT);
+        $check = $request->user()->token()->revoke();
+        if ($check) {
+            return $this->successResponse(null, Response::HTTP_NO_CONTENT);
+        }
+        return $this->errorResponse(__('user/layout.app.logout_unauthorised'), Response::HTTP_UNAUTHORIZED);
     }
 }

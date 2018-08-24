@@ -12,7 +12,4 @@ return [
     	'enable' => '1',
     	'disable' => '0',
     ],
-    'login' => [
-        'unauthorised' => 'Login Fail',
-    ]
 ];
