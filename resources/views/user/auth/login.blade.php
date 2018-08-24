@@ -14,7 +14,7 @@
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" autofocus>
+                                <input id="email" type="text" class="form-control" name="email" value="" autofocus>
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
@@ -35,7 +35,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('user/layout.app.remember_me') }}
