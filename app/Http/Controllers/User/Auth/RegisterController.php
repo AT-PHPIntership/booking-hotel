@@ -33,10 +33,18 @@ class RegisterController extends ApiController
      */
     public function register(RegisterRequest $request)
     {
-    	$data = $request->only(['username', 'email', 'address', 'phone', 'password']);
-    	$data['role'] = User::NORMAL_USER;
-    	$this->user->addUser($data);
-        return $this->successResponse($data, Response::HTTP_OK);
+        // Get data from API then create User
+        $response = $request->only(['username', 'email', 'address', 'phone', 'password']);
+        $response['role'] = User::NORMAL_USER;
+        $check = $this->user->addUser($response);
+        // Check create success and login by user register
+        if (!empty($check)) {
+            Auth::attempt(['email' => $response['email'], 'password' => $response['password']]);
+            $user = Auth::user();
+            $data['username'] = $user->username;
+            $data['token'] = $user->createToken('token')->accessToken;
+            return $this->successResponse($data, Response::HTTP_OK);
+        }
+        return $this->errorResponse(null, Response::HTTP_UNAUTHORIZED);
     }
-
 }
