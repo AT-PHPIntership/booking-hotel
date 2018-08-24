@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Admin;
+namespace Tests\Browser\Admin\User;
 
 use Tests\Browser\Admin\AdminDuskTestCase;
 use Laravel\Dusk\Browser;
@@ -127,7 +127,7 @@ class AddUserTest extends AdminDuskTestCase
                     ->type('email', self::NEW_NORMAL_USER_EMAIl)
                     ->type('password', self::NEW_NORMAL_USER_PASSWORD)
                     ->press('Login')
-                    ->clickLink('Admin');
+                    ->visit('/admin/users/create');
             $browser->assertPathIsNot('/admin/users/create');
             // Log out Admin
             $browser->visit('/logout')->logout();
