@@ -13,7 +13,7 @@
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('admin/layout.app.email_address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autofocus>
+                                <input id="email" type="text" class="form-control" name="email" value="" autofocus>
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
@@ -24,7 +24,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('admin/layout.app.password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
+                                <input id="password" type="password" class="form-control" name="password">
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('admin/layout.app.remember_me') }}
