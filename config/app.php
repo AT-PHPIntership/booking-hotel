@@ -150,8 +150,6 @@ return [
         /*
          * Package Service Providers...
          */
-        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-        Tightenco\Ziggy\ZiggyServiceProvider::class,
 
         /*
          * Application Service Providers...

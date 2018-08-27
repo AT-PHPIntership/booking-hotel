@@ -9,6 +9,8 @@ class BookedRoom extends Model
 {
 
     const PAGINATION_VALUE_ON_PAGE = 5;
+    const BOOKED_ROOM_STATUS_ENABLE = 1;
+    const BOOKED_ROOM_STATUS_DISABLE = 0;
 
     /**
      * Declare table
