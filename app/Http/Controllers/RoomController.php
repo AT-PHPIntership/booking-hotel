@@ -134,9 +134,7 @@ class RoomController extends Controller
         $deleteImage = explode(",", $request['image-delete']);
         // Delete Image array
         if ($deleteImage[0] != "") {
-            foreach ($deleteImage as $item) {
-                $this->roomImage->deleteRoomImage($item);
-            }
+            $this->roomImage->deleteRoomImage($deleteImage);
         }
         $request->status == Room::RADIO_STATUS_VALUE_FROM_VIEW ? $data['status'] = true : $data['status'] = false;
         // Add Image for room

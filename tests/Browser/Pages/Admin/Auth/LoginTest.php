@@ -5,7 +5,7 @@ namespace Tests\Browser\Pages\Admin\Auth;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Models\User;
-use Tests\Browser\Pages\Admin\AdminDuskTestCase;
+use Tests\Browser\Admin\AdminDuskTestCase;
 
 class LoginTest extends AdminDuskTestCase
 {
@@ -78,8 +78,8 @@ class LoginTest extends AdminDuskTestCase
                     ->type('email', $this->user->email)
                     ->type('password','123123')
                     ->press('Login')
-                    ->clickLink('Admin');
-            $browser->assertPathIs('/home');
+                    ->clickLink('Home');
+            $browser->assertPathIs('/');
         });
     }
 

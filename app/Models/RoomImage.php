@@ -60,14 +60,20 @@ class RoomImage extends Model
     /**
      * Delete Room Image from id
      *
-     * @param int $id Image Id
+     * @param array $deleteImage Images
      *
      * @return array
     */
-    public function deleteRoomImage($id)
+    public function deleteRoomImage($deleteImage)
     {
-        unlink(Room::FOLDER_UPLOAD_ROOM.$this->find($id)->image);
-        return $this->find($id)->delete();
+        $listImages = $this->whereIn('id', $deleteImage);
+        foreach ($listImages->get() as $item) {
+            $linkImage = Room::FOLDER_UPLOAD_ROOM.$item->image;
+            if (file_exists($linkImage)) {
+                unlink($linkImage);
+            }
+        }
+        return $listImages->delete();
     }
 
     /**
