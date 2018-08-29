@@ -113,4 +113,18 @@ class User extends Authenticatable
     {
         return $this->find($id)->delete();
     }
+
+    /**
+     * Find user id from username
+     *
+     * @param string $username username
+     *
+     * @return array
+    */
+    public function findUserFromName($username)
+    {
+        return $this->select('id')
+                    ->where('username', $username)
+                    ->first();
+    }
 }

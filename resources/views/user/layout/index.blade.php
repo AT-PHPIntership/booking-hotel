@@ -42,7 +42,7 @@
 							<div id="colorlib-logo"><a href="#">{{ __('user/layout.header.logo') }}</a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-							<ul>
+							<ul style="color: white;">
 								<li><a href="user/hotels">{{ __('user/layout.header.hotel') }}</a></li>
 								<li><a href="#">{{ __('user/layout.header.about') }}</a></li>
 								<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
@@ -52,14 +52,13 @@
                 </li>
                 <li class="js-user-logined"></li>
               	<li class="js-user-login">
-                		<button id="js-logout">{{ __('user/layout.header.logout') }}</button>
+                		<a href="#" id="js-logout">{{ __('user/layout.header.logout') }}</a>
                 </li>
 
                 <li class="js-user-not-login">
                     <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
                     <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
                 </li>
-					      		
 							</ul>
 						</div>
 					</div>
@@ -67,7 +66,7 @@
 			</div>
 		</nav>
 
-		<aside id="colorlib-hero">
+		<aside id="colorlib-hero" style="height: 500px;">
 			@include('user/layout/slide')
 		</aside>
 

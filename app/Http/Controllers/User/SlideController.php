@@ -32,7 +32,7 @@ class SlideController extends ApiController
     {
         $slides = $this->slide->getFrontEndSlides();
         if ($slides) {
-            return $this->showAll($slides, Response::HTTP_OK);    
+            return $this->showAll($slides, Response::HTTP_OK);
         }
         return $this->errorResponse(__('user/home.slide_unauthorised'), Response::HTTP_UNAUTHORIZED);
     }

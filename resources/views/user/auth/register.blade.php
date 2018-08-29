@@ -8,16 +8,17 @@
                 <div class="card-header">{{ __('user/layout.app.register') }}</div>
 
                 <div class="card-body">
-                    <form>
+                    <form method="post">
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
 
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong></strong>
-                                    </span>
+                                <input id="username" type="text" class="form-control" name="username" required autofocus>
+                                <span class="invalid-feedback" role="alert" id="js-feedback-username">
+                                    <strong id="js-error-username"></strong>
+                                </span>
+
                             </div>
                         </div>
 
@@ -25,11 +26,12 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="" required>
 
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong></strong>
-                                    </span>
+                                <input id="text" type="text" class="form-control" name="email" required>
+
+                                <span class="invalid-feedback" role="alert" id="js-feedback-email">
+                                    <strong id="js-error-email"></strong>
+                                </span>
                             </div>
                         </div>
 
@@ -37,10 +39,12 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="" required autofocus>
 
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong></strong>
+                                <input id="address" type="text" class="form-control" name="address" required autofocus>
+
+                                    <span class="invalid-feedback" role="alert" id="js-feedback-address">
+                                        <strong id="js-error-address"></strong>
+
                                     </span>
 
                             </div>
@@ -50,10 +54,12 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
 
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
+                                <input id="phone" type="text" class="form-control" name="phone" required autofocus>
+
+                                <span class="invalid-feedback" role="alert" id="js-feedback-phone">
+                                    <strong id="js-error-phone"></strong>
+
                                 </span>
                             </div>
                         </div>
@@ -64,8 +70,8 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
 
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
+                                <span class="invalid-feedback" role="alert" id="js-feedback-password">
+                                    <strong id="js-error-password"></strong>
                                 </span>
                             </div>
                         </div>

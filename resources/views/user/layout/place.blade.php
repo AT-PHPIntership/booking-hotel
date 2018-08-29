@@ -3,7 +3,7 @@
 		<!-- Place editor -->
 		<div class="item">
 			<div class="hotel-entry">
-				<a href="#" class="hotel-img" style="background-image: url(user/images/hotel-1.jpg);">
+				<a href="#" class="hotel-img" style="background-image: url(upload/slide/1.jpg);">
 					<p class="price"><span>$120</span><small> /night</small></p>
 				</a>
 				<div class="desc">

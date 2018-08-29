@@ -24,7 +24,14 @@ Route::group(['as' => 'api.', 'namespace' => 'User'], function() {
 
 		Route::group(['middleware' => 'auth:api'], function() {
 			Route::post('logout', 'LoginController@logout');
+			Route::post('comments/create', 'CommentController@create');
+
+			Route::post('booking-hotel', 'BookedRoomController@create');			
 		});
+
+		Route::post('register', 'RegisterController@register');
+
+		Route::post('comments', 'CommentController@index');
 
 	});
 
@@ -34,4 +41,7 @@ Route::group(['as' => 'api.', 'namespace' => 'User'], function() {
 	Route::apiResource('slides', 'SlideController');
 
 	Route::apiResource('cities', 'CityController');
+
+	Route::post('rooms', 'RoomController@index');
+
 });

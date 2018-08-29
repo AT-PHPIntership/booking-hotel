@@ -96,7 +96,7 @@ class Room extends Model
     */
     public function getRoomsPaginate()
     {
-        return $this->with(['roomTypes','hotel'])->paginate(Room::PAGINATION_VALUE_ON_PAGE);
+        return $this->with(['roomTypes','hotel'])->paginate(self::PAGINATION_VALUE_ON_PAGE);
     }
 
     /**
@@ -162,5 +162,23 @@ class Room extends Model
     public function deleteRoom($id)
     {
         return $this->find($id)->delete();
+    }
+
+    /**
+     * Get rooms display to front end
+     *
+     * @param aray $data         data
+     * @param int  $idRoomBooked id of room
+     *
+     * @return array
+    */
+    public function getFrontEndRooms($data, $idRoomBooked)
+    {
+        $query = $this->with(['roomTypes','hotel.comments.user', 'roomImage'])
+                    ->whereNotIn('id', $idRoomBooked)
+                    ->where('hotel_id', $data['id'])
+                    ->where('status', self::ROOM_STATUS_ENABLE)
+                    ->get();
+        return $query;
     }
 }

@@ -10,5 +10,8 @@
 				</ul>
 			</div>
 		</form>
+		<span class="invalid-feedback" role="alert" id="js-feedback-city_id">
+            <strong id="js-error-city_id"></strong>
+        </span>
 	</div>
 </div>

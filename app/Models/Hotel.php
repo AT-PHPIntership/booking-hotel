@@ -150,56 +150,56 @@ class Hotel extends Model
     }
 
     /**
-     * Get List Hotels without paginate
+     * Get List Hotels for front end
+     *
+     * @param int $idRoomBooked id of room
      *
      * @return array
     */
-    public function getFrontEndHotels()
+    public function getFrontEndHotels($idRoomBooked)
     {
         \DB::enableQueryLog();
         $hotel = new Hotel;
         $query = $hotel
                 ->select('rooms.hotel_id', 'cities.*', 'hotels.*', \DB::raw('count(rooms.id) as total_room'))
                 ->join('cities', 'cities.id', '=', 'hotels.city_id')
-                ->join('rooms', 'rooms.hotel_id', '=', 'hotels.id')
-                ->LeftJoin(\DB::raw('(select * from booked_rooms where DATE(booked_rooms.date_in) = DATE(?)) as booked '), 'booked.room_id', '=', 'rooms.id')
-                ->addBinding(now())
-                ->where('hotels.status','=', self::HOTEL_STATUS_ENABLE)
-                ->where('rooms.status','=', Room::ROOM_STATUS_ENABLE)
-                ->whereNull('booked.status')
-                ->groupby('hotels.name');
-        return $query->get();
+                ->join('rooms', function ($join) use ($idRoomBooked) {
+                    $join->on('rooms.hotel_id', '=', 'hotels.id');
+                    $join->whereNotIn('rooms.id', $idRoomBooked);
+                })
+                ->where('hotels.status', '=', self::HOTEL_STATUS_ENABLE)
+                ->where('rooms.status', '=', Room::ROOM_STATUS_ENABLE)
+                ->groupby('hotels.name')
+                ->get();
+        return $query;
     }
 
     /**
-     * Get List Hotels follow conditions from frontend
+     * Get List Hotels with conditions
      *
-     * @param array $data Data from form request
+     * @param int $idRoomBooked id of room
+     * @param int $city         city
+     * @param int $people       people visit
      *
      * @return array
     */
-    public function getHotelsByConditions($data)
+    public function getHotelsFollowConditions($idRoomBooked, $city, $people)
     {
-        if($data){
-            \DB::enableQueryLog();
-            $hotel = new Hotel;
-            $query = $hotel
-                    ->select('rooms.hotel_id', 'cities.*', 'hotels.*', \DB::raw('count(rooms.id) as total_room'))
-                    ->join('cities', 'cities.id', '=', 'hotels.city_id')
-                    ->join('rooms', 'rooms.hotel_id', '=', 'hotels.id')
-                    ->LeftJoin(\DB::raw('(select * from booked_rooms where DATE(booked_rooms.date_in) > DATE('.$data['date_checkout'].') or DATE(booked_rooms.date_out) < DATE('.$data['date_checkin'].')) as booked '), 'booked.room_id', '=', 'rooms.id')
-                    // ->addBinding(date($data['date_checkout']))
-                    // ->addBinding(date($data['date_checkin']))
-                    ->where('hotels.city_id','=', $data['city_id'])
-                    ->where('rooms.status','=', Room::ROOM_STATUS_ENABLE)
-                    ->where('hotels.status','=', self::HOTEL_STATUS_ENABLE)
-                    ->whereNull('booked.status')
-                    ->groupby('hotels.name')
-                    ->having('total_room', '>=', $data['people'])
-                    ->get();
-            return $query;
-        } else {
-            return $this->getFrontEndHotels();
-        }
+        \DB::enableQueryLog();
+        $hotel = new Hotel;
+        $query = $hotel
+                ->select('rooms.hotel_id', 'cities.*', 'hotels.*', \DB::raw('count(rooms.id) as total_room'))
+                ->join('cities', 'cities.id', '=', 'hotels.city_id')
+                ->join('rooms', function ($join) use ($idRoomBooked) {
+                    $join->on('rooms.hotel_id', '=', 'hotels.id');
+                    $join->whereNotIn('rooms.id', $idRoomBooked);
+                })
+                ->where('hotels.city_id', "=", $city)
+                ->where('hotels.status', '=', self::HOTEL_STATUS_ENABLE)
+                ->where('rooms.status', '=', Room::ROOM_STATUS_ENABLE)
+                ->groupby('hotels.name')
+                ->having('total_room', ">=", $people)
+                ->get();
+        return $query;
     }
 }

@@ -32,7 +32,7 @@ class CityController extends ApiController
     {
         $citys = $this->city->getFrontEndCitys();
         if ($citys) {
-            return $this->showAll($citys, Response::HTTP_OK);    
+            return $this->showAll($citys, Response::HTTP_OK);
         }
         return $this->errorResponse(__('user/home.city_unauthorised'), Response::HTTP_UNAUTHORIZED);
     }

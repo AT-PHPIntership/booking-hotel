@@ -34,7 +34,6 @@ class CityController extends Controller
         return view('admin.cities.cities', ['cities'=>$cities]);
     }
 
-
     /**
      * List City for front end
      *

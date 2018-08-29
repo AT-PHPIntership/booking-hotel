@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-3" id="js-side-bar">
 	<div class="sidebar-wrap">
 		<div class="side search-wrap animate-box">
 			<h3 class="sidebar-heading">{{ __('user/layout.side_bar.find_your_hotel') }}</h3>
@@ -12,6 +12,9 @@
                   			<div class="form-field">
                     		<i class="icon icon-calendar2"></i>
                     		<input id="startDate" class="form-control" placeholder="Check-in date" value="" name="date_checkin">
+                    		<span class="invalid-feedback" role="alert" id="js-feedback-date_checkin">
+                        		<strong id="js-error-date_checkin"></strong>
+                    		</span>
                   		</div>
                 	</div>
               	</div>
@@ -22,6 +25,9 @@
                 			<i class="icon icon-calendar2"></i>
                 			<input id="endDate" class="form-control" placeholder="Check-out date" value=""
                 			name="date_checkout">
+                			<span class="invalid-feedback" role="alert" id="js-feedback-date_checkout">
+                        		<strong id="js-error-date_checkout"></strong>
+                    		</span>
               			</div>
                 	</div>
               	</div>
@@ -37,6 +43,9 @@
 		                    <option value="4" style="color: blue;">{{ Config::get('user_define.side_bar.four_people') }}</option>
 		                    <option value="5" style="color: blue;">{{ Config::get('user_define.side_bar.five_people_plus') }}</option>
 	                    </select>
+	                    <span class="invalid-feedback" role="alert" id="js-feedback-people">
+                    		<strong id="js-error-people"></strong>
+                		</span>
                   	</div>
                 </div>
               	</div>

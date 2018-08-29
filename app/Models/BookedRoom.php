@@ -69,6 +69,20 @@ class BookedRoom extends Model
         return $this->find($id);
     }
 
+
+    /**
+     * Create Booked Room from id
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function createBookedRoom($request)
+    {
+        $request['status'] = self::BOOKED_ROOM_STATUS_DISABLE;
+        return $this->create($request);
+    }
+
     /**
      * Edit Booked Room from id
      *
@@ -92,5 +106,31 @@ class BookedRoom extends Model
     public function deleteBookedRoom($id)
     {
         return $this->find($id)->delete();
+    }
+
+    /**
+     * Find Rooms are booked
+     *
+     * @param date $startDay start day
+     * @param date $endDay   end day
+     *
+     * @return array
+    */
+    public function bookedSearch($startDay, $endDay)
+    {
+        $roomBookedList = $this->select('room_id')
+                                ->where(function ($query) use ($startDay, $endDay) {
+                                    $query->whereDate('date_in', '<=', $endDay)
+                                        ->whereDate('date_in', '>=', $startDay);
+                                })->orWhere(function ($query) use ($startDay, $endDay) {
+                                    $query->whereDate('date_out', '<=', $endDay)
+                                        ->whereDate('date_out', '>=', $startDay);
+                                })
+                                ->get();
+        $idRoomBooked = [];
+        foreach ($roomBookedList as $item) {
+            $idRoomBooked[] = $item->room_id;
+        }
+        return $idRoomBooked;
     }
 }
