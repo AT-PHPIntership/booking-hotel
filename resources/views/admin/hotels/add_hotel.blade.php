@@ -9,11 +9,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputName1">{{ __('admin/hotel.hotel_add.hotel_name') }}</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="{{ __('admin/hotel.hotel_add.hotel_name') }}" name="name">
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="{{ __('admin/hotel.hotel_add.hotel_name') }}" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">{{ __('admin/hotel.hotel_add.hotel_address') }}</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="{{ __('admin/hotel.hotel_add.hotel_address') }}" name="address">
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="{{ __('admin/hotel.hotel_add.hotel_address') }}" name="address" value="{{ old('address') }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputCity1">{{ __('admin/hotel.hotel_add.hotel_city') }}</label>
