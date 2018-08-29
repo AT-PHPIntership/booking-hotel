@@ -39,6 +39,6 @@ class CreateBookedRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_bookeds');
+        Schema::dropIfExists('booked_rooms');
     }
 }
