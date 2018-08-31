@@ -3,7 +3,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\HotelService;
 use App\Models\City;
+use App\Models\Service;
+use App\Http\Controllers\Room;
 use App\Http\Requests\Admins\HotelRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,15 +18,19 @@ class HotelController extends Controller
     /**
      ** Create contructor.
      *
-     * @param App\Models\Hotel $hotel hotel
-     * @param App\Models\City  $city  city
+     * @param App\Models\Hotel $hotel        hotel
+     * @param App\Models\City  $city         city
+     * @param HotelService     $hotelService hotel service
+     * @param Service          $service      service
      *
      * @return void
      */
-    public function __construct(Hotel $hotel, City $city)
+    public function __construct(Hotel $hotel, City $city, HotelService $hotelService, Service $service)
     {
         $this->hotel = $hotel;
         $this->city = $city;
+        $this->hotelService = $hotelService;
+        $this->service = $service;
     }
 
     /**
@@ -45,7 +52,8 @@ class HotelController extends Controller
     public function create()
     {
         $city = $this->city->getCities();
-        return view('admin.hotels.add_hotel', ['city' => $city]);
+        $service = $this->service->getServices();
+        return view('admin.hotels.add_hotel', ['city' => $city, 'service' => $service]);
     }
 
     /**
@@ -59,6 +67,7 @@ class HotelController extends Controller
     {
         // Get data from view
         $data = $request->only(['name','address','city_id','descript','number_star']);
+        $services = $request['services'];
         if ($request->status == "on") {
             $data['status'] = true;
         } else {
@@ -74,7 +83,7 @@ class HotelController extends Controller
         $file->move(Hotel::FOLDER_UPLOAD_HOTEL, $image);
         $data['image'] = $image;
         // Create Hotel and show list hotels with meassage
-        $check = $this->hotel->addHotel($data);
+        $check = $this->hotel->addHotel($data, $services);
         if (!empty($check)) {
             return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_add.hotel_add_success'));
         }
@@ -105,7 +114,13 @@ class HotelController extends Controller
     {
         $hotel = $this->hotel->findHotel($id);
         $city = $this->city->getCities();
-        return view('admin.hotels.edit_hotel', ['hotel' => $hotel,'city' => $city]);
+        $service = $this->service->getServices();
+        $servicesHotel = $this->hotelService->findServicesHotel($id)->toArray();
+        $listServiceOld[] = "";
+        foreach ($servicesHotel as $value) {
+            $listServiceOld[] = $value['service_id'];
+        }
+        return view('admin.hotels.edit_hotel', ['hotel' => $hotel,'city' => $city, 'service' => $service, 'servicesHotel' => $listServiceOld]);
     }
 
     /**
@@ -120,6 +135,7 @@ class HotelController extends Controller
     {
         // Get request from view
         $data = $request->only(['name','address','city_id','descript','number_star']);
+        $services = $request['services'];
         if ($request->status == "on") {
             $data['status'] = true;
         } else {
@@ -139,7 +155,7 @@ class HotelController extends Controller
             $data['image'] = $image;
         }
         // Update hotel into database and show message
-        $check = $this->hotel->editHotel($data, $id);
+        $check = $this->hotel->editHotel($data, $id, $services);
         if (!empty($check)) {
             return $this->redirectSuccess("hotels.index", __('admin/hotel.hotel_edit.hotel_edit_success'));
         }

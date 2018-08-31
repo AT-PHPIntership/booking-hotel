@@ -53,7 +53,7 @@ class BookedRoom extends Model
     */
     public function getBookedRoom()
     {
-        return $this->with(['user', 'room'])->paginate(BookedRoom::PAGINATION_VALUE_ON_PAGE);
+        return $this->with(['user', 'room'])->orderBy('id', 'desc')->paginate(BookedRoom::PAGINATION_VALUE_ON_PAGE);
     }
 
 
@@ -132,5 +132,17 @@ class BookedRoom extends Model
             $idRoomBooked[] = $item->room_id;
         }
         return $idRoomBooked;
+    }
+
+    /**
+     * Find Rooms user has id booked
+     *
+     * @param int $userId user of id
+     *
+     * @return array
+    */
+    public function bookedFindFollowUser($userId)
+    {
+        return $this->with(['room.hotel', 'room.roomTypes', 'room.roomImage'])->where('user_id', $userId)->orderBy('id', 'desc')->get();
     }
 }

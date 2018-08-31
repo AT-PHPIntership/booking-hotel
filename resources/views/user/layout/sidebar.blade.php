@@ -2,7 +2,7 @@
 	<div class="sidebar-wrap">
 		<div class="side search-wrap animate-box">
 			<h3 class="sidebar-heading">{{ __('user/layout.side_bar.find_your_hotel') }}</h3>
-			<form method="post" class="colorlib-form">
+			<form class="colorlib-form">
 				<!-- Search City -->
             	<div class="row">
             		@include('user/layout/city')
@@ -60,20 +60,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="sidebar-heading">{{ __('user/layout.side_bar.price_range') }}</h3>
-					<form method="post" class="colorlib-form-2">
+					<div class="colorlib-form-2">
 	              	<div class="row">
 	                <div class="col-md-6">
 	                  <div class="form-group">
 	                    <label for="guests">{{ __('user/layout.side_bar.price_from') }}</label>
 	                    <div class="form-field">
 	                      <i class="icon icon-arrow-down3"></i>
-	                      <select name="people" id="people" class="form-control">
-	                      	<option value="#" selected>{{ Config::get('user_define.side_bar.price_from_default') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_1') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_2') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_3') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_4') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_5') }}</option>
+	                      <select name="price_from" id="price_from" class="form-control js-filter-item">
+	                      	<option value="0" selected>{{ Config::get('user_define.side_bar.price_from_default') }}</option>
+	                        <option value="50000">{{ Config::get('user_define.side_bar.price_from_1') }}</option>
+	                        <option value="200000">{{ Config::get('user_define.side_bar.price_from_2') }}</option>
+	                        <option value="300000">{{ Config::get('user_define.side_bar.price_from_3') }}</option>
+	                        <option value="400000">{{ Config::get('user_define.side_bar.price_from_4') }}</option>
+	                        <option value="1000000">{{ Config::get('user_define.side_bar.price_from_5') }}</option>
 	                      </select>
 	                    </div>
 	                  </div>
@@ -83,19 +83,19 @@
 	                    <label for="guests">{{ __('user/layout.side_bar.price_to') }}</label>
 	                    <div class="form-field">
 	                      <i class="icon icon-arrow-down3"></i>
-	                      <select name="people" id="people" class="form-control">
-	                      	<option value="#" selected>{{ Config::get('user_define.side_bar.price_to_default') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_1') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_2') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_3') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_4') }}</option>
-	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_5') }}</option>
+	                      <select name="price_to" id="price_to" class="form-control js-filter-item">
+	                      	<option value="0" selected>{{ Config::get('user_define.side_bar.price_to_default') }}</option>
+	                        <option value="100000">{{ Config::get('user_define.side_bar.price_to_1') }}</option>
+	                        <option value="300000">{{ Config::get('user_define.side_bar.price_to_2') }}</option>
+	                        <option value="400000">{{ Config::get('user_define.side_bar.price_to_3') }}</option>
+	                        <option value="500000">{{ Config::get('user_define.side_bar.price_to_4') }}</option>
+	                        <option value="99000000">{{ Config::get('user_define.side_bar.price_to_5') }}</option>
 	                      </select>
 	                    </div>
 	                  </div>
 	                </div>
 	              </div>
-	            </form>
+	            </div>
             </div>
 			</div>
 		</div>
@@ -104,38 +104,38 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="sidebar-heading">{{ __('user/layout.side_bar.review_rating') }}</h3>
-					<form method="post" class="colorlib-form-2">
+					<fieldset class="colorlib-form-2" id="checkArray">
 					   <div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
+							<input type="checkbox" class="form-check-input js-filter-item" name="star[]" value="5">
 							<label class="form-check-label" for="exampleCheck1">
 								<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
 							</label>
 					   </div>
 					   <div class="form-check">
-					      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					      <input type="checkbox" class="form-check-input js-filter-item" name="star[]" value="4">
 					      <label class="form-check-label" for="exampleCheck1">
 					    	   <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
 					      </label>
 					   </div>
 					   <div class="form-check">
-					      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					      <input type="checkbox" class="form-check-input js-filter-item" name="star[]" value="3">
 					      <label class="form-check-label" for="exampleCheck1">
 					      	<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
 					     </label>
 					   </div>
 					   <div class="form-check">
-					      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					      <input type="checkbox" class="form-check-input js-filter-item" name="star[]" value="2">
 					      <label class="form-check-label" for="exampleCheck1">
 					      	<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
 					     </label>
 					   </div>
 					   <div class="form-check">
-					      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					      <input type="checkbox" class="form-check-input js-filter-item" name="star[]" value="1">
 					      <label class="form-check-label" for="exampleCheck1">
 					      	<p class="rate"><span><i class="icon-star-full"></i></span></p>
 					     </label>
 					   </div>
-					</form>
+					</fieldset>
 				</div>
 			</div>
 		</div>

@@ -13,9 +13,8 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                localStorage.setItem('token-login', response.result.token);
-                localStorage.setItem('username', response.result.username);
-                localStorage.setItem('phone', response.result.phone);
+                myJSON = JSON.stringify(response.result);
+                localStorage.setItem('user', myJSON);
                 window.location.href = 'http://' + window.location.hostname;
             },
 

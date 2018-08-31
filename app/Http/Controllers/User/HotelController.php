@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Requests\Users\SearchHotelsRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\User\ApiController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Hotel;
@@ -56,6 +57,22 @@ class HotelController extends ApiController
         // Get hotels
         $idRoomBooked = $this->bookedRoom->bookedSearch($data['date_checkin'], $data['date_checkout']);
         $hotels = $this->paginate($this->hotel->getHotelsFollowConditions($idRoomBooked, $data['city_id'], $data['people']));
+        $hotels = $this->formatPaginate($hotels);
+        return $this->showAll($hotels, Response::HTTP_OK);
+    }
+
+    /**
+     * Display Hotels follow City
+     *
+     * @param Request $request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showHotelsFilter(Request $request)
+    {
+        $data = $request->only(['city_id', 'date_checkin', 'date_checkout', 'people', 'price', 'star']);
+        $idRoomBooked = $this->bookedRoom->bookedSearch($data['date_checkin'], $data['date_checkout']);
+        $hotels = $this->paginate($this->hotel->getHotelsFilter($idRoomBooked, $data['people'], $data['star'], $data['price']));
         $hotels = $this->formatPaginate($hotels);
         return $this->showAll($hotels, Response::HTTP_OK);
     }

@@ -1,6 +1,13 @@
 $(document).ready(function () {
-	var token = localStorage.getItem('token-login');
-	var username = localStorage.getItem('username');
+    user = localStorage.getItem('user');
+    var user = JSON.parse(user);
+    if(user) {
+        var token = user.token;
+        var username = user.username;
+    }
+    $(document).on('click', '.js-home', function (event) {
+        window.location.href = 'http://' + window.location.hostname;
+    });
     if (token && username) {
         $('.js-user-login').show();
         $('.js-user-not-login').hide();
@@ -10,30 +17,25 @@ $(document).ready(function () {
         $('.js-user-not-login').show();
     }
 
-    $(document).ready(function () {
-        $(document).on('click', '#js-logout', function (event) {
-            event.preventDefault();
-            $.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-                url: '/api/logout',
-                type: "post",
+    $(document).on('click', '#js-logout', function (event) {
+        event.preventDefault();
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            url: '/api/logout',
+            type: "post",
 
-                success: function (response) {
-                  localStorage.removeItem('token-login');
-                  localStorage.removeItem('username');
-                  window.location.href = 'http://' + window.location.hostname;
-                },
+            success: function (response) {
+                localStorage.removeItem('user');
+                window.location.href = 'http://' + window.location.hostname;
+            },
 
-                error: function (response) {
-                  alert(response.responseJSON.error);
-                  localStorage.removeItem('token-login');
-                  localStorage.removeItem('username');
-                  window.location.href = 'http://' + window.location.hostname + '/user/login';
-                }
-            });
+            error: function (response) {
+                localStorage.removeItem('user');
+                window.location.href = 'http://' + window.location.hostname + '/user/login';
+            }
         });
 	});
 });

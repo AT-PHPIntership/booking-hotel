@@ -30,7 +30,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = $this->city->getCities();
+        $cities = $this->city->getCitiesPaginate();
         return view('admin.cities.cities', ['cities'=>$cities]);
     }
 

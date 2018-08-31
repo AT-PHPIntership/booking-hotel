@@ -52,6 +52,19 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="exampleFormControlSelect3">{{ __('admin/hotel.hotel_add.service_hotel') }}</label>
+                    <div class="form-check">
+                        @foreach ($service as $item)
+                            <label>{{$item->name}}</label>
+                            @if(in_array($item->id, $servicesHotel))
+                                <input type="checkbox" name="services[]" value="{{$item->id}}" checked>
+                            @else
+                                <input type="checkbox" name="services[]" value="{{$item->id}}">
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>{{ __('admin/hotel.hotel_edit.image_upload') }}</label>
                     <p>
                         <img src="upload/hotel/{{$hotel->image}}" alt="no image" alt="Cinque Terre" width="200">

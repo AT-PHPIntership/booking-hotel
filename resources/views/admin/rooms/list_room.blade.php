@@ -20,7 +20,6 @@
                     <th>{{ __('admin/room.room_list.room_type') }}</th>
                     <th>{{ __('admin/room.room_list.room_hotel') }}</th>
                     <th>{{ __('admin/room.room_list.room_edit') }}</th>
-                    <th>{{ __('admin/room.room_list.room_detail') }}</th>
                     <th>{{ __('admin/room.room_list.room_delete') }}</th>
                 </tr>
                 </thead>
@@ -33,9 +32,6 @@
                         <td>{{ $item->hotel->name }}</td>
                         <td>
                             <a href="{{ route('rooms.edit', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/room.room_list.room_edit') }}</i></a>
-                        </td>
-                        <td>
-                            <a href="{{ route('rooms.show', $item->id) }}" class="btn btn-outline-info"><i class="fas fa-edit">{{ __('admin/room.room_list.room_detail') }}</i></a>
                         </td>
                         <td>
                             <form action="{{ route('rooms.destroy', $item->id) }}" method="post">

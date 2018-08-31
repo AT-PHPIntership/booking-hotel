@@ -21,7 +21,7 @@
                     <th>{{ __('admin/booked_room.booked_room_list.booked_room_date_check_in') }}</th>
                     <th>{{ __('admin/booked_room.booked_room_list.booked_room_date_check_out') }}</th>
                     <th>{{ __('admin/booked_room.booked_room_list.booked_room_status') }}</th>
-                    <th>{{ __('admin/booked_room.booked_room_list.booked_room_notes') }}</th>
+                    <th>{{ __('admin/booked_room.booked_room_list.booked_room_phone') }}</th>
                     <th>{{ __('admin/booked_room.booked_room_list.booked_room_edit') }}</th>
                     <th>{{ __('admin/booked_room.booked_room_list.booked_room_delete') }}</th>
                 </tr>
@@ -31,13 +31,13 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->user->username }}</td>
-                        <td>{{ $item->room->hotel->name }}</td>
+                        <td>{{ $item->room->hotel->name }}<br>{{ $item->room->name }}</td>
                         <td>{{ $item->date_in }}</td>
                         <td>{{ $item->date_out }}</td>
                         <td>
                             {{$item->status == config("define.status.enable") ?  __('admin/booked_room.booked_room_list.booked_room_enable') : __('admin/booked_room.booked_room_list.booked_room_disable') }}
                         </td>
-                        <td>{{ $item->notes }}</td>
+                        <td>{{ $item->user->phone }}</td>
                         <td>
                             <a href="{{ route('booked-rooms.edit', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/booked_room.booked_room_list.booked_room_edit') }}</i></a>
                         </td>

@@ -45,4 +45,49 @@ class BookedRoomController extends ApiController
         }
         return $this->errorResponse(null, Response::HTTP_UNAUTHORIZED);
     }
+
+    /**
+     * Show booking hotel
+     *
+     * @param Request $request request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listBooking(Request $request)
+    {
+        // Get data from view
+        $userId = $this->user->findUserFromName($request['username'])->id;
+        $data = $this->bookedRoom->bookedFindFollowUser($userId);
+        if (!empty($data)) {
+            $bookedRooms = $this->paginate($data);
+            $bookedRooms = $this->formatPaginate($bookedRooms);
+            return $this->showAll($bookedRooms, Response::HTTP_OK);
+        }
+        return $this->errorResponse(null, Response::HTTP_UNAUTHORIZED);
+    }
+
+    /**
+     * Delete booking hotel
+     *
+     * @param Request $request request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBooking(Request $request)
+    {
+        // Get data from view
+        $check = $this->bookedRoom->deleteBookedRoom($request['bookedroom_id']);
+        if (!empty($check)) {
+            // Get data from view
+            $userId = $this->user->findUserFromName($request['username'])->id;
+            $data = $this->bookedRoom->bookedFindFollowUser($userId);
+            if (!empty($data)) {
+                $bookedRooms = $this->paginate($data);
+                $bookedRooms = $this->formatPaginate($bookedRooms);
+                return $this->showAll($bookedRooms, Response::HTTP_OK);
+            }
+            return $this->errorResponse(null, Response::HTTP_UNAUTHORIZED);
+        }
+        return $this->errorResponse(null, Response::HTTP_UNAUTHORIZED);
+    }
 }

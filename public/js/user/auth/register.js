@@ -18,9 +18,8 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response.result.username);
-                localStorage.setItem('token-login', response.result.token);
-                localStorage.setItem('username', response.result.username);
+                myJSON = JSON.stringify(response.result);
+                localStorage.setItem('user', myJSON);
                 window.location.href = 'http://' + window.location.hostname;
             },
 

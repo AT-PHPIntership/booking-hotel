@@ -39,7 +39,7 @@ class Service extends Model
     */
     public function hotels()
     {
-        return $this->belongsToMany('App\Models\Hotel', 'hotel_service', 'service_id', 'hotel_id');
+        return $this->belongsToMany('App\Models\Hotel', 'hotel_services', 'service_id', 'hotel_id');
     }
 
     /**
@@ -53,13 +53,23 @@ class Service extends Model
     }
 
     /**
+     * Get List Services with out pagination
+     *
+     * @return array
+    */
+    public function getServicesPagination()
+    {
+        return $this->paginate(Service::PAGINATION_VALUE_ON_PAGE);
+    }
+
+    /**
      * Get List Services
      *
      * @return array
     */
     public function getServices()
     {
-        return $this->paginate(Service::PAGINATION_VALUE_ON_PAGE);
+        return $this->all();
     }
 
     /**

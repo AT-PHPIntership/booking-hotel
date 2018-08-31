@@ -26,4 +26,7 @@
     <script src="{{ asset('/js/user/home/datepicker.js') }}"></script>
     <script src="{{ asset('/js/user/home/room.js') }}"></script>
     <script src="{{ asset('/js/user/home/booking.js') }}"></script>
+    <script src="{{ asset('/js/user/auth/contract.js') }}"></script>
+    <script src="{{ asset('/js/user/auth/changeInformation.js') }}"></script>
+    <script src="{{ asset('/js/user/home/filter.js') }}"></script>
 @endsection

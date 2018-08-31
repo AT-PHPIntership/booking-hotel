@@ -35,7 +35,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = $this->service->getServices();
+        $services = $this->service->getServicesPagination();
         return view('admin.services.list_service', ['services' => $services]);
     }
 

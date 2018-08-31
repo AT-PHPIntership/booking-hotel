@@ -174,7 +174,7 @@ class Room extends Model
     */
     public function getFrontEndRooms($data, $idRoomBooked)
     {
-        $query = $this->with(['roomTypes','hotel.comments.user', 'roomImage'])
+        $query = $this->with(['roomTypes','hotel.comments.user', 'roomImage', 'hotel.services.serviceType'])
                     ->whereNotIn('id', $idRoomBooked)
                     ->where('hotel_id', $data['id'])
                     ->where('status', self::ROOM_STATUS_ENABLE)

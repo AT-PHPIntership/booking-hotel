@@ -5,9 +5,9 @@ function displayRoomsFollowHotel() {
         sessionStorage.setItem('hotel_id', hotelId);
         if ($('input[name="date_checkin"]').val() == "" || $('input[name="date_checkout"]').val() == "") {
             var d = new Date();
-            var month = d.getMonth()+1;
+            var month = d.getMonth() + 1;
             var day = d.getDate();
-            var today = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+            var today = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day;
             var date_checkin = today;
             var date_checkout = today;
         } else {
@@ -29,13 +29,8 @@ function displayRoomsFollowHotel() {
             },
 
             success: function (response) {
-                // If response code equal 200
-                if (response.code == 200) {
-                    showRooms(response.result.data);
-                    showPaginationRooms(response.result.paginator, 1);
-                } else {
-                    console.log("server error");
-                }
+                showRooms(response.result.data);
+                showPaginationRooms(response.result.paginator, 1);
             },
             error: function (response) {
                 // Display invalid
@@ -50,9 +45,9 @@ function displayPaginateRooms() {
         var hotelId = sessionStorage.getItem('hotel_id');
         if ($('input[name="date_checkin"]').val() == "" || $('input[name="date_checkout"]').val() == "") {
             var d = new Date();
-            var month = d.getMonth()+1;
+            var month = d.getMonth() + 1;
             var day = d.getDate();
-            var today = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+            var today = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day;
             var date_checkin = today;
             var date_checkout = today;
         } else {
@@ -120,10 +115,18 @@ function showRooms(data) {
             room += '<p class="price"><span>'+ type.price +'VND</span> <small>/ day</small></p>';
             room += '<p class="discount"><span style="color: green;">Discount: '+ type.discount +'</span> <small>%</small></p>';
             room += '<p style="height: 50px; overflow: hidden; text-overflow: ellipsis;">' + type.descript + '</p>';
-            if (localStorage.getItem('token-login')){
+            if (type.hotel.services != "") {
+                room += '<p class="discount"><span>';
+                type.hotel.services.forEach(function(services) {
+                    room += services.name;
+                    room += "|";
+                });
+                room += '</span></p>';
+            }
+            if (localStorage.getItem('user')){
                 room += '<p><a href="#" class="btn btn-primary js-booked-room" id="js-booked-room-' + type.id + '">Booking Now!</a></p>';
             } else {
-                room += '<p><a href="#" class="btn btn-info js-booked-room">Login to Book Room</a></p>';
+                room += '<p><a href="#" class="btn btn-info js-booked-room" id="js-booked-room-' + type.id + '">Login to Book Room</a></p>';
             }
             room += '</div>';
             room += '</div>';
@@ -170,8 +173,12 @@ function commentHotel() {
     $(document).on('click', '#js-comment', function (e) {
         var content = $('textarea[name="content"]').val();
         var ratingPoint = $('input[name="rating_point"]').val();
-        var token = localStorage.getItem('token-login');
-        var username = localStorage.getItem('username');
+        user = localStorage.getItem('user');
+        var user = JSON.parse(user);
+        if(user) {
+            var token = user.token;
+            var username = user.username;
+        }
         var hotelId = $(".js-hotel").attr("id").slice(9);
         e.preventDefault();
         $.ajax({
@@ -190,15 +197,11 @@ function commentHotel() {
             },
 
             success: function (response) {
-                if (response.code == 200) {
-                    var comment = '<div class="form-group">';
-                    comment += '<label for="comment">' + response.result.username + '</label>';
-                    comment += '<textarea class="form-control" rows="2" id="comment" name="text">' + response.result.content + '</textarea>';
-                    comment += '</div>';
-                    $('#js-commented-list').append(comment);
-                } else {
-                    console.log("server error");
-                }
+                var comment = '<div class="form-group">';
+                comment += '<label for="comment">' + response.result.username + '</label>';
+                comment += '<textarea class="form-control" rows="2" id="comment" name="text">' + response.result.content + '</textarea>';
+                comment += '</div>';
+                $('#js-commented-list').append(comment);
             },
             error: function (response) {
                 alert('Please Login to comment!');
