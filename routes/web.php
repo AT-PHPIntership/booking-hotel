@@ -11,14 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'User', 'as' => 'user.'], function() {
+    Route::get('/', function () {
+        return view('user.home.home');
+    })->name('home');
+
+    Route::get('/user/login', 'AuthController@showLoginForm')->name('login');
+    Route::get('/user/register', 'AuthController@showRegisterForm')->name('register');
 });
 
-Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function() {
     Route::get('/home', function(){
         return view('admin.layout.index');
-	  })->name('admin');
+	})->name('admin');
+
     Route::resource('hotels', 'HotelController');
 
     Route::resource('users', 'UserController');
