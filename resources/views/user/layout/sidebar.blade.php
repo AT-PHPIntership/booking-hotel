@@ -45,11 +45,11 @@
                   		<div class="form-field">
                     	<i class="icon icon-arrow-down3"></i>
 	                    <select name="people" id="people" class="form-control">
-		                    <option value="1">{{ __('user/layout.side_bar.one_person') }}</option>
-		                    <option value="2">{{ __('user/layout.side_bar.two_people') }}</option>
-		                    <option value="3">{{ __('user/layout.side_bar.three_people') }}</option>
-		                    <option value="4">{{ __('user/layout.side_bar.four_people') }}</option>
-		                    <option value="5">{{ __('user/layout.side_bar.five_people_plus') }}</option>
+		                    <option value="1" style="color: blue;">{{ Config::get('user_define.side_bar.one_person') }}</option>
+		                    <option value="2" style="color: blue;">{{ Config::get('user_define.side_bar.two_people') }}</option>
+		                    <option value="3" style="color: blue;">{{ Config::get('user_define.side_bar.three_people') }}</option>
+		                    <option value="4" style="color: blue;">{{ Config::get('user_define.side_bar.four_people') }}</option>
+		                    <option value="5" style="color: blue;">{{ Config::get('user_define.side_bar.five_people_plus') }}</option>
 	                    </select>
                   	</div>
                 </div>
@@ -73,11 +73,11 @@
 	                    <div class="form-field">
 	                      <i class="icon icon-arrow-down3"></i>
 	                      <select name="people" id="people" class="form-control">
-	                        <option value="#">{{ __('user/layout.side_bar.price_from_1') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_from_2') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_from_3') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_from_4') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_from_5') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_1') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_2') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_3') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_4') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_from_5') }}</option>
 	                      </select>
 	                    </div>
 	                  </div>
@@ -88,11 +88,11 @@
 	                    <div class="form-field">
 	                      <i class="icon icon-arrow-down3"></i>
 	                      <select name="people" id="people" class="form-control">
-	                        <option value="#">{{ __('user/layout.side_bar.price_to_1') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_to_2') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_to_3') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_to_4') }}</option>
-	                        <option value="#">{{ __('user/layout.side_bar.price_to_5') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_1') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_2') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_3') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_4') }}</option>
+	                        <option value="#">{{ Config::get('user_define.side_bar.price_to_5') }}</option>
 	                      </select>
 	                    </div>
 	                  </div>
