@@ -65,6 +65,8 @@
         'confirm_password' => 'Confirm Password',
         'reset_password' => 'Reset Password',
         'send_password_reset_link' => 'Send Password Reset Link',
+        'login_unauthorised' => 'Login Fail',
+        'logout_unauthorised' => 'Logout Fail',
     ],
     'message' => [
         'mes_add_success' => 'Create Success',
