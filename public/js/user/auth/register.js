@@ -18,9 +18,11 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response.result.username);
+                console.log(response.result.phone);
                 localStorage.setItem('token-login', response.result.token);
                 localStorage.setItem('username', response.result.username);
+                localStorage.setItem('phone', response.result.phone);
+                localStorage.setItem('email', response.result.email);
                 window.location.href = 'http://' + window.location.hostname;
             },
 
