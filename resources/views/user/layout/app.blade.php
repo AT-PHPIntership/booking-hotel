@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ __('admin/layout.app.title') }}</title>
+    <title>{{ __('user/layout.app.title') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,20 +25,20 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 @guest
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        {{ __('admin/layout.app.logo') }}
+                    <a class="navbar-brand" href="{{ route('user.home') }}">
+                        {{ __('user/layout.app.logo') }}
                     </a>
                 @else
                     @if(Auth::user()->role == 'admin')
-                        <a class="navbar-brand" href="{{ url('/admin/home') }}">
-                            {{ __('admin/layout.app.admin') }}
+                        <a class="navbar-brand" href="{{ route('admin.home') }}">
+                            {{ __('user/layout.app.user') }}
                         </a>
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ __('admin/layout.app.home') }}
+                        <a class="navbar-brand" href="{{ route('user.home') }}">
+                            {{ __('user/layout.app.home') }}
                         </a>
                     @else
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ __('admin/layout.app.home') }}
+                        <a class="navbar-brand" href="{{ route('user.home') }}">
+                            {{ __('user/layout.app.home') }}
                         </a>
                     @endif
                 @endguest
@@ -52,23 +52,23 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('admin/layout.app.login') }}</a>
+                                <a class="nav-link" href="{{ route('user.login') }}">{{ __('user/layout.app.login') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('admin/layout.app.register') }}</a>
+                                <a class="nav-link" href="{{ route('user.register') }}">{{ __('user/layout.app.register') }}</a>
                             </li>
                         @else
                         <li class="nav-item dropdown d-none d-xl-inline-block">
                             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                                <span class="profile-text">{{ __('admin/layout.header.welcome') }} {{ Auth::user()->username }}</span>
+                                <span class="profile-text">{{ __('user/layout.header.welcome') }} {{ Auth::user()->username }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">                      
-                              <a class="dropdown-item mt-2">{{ __('admin/layout.header.manage_accounts') }}</a>
-                              <a class="dropdown-item">{{ __('admin/layout.header.change_password') }}</a>
-                              <a class="dropdown-item">{{ __('admin/layout.header.check_inbox') }}</a>
+                              <a class="dropdown-item mt-2">{{ __('user/layout.header.manage_accounts') }}</a>
+                              <a class="dropdown-item">{{ __('user/layout.header.change_password') }}</a>
+                              <a class="dropdown-item">{{ __('user/layout.header.check_inbox') }}</a>
                               <div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                               </div>
@@ -84,5 +84,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('java-script')
 </body>
 </html>
