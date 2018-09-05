@@ -42,6 +42,8 @@ class RegisterController extends ApiController
             Auth::attempt(['email' => $response['email'], 'password' => $response['password']]);
             $user = Auth::user();
             $data['username'] = $user->username;
+            $data['phone'] = $user->phone;
+            $data['email'] = $user->email;
             $data['token'] = $user->createToken('token')->accessToken;
             return $this->successResponse($data, Response::HTTP_OK);
         }
