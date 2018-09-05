@@ -33,7 +33,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = $this->hotel->getHotels();
+        $hotels = $this->hotel->getHotelsPaginate();
         return view('admin.hotels.list_hotel', ['hotels' => $hotels]);
     }
 

@@ -74,13 +74,24 @@ class Hotel extends Model
     }
 
     /**
-     * Get List Hotels
+     * Get List Hotels with paginate
+     *
+     * @return array
+    */
+    public function getHotelsPaginate()
+    {
+        $list = $this->with(['user', 'city'])->paginate(Hotel::PAGINATION_VALUE_ON_PAGE);
+        return $list;
+    }
+
+    /**
+     * Get List Hotels without paginate
      *
      * @return array
     */
     public function getHotels()
     {
-        $list = $this->with(['user', 'city'])->paginate(Hotel::PAGINATION_VALUE_ON_PAGE);
+        $list = $this->all();
         return $list;
     }
 
