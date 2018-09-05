@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(
 
     Route::resource('cities', 'CityController');
 
+    Route::resource('rooms', 'RoomController');
+
     Route::resource('services', 'ServiceController')->except(['show']);
 
     Route::resource('service-types', 'ServiceTypeController')->except(['show']);

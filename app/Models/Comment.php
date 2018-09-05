@@ -39,4 +39,16 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Hotel', 'hotel_id');
     }
+
+    /**
+     * Create comment
+     *
+     * @param array $data data
+     *
+     * @return array
+    */
+    public function addComment($data)
+    {
+        return $this->create($data);
+    }
 }

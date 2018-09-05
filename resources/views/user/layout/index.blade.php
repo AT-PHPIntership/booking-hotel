@@ -39,27 +39,33 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="#">{{ __('user/layout.header.logo') }}</a></div>
+							<div id="colorlib-logo" class="js-home"><a href="#">{{ __('user/layout.header.logo') }}</a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-							<ul>
-								<li><a href="user/hotels">{{ __('user/layout.header.hotel') }}</a></li>
-								<li><a href="#">{{ __('user/layout.header.about') }}</a></li>
-								<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
-								
-                <li class="js-user-login">
-                    <a href="{{ route('home') }}">{{ __('user/layout.header.home') }}</a>
-                </li>
-                <li class="js-user-logined"></li>
-              	<li class="js-user-login">
-                		<button id="js-logout">{{ __('user/layout.header.logout') }}</button>
-                </li>
+							<ul style="color: white;">
+				                <li class="js-user-login">
+				                    <a href="#" class="js-home">{{ __('user/layout.header.home') }}</a>
+				                </li>
+				                <li><a href="#">{{ __('user/layout.header.about') }}</a></li>
+												<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
+				                <li class="has-dropdown">
+									<a href="#" class="js-user-logined"></a>
+									<ul class="dropdown">
+										<li>
+											<a href="#" class="js-user-change-infor">{{ __('user/layout.header.change_infor') }}
+											</a>
+										</li>
+										<li><a href="#" class="js-booked-manager">{{ __('user/layout.header.booked_rooms') }}</a></li>
+									</ul>
+				                </li>
+				              	<li class="js-user-login">
+				                		<a href="#" id="js-logout">{{ __('user/layout.header.logout') }}</a>
+				                </li>
 
-                <li class="js-user-not-login">
-                    <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
-                    <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
-                </li>
-					      		
+				                <li class="js-user-not-login">
+				                    <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
+				                    <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
+				                </li>
 							</ul>
 						</div>
 					</div>
@@ -67,12 +73,12 @@
 			</div>
 		</nav>
 
-		<aside id="colorlib-hero">
+		<aside id="colorlib-hero" style="height: 500px;">
 			@include('user/layout/slide')
 		</aside>
 
 		<div class="colorlib-wrap">
-			<div class="container">
+			<div class="container js-home-information">
 				<div class="row">
 					<!-- Content -->
 					@yield('content')
@@ -80,21 +86,103 @@
 					@include('user/layout/sidebar')
 				</div>
 			</div>
-		</div>
-		<!-- List Place -->
-		<div id="colorlib-hotel">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
-						<h2>Recommended Places</h2>
-					</div>
-				</div>
-				<div class="row">
-					@include('user/layout/place')
-				</div>
+			<div class="container js-user-information" style="display: none;">
+    			<div class="row justify-content-center">
+        			<div class="col-md-12">
+            			<div class="card">
+			                <h2 class="card-header">{{ __('user/layout.app.change') }}</h2>
+
+			                <div class="card-body">
+			                    <form>
+			                        <div class="form-group row">
+			                            <label for="name" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.name') }}</label>
+
+			                            <div class="col-md-6">
+
+			                                <input id="js-username" type="text" class="form-control" name="username" required autofocus>
+			                                <span class="invalid-feedback" role="alert" id="js-feedback-username">
+                                    			<strong id="js-error-username"></strong>
+                                			</span>
+
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row">
+			                            <label for="email" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
+
+			                            <div class="col-md-6">
+
+			                                <input id="js-email" type="text" class="form-control" name="email" required>
+
+			                                <span class="invalid-feedback" role="alert" id="js-feedback-email">
+			                                    <strong id="js-error-email"></strong>
+			                                </span>
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row">
+			                            <label for="address" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.address') }}</label>
+
+			                            <div class="col-md-6">
+
+			                                <input id="js-address" type="text" class="form-control" name="address">
+
+			                                    <span class="invalid-feedback" role="alert" id="js-feedback-address">
+			                                        <strong id="js-error-address"></strong>
+
+			                                    </span>
+
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row">
+			                            <label for="phone" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.phone') }}</label>
+
+			                            <div class="col-md-6">
+
+			                                <input id="js-phone" type="text" class="form-control" name="phone">
+
+			                                <span class="invalid-feedback" role="alert" id="js-feedback-phone">
+			                                    <strong id="js-error-phone"></strong>
+
+			                                </span>
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row">
+			                            <label for="password" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.password') }}</label>
+
+			                            <div class="col-md-6">
+			                                <input id="js-password" type="password" class="form-control" name="password">
+
+			                                <span class="invalid-feedback" role="alert" id="js-feedback-password">
+			                                    <strong id="js-error-password"></strong>
+			                                </span>
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row">
+			                            <label for="password-confirm" class="col-md-8 col-form-label text-md-right">{{ __('user/layout.app.confirm_password') }}</label>
+
+			                            <div class="col-md-6">
+			                                <input id="js-password-confirm" type="password" class="form-control" name="password_confirmation">
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group row mb-0">
+			                            <div class="col-md-8 offset-md-6">
+			                                <a href="#" class="btn btn-primary" id="js-btn-change-user">
+			                                    {{ __('user/layout.app.change') }}
+			                                </a>
+			                            </div>
+			                        </div>
+			                    </form>
+			                </div>
+			            </div>
+			        </div>
+    			</div>
 			</div>
 		</div>
-
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">

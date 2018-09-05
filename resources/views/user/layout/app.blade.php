@@ -31,7 +31,7 @@
                 @else
                     @if(Auth::user()->role == 'admin')
                         <a class="navbar-brand" href="{{ route('admin.home') }}">
-                            {{ __('user/layout.app.user') }}
+                            {{ __('admin/layout.app.admin') }}
                         </a>
                         <a class="navbar-brand" href="{{ route('user.home') }}">
                             {{ __('user/layout.app.home') }}

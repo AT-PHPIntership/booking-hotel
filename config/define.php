@@ -12,4 +12,5 @@ return [
     	'enable' => '1',
     	'disable' => '0',
     ],
+    'limit_rows' => 6,
 ];

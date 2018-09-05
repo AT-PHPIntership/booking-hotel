@@ -9,6 +9,8 @@ class BookedRoom extends Model
 {
 
     const PAGINATION_VALUE_ON_PAGE = 5;
+    const BOOKED_ROOM_STATUS_ENABLE = 1;
+    const BOOKED_ROOM_STATUS_DISABLE = 0;
 
     /**
      * Declare table
@@ -51,7 +53,7 @@ class BookedRoom extends Model
     */
     public function getBookedRoom()
     {
-        return $this->with(['user', 'room'])->paginate(BookedRoom::PAGINATION_VALUE_ON_PAGE);
+        return $this->with(['user', 'room'])->orderBy('id', 'desc')->paginate(BookedRoom::PAGINATION_VALUE_ON_PAGE);
     }
 
 
@@ -65,6 +67,20 @@ class BookedRoom extends Model
     public function findBookedRoom($id)
     {
         return $this->find($id);
+    }
+
+
+    /**
+     * Create Booked Room from id
+     *
+     * @param object $request request
+     *
+     * @return array
+    */
+    public function createBookedRoom($request)
+    {
+        $request['status'] = self::BOOKED_ROOM_STATUS_DISABLE;
+        return $this->create($request);
     }
 
     /**
@@ -90,5 +106,43 @@ class BookedRoom extends Model
     public function deleteBookedRoom($id)
     {
         return $this->find($id)->delete();
+    }
+
+    /**
+     * Find Rooms are booked
+     *
+     * @param date $startDay start day
+     * @param date $endDay   end day
+     *
+     * @return array
+    */
+    public function bookedSearch($startDay, $endDay)
+    {
+        $roomBookedList = $this->select('room_id')
+                                ->where(function ($query) use ($startDay, $endDay) {
+                                    $query->whereDate('date_in', '<=', $endDay)
+                                        ->whereDate('date_in', '>=', $startDay);
+                                })->orWhere(function ($query) use ($startDay, $endDay) {
+                                    $query->whereDate('date_out', '<=', $endDay)
+                                        ->whereDate('date_out', '>=', $startDay);
+                                })
+                                ->get();
+        $idRoomBooked = [];
+        foreach ($roomBookedList as $item) {
+            $idRoomBooked[] = $item->room_id;
+        }
+        return $idRoomBooked;
+    }
+
+    /**
+     * Find Rooms user has id booked
+     *
+     * @param int $userId user of id
+     *
+     * @return array
+    */
+    public function bookedFindFollowUser($userId)
+    {
+        return $this->with(['room.hotel', 'room.roomTypes', 'room.roomImage'])->where('user_id', $userId)->orderBy('id', 'desc')->get();
     }
 }

@@ -35,6 +35,17 @@ class CityController extends Controller
     }
 
     /**
+     * List City for front end
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getFrontEndCitys()
+    {
+        $cities = $this->city->getCities();
+        return view('admin.cities.cities', ['cities'=>$cities]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

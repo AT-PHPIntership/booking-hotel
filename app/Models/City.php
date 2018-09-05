@@ -55,6 +55,18 @@ class City extends Model
         return $cities;
     }
 
+
+    /**
+     * Get List city with paginate
+     *
+     * @return array
+    */
+    public function getFrontEndCitys()
+    {
+        $cities = $this->all();
+        return $cities;
+    }
+
     /**
      * Get List city with out paginate
      *

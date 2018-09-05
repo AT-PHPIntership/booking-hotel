@@ -15,6 +15,9 @@ Login User
 |---|---|---|
 | username | username | User's Username |
 | password | password | User's Password |
+| phone    | phone    | User's Phone    |
+| email    | email    | User's Email    |
+
 
 #### Response
 * _Error_

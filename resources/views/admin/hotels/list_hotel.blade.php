@@ -19,14 +19,10 @@
                                     <tr>
                                         <th>{{ __('admin/hotel.hotel_list.hotel_number') }}</th>
                                         <th>{{ __('admin/hotel.hotel_list.hotel_name') }}</th>
-                                        <th>{{ __('admin/hotel.hotel_list.hotel_user_name') }}</th>
-                                        <th>{{ __('admin/hotel.hotel_list.hotel_address') }}</th>
                                         <th>{{ __('admin/hotel.hotel_list.hotel_city') }}</th>
-                                        <th>{{ __('admin/hotel.hotel_list.hotel_rank') }}</th>
-                                        <th>{{ __('admin/hotel.hotel_list.hotel_status') }}</th>
                                         <th>{{ __('admin/hotel.hotel_list.hotel_decription') }}</th>
-                                        <th>{{ __('admin/hotel.hotel_list.hotel_delete') }}</th>
                                         <th>{{ __('admin/hotel.hotel_list.hotel_edit') }}</th>
+                                        <th>{{ __('admin/hotel.hotel_list.hotel_delete') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,18 +33,8 @@
                                             <img src="upload/hotel/{{$item->image}}" alt="no image" class="rounded">
                                             <p>{{$item->name}}</p>
                                         </td>
-                                        <td>{{$item->user->username}}</td>
-                                        <td>{{$item->address}}</td>
                                         <td>{{$item->city->city}}, {{$item->city->country}}</td>
-                                        <td>{{$item->number_star}} {{ __('admin/hotel.hotel_list.hotel_star') }}</td>
-                                        <td>
-                                            @if ($item->status == true)
-                                                {{ __('admin/hotel.hotel_list.hotel_status_enable') }}
-                                            @else
-                                                {{ __('admin/hotel.hotel_list.hotel_status_disable') }}
-                                            @endif
-                                        </td>
-                                        <td>{{$item->descript}}</td>
+                                        <td><textarea rows="5" style="width: 200px;">{{ $item->descript }}</textarea disable></td>
                                         <td>
                                             <a href="{{ route('hotels.edit', $item->id) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit">{{ __('admin/hotel.hotel_list.hotel_edit') }}</i></a>
                                         </td>

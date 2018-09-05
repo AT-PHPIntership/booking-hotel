@@ -56,6 +56,7 @@
         'hotel_descript_max' => 'Description is very long',
         'hotel_image_required' => 'Image is empty',
         'hotel_image_format' => 'Image format is wrong!',
+        'service_hotel' => 'Services',
     ],
     // Edit Hotel
     'hotel_edit' => [
