@@ -39,27 +39,33 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="#">{{ __('user/layout.header.logo') }}</a></div>
+							<div id="colorlib-logo" class="js-home"><a href="#">{{ __('user/layout.header.logo') }}</a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-							<ul>
-								<li><a href="user/hotels">{{ __('user/layout.header.hotel') }}</a></li>
-								<li><a href="#">{{ __('user/layout.header.about') }}</a></li>
-								<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
-								
-                <li class="js-user-login">
-                    <a href="{{ route('home') }}">{{ __('user/layout.header.home') }}</a>
-                </li>
-                <li class="js-user-logined"></li>
-              	<li class="js-user-login">
-                		<button id="js-logout">{{ __('user/layout.header.logout') }}</button>
-                </li>
+							<ul style="color: white;">
+				                <li class="js-user-login">
+				                    <a href="#" class="js-home">{{ __('user/layout.header.home') }}</a>
+				                </li>
+				                <li><a href="#">{{ __('user/layout.header.about') }}</a></li>
+												<li><a href="#">{{ __('user/layout.header.contract') }}</a></li>
+				                <li class="has-dropdown">
+									<a href="#" class="js-user-logined"></a>
+									<ul class="dropdown">
+										<li>
+											<a href="#" class="js-user-change-infor">{{ __('user/layout.header.change_infor') }}
+											</a>
+										</li>
+										<li><a href="#" class="js-booked-manager">{{ __('user/layout.header.booked_rooms') }}</a></li>
+									</ul>
+				                </li>
+				              	<li class="js-user-login">
+				                		<a href="#" id="js-logout">{{ __('user/layout.header.logout') }}</a>
+				                </li>
 
-                <li class="js-user-not-login">
-                    <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
-                    <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
-                </li>
-					      		
+				                <li class="js-user-not-login">
+				                    <a href="{{ route('user.login') }}" id="user-login">{{ __('user/layout.header.login') }}</a>
+				                    <a href="{{ route('user.register') }}" id="user-register">{{ __('user/layout.header.register') }}</a>
+				                </li>
 							</ul>
 						</div>
 					</div>

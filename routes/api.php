@@ -25,5 +25,7 @@ Route::group(['as' => 'api.'], function() {
         	Route::post('logout', 'LoginController@logout');
         });
 
+        Route::post('register', 'RegisterController@register');
+
     });
 });
