@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(
 
     Route::resource('booked-rooms', 'BookedRoomController')->only(['index', 'edit', 'update', 'destroy']);
 
+    Route::resource('slides', 'SlideController')->only(['index', 'create', 'store' , 'destroy']);
+
 });
 
 Auth::routes();

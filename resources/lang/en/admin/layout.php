@@ -42,6 +42,9 @@
         'add_service_type' => 'Add Service Type',
         'booked_rooms' => 'Booked Rooms',
         'list_booked_rooms' => 'List Booked Room',
+        'slides' => 'Slides',
+        'list_slides' => 'List Slides',
+        'add_slide' => 'Add Slide',
     ],
     'title' => 'Admin',
     'app' => [
