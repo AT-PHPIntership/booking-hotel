@@ -37,5 +37,5 @@ $(document).ready(function () {
                 window.location.href = 'http://' + window.location.hostname + '/user/login';
             }
         });
-	});
+    });
 });
