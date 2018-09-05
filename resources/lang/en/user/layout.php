@@ -2,7 +2,7 @@
 
     /*
     |--------------------------------------------------------------------------
-    | Admin layout localization
+    | User layout localization
     |--------------------------------------------------------------------------
     |
     */
@@ -15,6 +15,8 @@
         'hotel' => 'Hotels',
         'about' => 'About',
         'contract' => 'Contract',
+        'change_infor' => 'Change Info',
+        'booked_rooms' => 'Booked Rooms',
         'sign_out' => 'Sign Out',
         'login' => 'Login',
         'logout' => 'Log Out',
@@ -65,6 +67,9 @@
         'confirm_password' => 'Confirm Password',
         'reset_password' => 'Reset Password',
         'send_password_reset_link' => 'Send Password Reset Link',
+        'login_unauthorised' => 'Login Fail',
+        'logout_unauthorised' => 'Logout Fail',
+        'change' => 'Change Information',
     ],
     'message' => [
         'mes_add_success' => 'Create Success',

@@ -50,31 +50,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.login') }}">{{ __('user/layout.app.login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.register') }}">{{ __('user/layout.app.register') }}</a>
-                            </li>
-                        @else
-                        <li class="nav-item dropdown d-none d-xl-inline-block">
-                            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                                <span class="profile-text">{{ __('user/layout.header.welcome') }} {{ Auth::user()->username }}</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">                      
-                              <a class="dropdown-item mt-2">{{ __('user/layout.header.manage_accounts') }}</a>
-                              <a class="dropdown-item">{{ __('user/layout.header.change_password') }}</a>
-                              <a class="dropdown-item">{{ __('user/layout.header.check_inbox') }}</a>
-                              <div>
-                                <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                                <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                              </div>
-                            </div>
-                          </li>
-                        @endguest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.login') }}">{{ __('user/layout.app.login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.register') }}">{{ __('user/layout.app.register') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

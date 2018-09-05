@@ -13,10 +13,18 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.name') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                 <input id="username" type="text" class="form-control" name="username" required autofocus>
                                 <span class="invalid-feedback" role="alert" id="js-feedback-username">
                                     <strong id="js-error-username"></strong>
                                 </span>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                             </div>
                         </div>
 
@@ -24,6 +32,10 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.email_address') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                 <input id="text" type="text" class="form-control" name="email" required>
 
                                 <span class="invalid-feedback" role="alert" id="js-feedback-email">
@@ -36,10 +48,18 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.address') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                 <input id="address" type="text" class="form-control" name="address" required autofocus>
 
                                     <span class="invalid-feedback" role="alert" id="js-feedback-address">
                                         <strong id="js-error-address"></strong>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                     </span>
 
                             </div>
@@ -49,10 +69,18 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('user/layout.app.phone') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                 <input id="phone" type="text" class="form-control" name="phone" required autofocus>
 
                                 <span class="invalid-feedback" role="alert" id="js-feedback-phone">
                                     <strong id="js-error-phone"></strong>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                                 </span>
                             </div>
                         </div>

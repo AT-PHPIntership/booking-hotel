@@ -9,6 +9,20 @@ use App\Models\User;
 
 class LoginController extends ApiController
 {
+    protected $user;
+
+    /**
+     ** Create contructor.
+     *
+     * @param User $user user
+     *
+     * @return void
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Login as user
      *
@@ -22,6 +36,8 @@ class LoginController extends ApiController
         if ($login) {
             $user = Auth::user();
             $data['username'] = $user->username;
+            $data['phone'] = $user->phone;
+            $data['email'] = $user->email;
             $data['token'] = $user->createToken('token')->accessToken;
             return $this->successResponse($data, Response::HTTP_OK);
         }
@@ -37,7 +53,10 @@ class LoginController extends ApiController
      */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
-        return $this->successResponse(null, Response::HTTP_NO_CONTENT);
+        $check = $request->user()->token()->revoke();
+        if ($check) {
+            return $this->successResponse(null, Response::HTTP_NO_CONTENT);
+        }
+        return $this->errorResponse(__('user/layout.app.logout_unauthorised'), Response::HTTP_UNAUTHORIZED);
     }
 }
