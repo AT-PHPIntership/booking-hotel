@@ -89,7 +89,6 @@
         'user_phone_regex' => 'Format phone is wrong!',
         'user_address_required' => 'Address is not empty',
         'user_address_max' => 'Address length less than 255 words',
-        'user_password_required' => 'Password is empty',
         'user_password_string' => 'Password is a string',
         'user_password_min' => 'Password length more than 6 words',
         'user_password_confirmed' => 'Password is not incorrect',

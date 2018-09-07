@@ -92,7 +92,6 @@ class UserRequest extends FormRequest
                     'phone.regex' => __('admin/user.user_edit.user_phone_regex'),
                     'address.required' => __('admin/user.user_edit.user_address_required'),
                     'address.max' => __('admin/user.user_edit.user_address_max'),
-                    'password.required' => __('admin/user.user_edit.user_password_required'),
                     'password.string' => __('admin/user.user_edit.user_password_string'),
                     'password.min' => __('admin/user.user_edit.user_password_min'),
                     'password.confirmed' => __('admin/user.user_edit.user_password_confirmed'),
